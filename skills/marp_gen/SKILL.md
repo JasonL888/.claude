@@ -86,6 +86,9 @@ description: Converts project notes, features, or architectural plans into a Mar
 6. **Structure:**
    - Use `---` to separate slides
    - Ensure every slide has a Heading 1
+   - Use bullet points for lists and ensure they are concise
+   - Include images where relevant using `![alt text](image_url)`
+   - Use blockquotes for important notes or quotes
 
 # Cover Page Template
 

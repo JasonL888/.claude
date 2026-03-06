@@ -86,9 +86,14 @@ description: Converts project notes, features, or architectural plans into a Mar
 6. **Structure:**
    - Use `---` to separate slides
    - Ensure every slide has a Heading 1
-   - Use bullet points for lists and ensure they are concise
+   - Use bullet points for lists and ensure they are concise 
+     - preferably each bullet point should be one line without overflowing
    - Include images where relevant using `![alt text](image_url)`
    - Use blockquotes for important notes or quotes
+
+7. **Review**:
+   - Ensure that the content is clear and visually appealing when rendered in Marp
+   - Review the HTML output to ensure formatting is within the page limits and not overflowing
 
 # Cover Page Template
 

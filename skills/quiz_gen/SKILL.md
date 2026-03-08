@@ -15,6 +15,7 @@ description: Generates a quiz based on the provided content, including questions
    - A clear and concise question statement
    - Multiple-choice options (at least 4 options per question)
    - One correct answer clearly indicated
+   - Level of difficulty: Easy to Medium
 
 4. **Format** Compile the questions and answers following format:
    - Each question are numbered sequentially (1, 2, 3, etc.)

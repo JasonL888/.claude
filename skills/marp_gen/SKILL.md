@@ -80,7 +80,9 @@ description: Converts project notes, features, or architectural plans into a Mar
 5. **Cover Page:** Always include a cover page as the first slide with:
    - A large `#` header for the title
    - A company PNG logo image centered below the title using `![bg right width:50%](./logo.png)`
-    - copy the logo from the skill's assets folder to the same directory as the generated Markdown file
+    - check if the logo exists in current workspace. 
+        - If exist, reuse the same logo
+        - otherwise, copy the logo from the skill's assets folder to the same directory as the generated Markdown file
    - The footer with the company name
 
 6. **Structure:**

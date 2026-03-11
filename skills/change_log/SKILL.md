@@ -1,11 +1,11 @@
 ---
 name: change_log
-description: Create, update, format, and maintain `CHANGELOG.md` files. Use this skill whenever the user asks to: write a changelog, add a release entry, update a CHANGELOG.md, format change notes, document a new version,create release notes in changelog format, organize git commits into a changelog, or asks anything involving "changelog", "CHANGELOG", "release notes", "version history", or "what changed in version X". Also trigger when the user provides a list of changes and wants them documented properly.
+description: Create, update, format, and maintain `changelog.md` files. Use this skill whenever the user asks to: write a changelog, add a release entry, update a changelog.md, format change notes, document a new version,create release notes in changelog format, organize git commits into a changelog, or asks anything involving "changelog", "CHANGELOG", "release notes", "version history", or "what changed in version X". Also trigger when the user provides a list of changes and wants them documented properly.
 ---
 
 # Changelog Skill
 
-Produce and maintain **CHANGELOG.md** files that strictly follow the
+Produce and maintain **changelog.md** files that strictly follow the
 [Keep a Changelog 1.0.0](https://keepachangelog.com/en/1.0.0/) convention.
 
 ---
@@ -118,25 +118,27 @@ When cutting a release:
 
 ## Workflow: Creating a Changelog from Scratch
 
-1. Ask the user for:
+1. Check whether a `docs/` directory exists in the project root. If it does, place the file at `docs/changelog.md`; otherwise place it at `changelog.md` in the project root.
+2. Ask the user for:
    - Project name and repo URL (for version comparison links)
    - List of versions with their release dates (if known)
    - Changes per version (accept raw git logs, bullet lists, prose — anything)
-2. Classify each change into the correct type label
-3. Rewrite raw entries into clear, human-friendly language
-4. Output a complete `CHANGELOG.md` following the structure above
-5. Save as `CHANGELOG.md` (or `CHANGELOG` without extension if user prefers)
+3. Classify each change into the correct type label
+4. Rewrite raw entries into clear, human-friendly language
+5. Output a complete `changelog.md` following the structure above
+6. Save to the path determined in step 1.
 
 ## Workflow: Updating an Existing Changelog
 
-1. Read the current file to understand existing format and versions
-2. Identify whether the user wants to:
+1. Check for `docs/changelog.md` first, then `changelog.md` in the project root. Edit whichever exists.
+2. Read the current file to understand existing format and versions.
+3. Identify whether the user wants to:
    - Add to `[Unreleased]`
    - Promote `[Unreleased]` to a new version
    - Add a missing historical version
    - Fix formatting issues
-3. Make targeted edits; preserve all existing content
-4. Keep version links in sync at the bottom of the file
+4. Make targeted edits; preserve all existing content.
+5. Keep version links in sync at the bottom of the file.
 
 ---
 

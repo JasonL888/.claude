@@ -16,6 +16,13 @@ Generate concise, insightful speaker scripts for PowerPoint slides that compleme
 3. **Preserve existing notes** — if a slide already has speaker notes, leave them completely unchanged.
 4. **Be concise** — each script should be short enough to deliver in the time allotted per slide. Avoid padding.
 5. **Use bullet lists for key points** — list format makes it easy to glance at while presenting.
+   - If a bullet point is too long to read at a glance, break it into a parent + indented sub-bullets:
+     ```
+     - Main point (short label or headline)
+       - supporting detail or elaboration
+       - second part of the thought
+     ```
+   - The parent line should be a short anchor phrase (≤10 words); the detail goes in the sub-bullets.
 6. **Add value** — scripts should include: real-world examples, common misconceptions, transition cues, or deeper context not on the slide.
 
 ---
@@ -135,8 +142,11 @@ The question should be thought-provoking and answerable from the audience's exis
 - It computes gradients using the chain rule
 - It updates weights to minimize loss
 
-**Good script (adds insight):**
-- Think of it as blame assignment — the network figures out which weights contributed most to the error
-- Chain rule allows gradients to flow backwards through every layer, even very deep ones
-- Without this, training networks deeper than 2–3 layers was practically infeasible before 1986
-- Common confusion: backprop computes gradients — a separate optimizer (SGD, Adam) decides how to use them
+**Good script (adds insight, with sub-bullets for longer points):**
+- Think of it as blame assignment
+  - the network figures out which weights contributed most to the error
+- Chain rule flows gradients backwards through every layer
+  - makes training arbitrarily deep networks mathematically tractable
+- Without this, networks deeper than 2–3 layers were impractical before 1986
+- Common confusion: backprop computes gradients only
+  - a separate optimizer (SGD, Adam) decides how to update the weights

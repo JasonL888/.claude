@@ -98,6 +98,12 @@ description: Converts project notes, features, or architectural plans into a Mar
    - **Never repeat slide content verbatim** — add insight, context, analogies, or real-world examples instead.
    - **Each slide gets a unique script** — no reused phrasing across slides.
    - **Be concise** — 3–5 bullet points per slide, glanceable while presenting.
+   - **Break long bullets into sub-lists** — if a point is too long to read at a glance, split it into a short parent line and indented sub-bullets:
+     ```
+     - Main point (short anchor phrase, ≤10 words)
+       - supporting detail or elaboration
+       - second part of the thought
+     ```
    - **Add value** based on slide type:
      - Definition slide → real-world analogy or example
      - Diagram slide → what to focus on and why it matters

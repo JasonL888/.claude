@@ -93,7 +93,38 @@ description: Converts project notes, features, or architectural plans into a Mar
    - Include images where relevant using `![alt text](image_url)`
    - Use blockquotes for important notes or quotes
 
-7. **Review**:
+7. **Speaker Scripts:**
+   After all slide content is finalized, add speaker notes to every slide using Marp's `<!-- ... -->` comment syntax. Follow these rules:
+   - **Never repeat slide content verbatim** — add insight, context, analogies, or real-world examples instead.
+   - **Each slide gets a unique script** — no reused phrasing across slides.
+   - **Be concise** — 3–5 bullet points per slide, glanceable while presenting.
+   - **Add value** based on slide type:
+     - Definition slide → real-world analogy or example
+     - Diagram slide → what to focus on and why it matters
+     - List slide → prioritization, common pitfalls, or surprising nuance
+     - Code slide → what it does conceptually, where it's used
+     - Title/transition slide → bridge from previous topic, what's coming and why
+   - **Format** each note block placed at the end of its slide content, before the next `---`:
+     ```
+     <!--
+     - Key insight or elaboration
+     - Supporting detail, example, or analogy
+     - [Additional point if needed]
+     -->
+     ```
+   - **Engagement questions:** Occasionally add a question to pose to the audience — use sparingly, **1–2 per deck**, only when it meaningfully enhances the slide:
+     - Use when: the slide reveals a counterintuitive fact, benefits from audience reflection, or is a narrative pivot point
+     - Do not use on: routine explanatory slides, dense technical content, or back-to-back with another question
+     - Format as the last line inside the comment block, prefixed with `❓`:
+       ```
+       <!--
+       - Key insight
+       - Supporting detail
+       ❓ Ask: "Your question here?"
+       -->
+       ```
+
+8. **Review**:
    - Ensure that the content is clear and visually appealing when rendered in Marp
    - Review the HTML output to ensure formatting is within the page limits and not overflowing
 

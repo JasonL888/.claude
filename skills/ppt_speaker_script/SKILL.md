@@ -88,6 +88,29 @@ or
 
 ---
 
+## Engagement Questions
+
+Occasionally include a question to pose to the audience — but only when it meaningfully enhances the slide. Use sparingly: aim for **1–2 questions across the entire deck**, not one per slide.
+
+**When to use:**
+- The slide reveals a counterintuitive fact or surprising comparison
+- A key concept benefits from the audience reflecting on their own experience
+- A pivot point in the narrative where audience buy-in matters
+
+**When NOT to use:**
+- Routine explanatory slides (definitions, step-by-step process)
+- Slides with dense technical content where focus is needed
+- Back-to-back with another question slide
+
+**Format:** Add as the last line of the script, prefixed with `❓`:
+```
+❓ Ask: "Before we look at the answer — how many connections do you think a single 1080p image would need in a fully dense layer?"
+```
+
+The question should be thought-provoking and answerable from the audience's existing knowledge or intuition — not a quiz with a technical answer they couldn't know yet.
+
+---
+
 ## Anti-Patterns to Avoid
 
 - **Paraphrasing the slide** ("As you can see on this slide, X is Y") — this wastes the speaker's time.
@@ -95,6 +118,7 @@ or
 - **Identical structure** across all slides — vary the approach (example, question, contrast, story).
 - **Overloading with text** — speaker notes should be glanceable, not read verbatim.
 - **Modifying existing notes** — if notes already exist, leave them exactly as written.
+- **Overusing questions** — a question on every slide loses impact; use them only at high-value moments.
 
 ---
 

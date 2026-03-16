@@ -8,6 +8,7 @@ description: Converts project notes, features, or architectural plans into a Mar
 1. **Identify the Title:** Look for a title provided in the user's prompt.
    - If no title is provided, prompt user for title
    - Use the title in the first slide's `#` header and the Marp `header` field in the YAML frontmatter.
+    - check the title is vertically centered on the cover slide. If not, adjust the content or styling to ensure it is.
 
 2. **Extract Metadata:**
    - **Year:** Always use the current year (2026).

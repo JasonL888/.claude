@@ -88,10 +88,47 @@ description: Converts project notes, features, or architectural plans into a Mar
 6. **Structure:**
    - Use `---` to separate slides
    - Ensure every slide has a Heading 1
-   - Use bullet points for lists and ensure they are concise 
+   - Use bullet points for lists and ensure they are concise
      - preferably each bullet point should be one line without overflowing
    - Include images where relevant using `![alt text](image_url)`
    - Use blockquotes for important notes or quotes
+
+6a. **Diagrams (Excalidraw):**
+   When a diagram would meaningfully aid understanding during presentation (e.g. flows, architectures, comparisons, timelines), create it as an Excalidraw diagram:
+
+   **Finding the Images directory:**
+   - Search parent directories of the output `.md` file for an existing `Images/` folder
+   - If one exists anywhere up the directory tree, use it — do not create a duplicate
+   - If none exists, create `Images/` in the same directory as the `.md` file
+
+   **Creating the diagram:**
+   - Write a Python script (using `uv run python`) that generates a proper `.excalidraw` JSON file
+   - Use the **native Excalidraw element format** — never use the `"label"` shorthand on rectangles:
+     - Every text label must be a separate `"text"` element with `"containerId"` pointing to its parent shape
+     - The parent shape must have `"boundElements": [{"id": "txt_xxx", "type": "text"}]`
+     - Standalone captions (no container) use `"containerId": null`
+   - Use the Dracula colour palette to match the slide theme:
+     - Background fill: `#282a36`, node fills: `#1e3a5f` / `#1a4d2e` / `#5c1a1a`
+     - Strokes: `#4a9eed` (blue), `#22c55e` (green), `#ef4444` (red), `#8be9fd` (cyan), `#ffb86c` (orange)
+     - Text: `#f8f8f2` (light), `#ff5555` (red labels), `#6272a4` (muted)
+   - Set `"roughness": 0` for clean/sharp shapes (not sketchy)
+   - Use `fontFamily: 3` (monospace) for labels
+
+   **Generating the SVG:**
+   - After writing the `.excalidraw` file, also write a matching hand-crafted `.svg` file that faithfully reproduces the diagram
+   - The SVG is the render artifact used by Marp — the `.excalidraw` is the editable source
+   - SVG background should use `fill="#282a36"` with `rx="8"` on the outer rect to match the dark theme
+
+   **File placement:**
+   - Save both `diag_<name>.excalidraw` and `diag_<name>.svg` into the `Images/` directory found above
+   - Reference in the slide as `![center](../Images/diag_<name>.svg)` (adjust relative path to match `.md` file location)
+
+   **When to create diagrams:**
+   - Flows and pipelines (data flow, training loop, inference pipeline)
+   - Architecture comparisons (e.g. RNN vs LSTM vs Transformer)
+   - Step-by-step processes that are hard to grasp as bullet points
+   - Before/after or cause/effect relationships
+   - Do NOT create diagrams for simple lists, tables, or content that reads clearly as text
 
 7. **Speaker Scripts:**
    After all slide content is finalized, add speaker notes to every slide using Marp's `<!-- ... -->` comment syntax. Follow these rules:

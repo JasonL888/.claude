@@ -94,6 +94,16 @@ description: Converts project notes, features, or architectural plans into a Mar
    - Include images where relevant using `![alt text](image_url)`
    - Use blockquotes for important notes or quotes
 
+6b. **Writing Style:**
+   - **No filler openers** — drop unnecessary articles and weak openers at the start of sentences and headings:
+     - ❌ "The most robust production systems..." → ✅ "Most robust production systems..."
+     - ❌ "This is the key insight..." → ✅ "Key insight..."
+     - ❌ "There are three main reasons..." → ✅ "Three main reasons..."
+   - **No trailing full stops on isolated text** — omit the period when a sentence stands alone with no follow-on sentence (card body text, bullet points, highlight-box lines, slide subtitles):
+     - ❌ "CLU models can run without a live API endpoint." *(sole sentence in a card)*
+     - ✅ "CLU models can run without a live API endpoint"
+     - Keep periods only when two or more sentences appear in the same block
+
 6a. **Diagrams (Excalidraw):**
    When a diagram would meaningfully aid understanding during presentation (e.g. flows, architectures, comparisons, timelines), create it as an Excalidraw diagram:
 

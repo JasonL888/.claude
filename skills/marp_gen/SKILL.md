@@ -178,7 +178,38 @@ description: Converts project notes, features, or architectural plans into a Mar
        -->
        ```
 
-8. **Review**:
+8. **References Slide:**
+   After the last content slide and before the final/closing slide, add one or more **References** slides for further reading. Follow these rules:
+
+   **When to include:**
+   - Always include if the source material contains URLs, citations, or links
+   - Always include if the content covers tools, services, or standards that have official documentation
+   - Always include for technical decks where audience members may want to dig deeper
+
+   **Split into separate slides by category** when there are more than ~6 references total:
+   - **Deprecation & Retirement Notices** — official announcements, GitHub archived repos, retirement dashboards
+   - **Official Documentation** — product docs, quickstarts, API references on learn.microsoft.com or equivalent
+   - **Further Reading** — blog posts, research papers, community resources
+
+   **Format each references slide as a table:**
+   ```markdown
+   # References — [Category Name]
+
+   | Topic | Source |
+   |-------|--------|
+   | **Tool or concept name** | [short link label](full URL) |
+   | **Tool or concept name** | [short link label](full URL) |
+
+   > Always verify currency at [authoritative domain] — this space moves fast
+   ```
+
+   **Rules:**
+   - Use descriptive link labels, not raw URLs — e.g. `[learn.microsoft.com — Agent Framework overview](url)` not `[https://...]`
+   - Group retirement/deprecation announcements first (most time-sensitive)
+   - Add a speaker note pointing out which links are highest priority to bookmark
+   - If the source material had no URLs but tools/concepts can be looked up, generate the canonical documentation URLs from your knowledge
+
+9. **Review**:
    - Ensure that the content is clear and visually appealing when rendered in Marp
    - Review the HTML output to ensure formatting is within the page limits and not overflowing
 

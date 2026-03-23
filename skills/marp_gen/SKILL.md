@@ -104,13 +104,49 @@ description: Converts project notes, features, or architectural plans into a Mar
      - ✅ "CLU models can run without a live API endpoint"
      - Keep periods only when two or more sentences appear in the same block
 
-6a. **Diagrams (Excalidraw):**
-   When a diagram would meaningfully aid understanding during presentation (e.g. flows, architectures, comparisons, timelines), create it as an Excalidraw diagram:
+6a. **Diagrams:**
+   When a diagram would meaningfully aid understanding during presentation (e.g. flows, architectures, comparisons, timelines), create it as a diagram. Use **Mermaid** as the default choice; use **Excalidraw** only when a hand-drawn/sketchy aesthetic is explicitly needed.
 
    **Finding the Images directory:**
    - Search parent directories of the output `.md` file for an existing `Images/` folder
    - If one exists anywhere up the directory tree, use it — do not create a duplicate
    - If none exists, create `Images/` in the same directory as the `.md` file
+
+   ---
+
+   ### Option A — Mermaid (default)
+
+   **Creating the diagram:**
+   - Write the diagram as a `.mmd` file (Mermaid source) in the `Images/` directory
+   - Use the Dracula colour palette via Mermaid's `%%{init: ...}%%` config block:
+     ```
+     %%{init: {'theme': 'base', 'themeVariables': {
+       'primaryColor': '#1e3a5f', 'primaryTextColor': '#f8f8f2',
+       'primaryBorderColor': '#4a9eed', 'lineColor': '#8be9fd',
+       'secondaryColor': '#1a4d2e', 'tertiaryColor': '#282a36',
+       'background': '#282a36', 'mainBkg': '#282a36',
+       'nodeBorder': '#4a9eed', 'clusterBkg': '#282a36',
+       'titleColor': '#f8f8f2', 'edgeLabelBackground': '#282a36',
+       'fontFamily': 'monospace'
+     }}}%%
+     ```
+
+   **Generating the SVG:**
+   - After writing the `.mmd` file, run `mmdc` to render it to SVG:
+     ```bash
+     uv run mmdc -i Images/diag_<name>.mmd -o Images/diag_<name>.svg --backgroundColor "#282a36"
+     ```
+   - The `.mmd` is the editable source; the `.svg` is the render artifact used by Marp
+
+   **File placement:**
+   - Save `diag_<name>.mmd` and `diag_<name>.svg` into the `Images/` directory
+   - Reference in the slide as `![center](../Images/diag_<name>.svg)` (adjust relative path to match `.md` file location)
+
+   ---
+
+   ### Option B — Excalidraw (hand-drawn/sketch style only)
+
+   Use **only** when a hand-drawn or informal sketch aesthetic is explicitly requested.
 
    **Creating the diagram:**
    - Write a Python script (using `uv run python`) that generates a proper `.excalidraw` JSON file
@@ -122,8 +158,8 @@ description: Converts project notes, features, or architectural plans into a Mar
      - Background fill: `#282a36`, node fills: `#1e3a5f` / `#1a4d2e` / `#5c1a1a`
      - Strokes: `#4a9eed` (blue), `#22c55e` (green), `#ef4444` (red), `#8be9fd` (cyan), `#ffb86c` (orange)
      - Text: `#f8f8f2` (light), `#ff5555` (red labels), `#6272a4` (muted)
-   - Set `"roughness": 0` for clean/sharp shapes (not sketchy)
-   - Use `fontFamily: 3` (monospace) for labels
+   - Set `"roughness": 1` or higher for the hand-drawn look
+   - Use `fontFamily: 1` (hand-written) for labels
 
    **Generating the SVG:**
    - After writing the `.excalidraw` file, also write a matching hand-crafted `.svg` file that faithfully reproduces the diagram
@@ -131,8 +167,10 @@ description: Converts project notes, features, or architectural plans into a Mar
    - SVG background should use `fill="#282a36"` with `rx="8"` on the outer rect to match the dark theme
 
    **File placement:**
-   - Save both `diag_<name>.excalidraw` and `diag_<name>.svg` into the `Images/` directory found above
+   - Save both `diag_<name>.excalidraw` and `diag_<name>.svg` into the `Images/` directory
    - Reference in the slide as `![center](../Images/diag_<name>.svg)` (adjust relative path to match `.md` file location)
+
+   ---
 
    **When to create diagrams:**
    - Flows and pipelines (data flow, training loop, inference pipeline)

@@ -73,31 +73,101 @@ node ~/.claude/skills/excalidraw-cli/scripts/excalidraw.mjs open diagram.excalid
 
 When a Marp slide or MDX lesson needs both a source file and an embeddable SVG:
 
-1. **Generate** the `.excalidraw` source:
-   ```bash
-   node ~/.claude/skills/excalidraw-cli/scripts/excalidraw.mjs generate \
-     "<description>" Images/my-diagram.excalidraw
-   ```
+### Preferred: native Claude Code generation (no API key needed)
 
+Because this skill runs inside Claude Code, use the Write tool to author the `.excalidraw` JSON directly — Claude Code IS the AI, so there is no need for a separate API call.
+
+1. **Write** the `.excalidraw` JSON using the Write tool, following the element schema below
 2. **Export** to SVG:
    ```bash
    node ~/.claude/skills/excalidraw-cli/scripts/excalidraw.mjs export \
      Images/my-diagram.excalidraw
    # → Images/my-diagram.svg
    ```
-
 3. Reference in Marp/MDX:
    ```markdown
    ![diagram](Images/my-diagram.svg)
    ```
 
-If the source already exists as Mermaid, use `mermaid` instead of `generate` in step 1.
+### Alternative: convert from existing Mermaid source
+
+```bash
+node ~/.claude/skills/excalidraw-cli/scripts/excalidraw.mjs mermaid \
+  diagram.mmd Images/my-diagram.excalidraw
+```
+
+Then run `export` as above.
+
+### Standalone CLI generation (requires ANTHROPIC_API_KEY)
+
+Only use this when running the CLI outside of Claude Code:
+
+```bash
+node ~/.claude/skills/excalidraw-cli/scripts/excalidraw.mjs generate \
+  "<description>" Images/my-diagram.excalidraw
+```
+
+---
+
+## Element schema for native generation
+
+Use this schema when authoring `.excalidraw` JSON with the Write tool.
+
+### JSON envelope
+```json
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "claude-code",
+  "elements": [],
+  "appState": { "gridSize": null, "viewBackgroundColor": "#282a36" },
+  "files": {}
+}
+```
+
+### Required fields on every element
+| Field | Values |
+|-------|--------|
+| `id` | unique string |
+| `type` | `"rectangle"` \| `"ellipse"` \| `"diamond"` \| `"arrow"` \| `"line"` \| `"text"` |
+| `x`, `y` | canvas coordinates (top-left corner) |
+| `width`, `height` | numbers |
+| `angle` | `0` |
+| `strokeColor` | hex — use Dracula palette |
+| `backgroundColor` | hex or `"transparent"` |
+| `fillStyle` | `"solid"` \| `"hachure"` |
+| `strokeWidth` | `1` \| `2` \| `4` |
+| `roughness` | `1` (hand-drawn look) |
+| `opacity` | `100` |
+| `groupIds` | `[]` |
+| `seed` | any integer |
+
+### Text elements — additional fields
+- `text`: string
+- `fontSize`: `16` \| `20` \| `28`
+- `fontFamily`: `1` (Virgil / hand-drawn — always use 1)
+- `textAlign`: `"center"` \| `"left"`
+- `verticalAlign`: `"middle"` \| `"top"`
+- `containerId`: parent shape `id` to embed label inside a shape (or `null`)
+- When `containerId` is set, the parent shape must have `"boundElements": [{"type": "text", "id": "<text-id>"}]`
+
+### Arrow / Line elements — additional fields
+- `points`: `[[0, 0], [dx, dy]]` — relative to element `x`/`y`
+- `startArrowhead`: `null` \| `"arrow"`
+- `endArrowhead`: `"arrow"` \| `null`
+- `startBinding` / `endBinding`: `null` or `{ "elementId": "<id>", "focus": 0, "gap": 8 }`
+
+### Layout guidelines
+- Start shapes at x=100, y=100 with 100–150px gaps between nodes
+- Rectangle nodes: 160w × 60h minimum
+- Fit within roughly 1200w × 800h canvas
+- Every visible shape should have a bound text label
 
 ---
 
 ## Dracula colour palette
 
-Always use these colours when calling `generate` or manually authoring `.excalidraw` JSON:
+Always use these colours when authoring `.excalidraw` JSON:
 
 | Role | Hex |
 |------|-----|
@@ -112,18 +182,6 @@ Always use these colours when calling `generate` or manually authoring `.excalid
 | Yellow accent | `#f1fa8c` |
 
 Never hardcode other hex values. Map semantic roles (success, warning, info, error) to the palette above.
-
----
-
-## ANTHROPIC_API_KEY
-
-The `generate` command calls the Claude API (`claude-sonnet-4-6`). The key must be present in the environment:
-
-```bash
-export ANTHROPIC_API_KEY=sk-ant-...
-```
-
-If the key is absent, fall back to the `mermaid` command or hand-author the `.excalidraw` JSON directly.
 
 ---
 

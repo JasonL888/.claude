@@ -81,10 +81,15 @@ description: Converts project notes, features, or architectural plans into a Mar
 5. **Cover Page:** Always include a cover page as the first slide with:
    - A large `#` header for the title
    - A company PNG logo image centered below the title using `![bg right width:50%](./logo.png)`
-    - check if the logo exists in current workspace. 
+    - check if the logo exists in current workspace.
         - If exist, reuse the same logo
         - otherwise, copy the logo from the skill's assets folder to the same directory as the generated Markdown file
    - The footer with the company name
+
+5a. **Theme Asset:** Always ensure `dracula.css` is present alongside the generated `.md` file:
+   - Check if `dracula.css` exists in the same directory as the output `.md` file
+   - If it does not exist, copy it from `/Users/jasonlau/.claude/skills/marp_gen/assets/dracula.css` to that directory
+   - This is required for Marp CLI to resolve the custom theme at compile time
 
 6. **Structure:**
    - Use `---` to separate slides
@@ -194,7 +199,20 @@ description: Converts project notes, features, or architectural plans into a Mar
    - Add a speaker note pointing out which links are highest priority to bookmark
    - If the source material had no URLs but tools/concepts can be looked up, generate the canonical documentation URLs from your knowledge
 
-9. **Review**:
+9. **Compile to HTML and PDF:**
+   After writing the `.md` file, compile it to both HTML and PDF using the Marp CLI with the `--theme-set` flag pointing to the local `dracula.css`:
+
+   ```bash
+   # From the directory containing the .md file:
+   marp --theme-set ./dracula.css --html --output <output>.html <input>.md
+   marp --theme-set ./dracula.css --pdf --output <output>.pdf --allow-local-files <input>.md
+   ```
+
+   - Always pass `--allow-local-files` for PDF export (needed for local images and the logo)
+   - Use the same base filename as the `.md` file for both outputs
+   - Run both commands after the `.md` is written and `dracula.css` is confirmed present
+
+10. **Review**:
    - Ensure that the content is clear and visually appealing when rendered in Marp
    - Review the HTML output to ensure formatting is within the page limits and not overflowing
 

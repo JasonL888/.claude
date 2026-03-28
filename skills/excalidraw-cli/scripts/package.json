@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "latest",
-    "canvas": "^2.11.2",
+    "canvas": "^3.2.2",
     "commander": "latest",
     "excalidraw-to-svg": "latest"
   }

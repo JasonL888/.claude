@@ -53,6 +53,17 @@ Auto-picked up by `sync_content` — no MDX frontmatter changes required.
 
 Parallel array to `on_screen_text`. Each entry is either a public path string or `null` (renders badge+label only for that step). Omit the field entirely when no images are available — the component falls back gracefully to badge+label for all steps.
 
+**`image_layout`** (optional, `diagram` scenes only) — controls how images and steps are presented:
+
+| Value | Behaviour |
+|-------|-----------|
+| `"flow"` (default) | Horizontal badge strip; image thumbnail (140×94) above each badge |
+| `"spotlight"` | One step at a time; large image (560×350) fills the top half, badge + label below, progress dots at the bottom |
+
+Use `"spotlight"` when the images need to be large enough to read (histogram shapes, algorithm diagrams, annotated charts). Use `"flow"` for simple icon-style thumbnails (chart type pickers, tool logos).
+
+---
+
 **When images exist in** `frontend/public/images/courses/{course-slug}/`:
 - Glob that folder before writing any `diagram` scene
 - If a thumbnail matches one of the `on_screen_text` items (chart type, algorithm, workflow stage), add its path at the corresponding index

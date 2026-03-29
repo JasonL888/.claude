@@ -6,8 +6,6 @@ description: >
   to video", "make a Remotion video for this lesson", "update video scenes to
   match the MDX", or any similar request involving producing or revising a
   video-scenes.json file from lesson content.
-version: 1.0.0
-allowed-tools: [Read, Glob, Grep, Write, Edit]
 ---
 
 # Lesson Video Scene Generator
@@ -72,6 +70,8 @@ Before writing any `diagram` scene, glob `frontend/public/images/courses/{course
 For each `diagram` scene, check whether any `on_screen_text` item has a matching thumbnail (chart type, algorithm, workflow stage). If yes, build a parallel `images` array with public paths at matching indices and `null` elsewhere — then include it in the scene object. If no items match, omit the `images` field entirely.
 
 **Chart thumbnail naming:** `chart-{type}.svg` — e.g. `chart-histogram.svg`, `chart-scatter.svg`, `chart-bar.svg`, `chart-boxplot.svg`. Create new chart SVGs (Dracula palette, 240×160 px, matching style) if the lesson introduces chart types that don't yet have thumbnails.
+
+**Choose `image_layout`:** set `"spotlight"` when images need to be large enough to read (histogram patterns, annotated diagrams, algorithm illustrations — anything where detail matters). Use the default `"flow"` for simple icon-style thumbnails. Include `"image_layout": "spotlight"` in the scene JSON alongside `images` when this applies.
 
 ---
 

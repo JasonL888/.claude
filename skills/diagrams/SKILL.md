@@ -84,6 +84,8 @@ mmdc -i /tmp/name.mmd -o /tmp/name.svg --backgroundColor "#282a36"
 # npx -p @mermaid-js/mermaid-cli mmdc -i /tmp/name.mmd -o /tmp/name.svg --backgroundColor "#282a36"
 ```
 
+> **SVG sizing rule:** After rendering, remove the `width` and `height` attributes from the `<svg>` element — keep only `viewBox`. Fixed pixel dimensions override CSS and prevent the image from scaling to the container width. This applies to hand-crafted SVGs too.
+
 ### Dracula theme init block
 
 Add this at the top of `.mmd` files for types that support it. **Omit it for types that don't.**
@@ -522,3 +524,4 @@ Before embedding a diagram, ask:
 4. Are colors consistent with the semantic palette (where supported)?
 5. Can it be simplified further (fewer nodes, shorter labels)?
 6. Does the source file exist alongside the SVG for future editing?
+7. Does the `<svg>` element have only `viewBox` — no `width` or `height` attributes? (Fixed dimensions prevent CSS from controlling the rendered size.)

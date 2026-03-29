@@ -65,7 +65,19 @@ content shapes (e.g., a process diagram followed immediately by a code example).
 
 ---
 
-## Step 4 — Build `on_screen_text` for each scene
+## Step 4 — Check for available thumbnail images
+
+Before writing any `diagram` scene, glob `frontend/public/images/courses/{course-slug}/` and note what SVGs exist.
+
+For each `diagram` scene, check whether any `on_screen_text` item has a matching thumbnail (chart type, algorithm, workflow stage). If yes, build a parallel `images` array with public paths at matching indices and `null` elsewhere — then include it in the scene object. If no items match, omit the `images` field entirely.
+
+**Chart thumbnail naming:** `chart-{type}.svg` — e.g. `chart-histogram.svg`, `chart-scatter.svg`, `chart-bar.svg`, `chart-boxplot.svg`. Create new chart SVGs (Dracula palette, 240×160 px, matching style) if the lesson introduces chart types that don't yet have thumbnails.
+
+---
+
+## Step 5 — Build `on_screen_text` for each scene
+
+
 
 Break the section's content into discrete **beats** — one item per thing the
 viewer needs to read and absorb. Rules:
@@ -79,7 +91,7 @@ viewer needs to read and absorb. Rules:
 
 ---
 
-## Step 5 — Script narration in sync with animation
+## Step 6 — Script narration in sync with animation
 
 Write the exact spoken script. The narration **must name each `on_screen_text`
 item during the time window when that item is active on screen**.
@@ -96,7 +108,7 @@ Pace check: read the narration aloud. Target 130–150 wpm.
 
 ---
 
-## Step 6 — Estimate `duration_seconds`
+## Step 7 — Estimate `duration_seconds`
 
 ```
 duration_seconds ≈ word_count / 140
@@ -111,7 +123,7 @@ Verify: `sum(scene.duration_seconds)` should be within 10% of
 
 ---
 
-## Step 7 — Fill remaining fields and write the file
+## Step 8 — Fill remaining fields and write the file
 
 For each scene, set:
 - `visual_description` — prose describing the Remotion layout for reviewers (self-contained; assume no code access)
@@ -136,4 +148,5 @@ Before finishing, verify:
 - [ ] For each animated scene type, narration names every `on_screen_text` item in the correct time window
 - [ ] `visual_description` is self-contained (no code context needed)
 - [ ] `notes` documents per-item timing for each scene
+- [ ] `diagram` scenes with named visual artifacts (charts, algorithms) include `images` where thumbnails exist
 - [ ] Video orients and motivates; the MDX carries the depth — no word-for-word duplication

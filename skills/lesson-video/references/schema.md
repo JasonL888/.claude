@@ -35,6 +35,11 @@ Auto-picked up by `sync_content` — no MDX frontmatter changes required.
   "narration": "...",                // exact spoken script — paced to animation timing
   "visual_description": "...",       // self-contained prose describing the Remotion output
   "on_screen_text": ["..."],         // text labels rendered verbatim; order drives animation
+  "images": [                        // optional; parallel to on_screen_text; diagram scenes only
+    "/images/courses/{course-slug}/chart-histogram.svg",  // public path; null to skip an item
+    null,                            // null = show badge only for this step
+    "/images/courses/{course-slug}/chart-bar.svg"
+  ],
   "notes": "N items × X s each.",    // per-item timing cue for audio production
   "transition": {                    // null = no transition specified
     "type": "cut",                   // cut | fade | dissolve | wipe
@@ -43,6 +48,19 @@ Auto-picked up by `sync_content` — no MDX frontmatter changes required.
   "audio_src": "/video-audio/{course-slug}/{lesson-slug}/scene_01.mp3"  // omit if silent
 }
 ```
+
+### `images` field (optional, `diagram` scenes only)
+
+Parallel array to `on_screen_text`. Each entry is either a public path string or `null` (renders badge+label only for that step). Omit the field entirely when no images are available — the component falls back gracefully to badge+label for all steps.
+
+**When images exist in** `frontend/public/images/courses/{course-slug}/`:
+- Glob that folder before writing any `diagram` scene
+- If a thumbnail matches one of the `on_screen_text` items (chart type, algorithm, workflow stage), add its path at the corresponding index
+- Use `null` for items with no matching image
+- If no items have matching images, omit the `images` field
+
+**Naming convention for chart thumbnails:**
+`chart-{type}.svg` — e.g. `chart-histogram.svg`, `chart-scatter.svg`, `chart-bar.svg`, `chart-boxplot.svg`
 
 ### `type` enum
 

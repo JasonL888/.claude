@@ -539,7 +539,18 @@ Reference in MD/MDX:
 
 ---
 
-## 7. Quality Checklist
+## 7. Execution discipline (raw SVG)
+
+Raw SVG for coordinate-heavy diagrams (many bars, ticks, annotation lines) is expensive to reason about. Follow these rules to avoid token waste:
+
+- **Plan once, write immediately.** Decide on a coordinate grid (chart origin, axis length, scale) in a single pass, then write the SVG. Do not re-derive positions multiple times before touching the Write tool.
+- **Commit to approximate coordinates.** Pixel-perfect placement is not required. Write a value, move on. Use Edit to nudge if something is clearly wrong after the fact.
+- **No rehearsal loops.** Do not mentally simulate the full rendered output or re-check every annotation position in reasoning before writing. The SVG is the artifact — produce it and inspect.
+- **Reuse a fixed grid.** Pick one coordinate system (e.g. chart origin at `x=100, y=380`, height `300px`) and apply it consistently. Do not recalculate the same scale repeatedly.
+
+---
+
+## 8. Quality Checklist
 
 Before embedding a diagram, ask:
 

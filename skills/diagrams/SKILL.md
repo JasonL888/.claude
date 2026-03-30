@@ -426,26 +426,51 @@ kanban
 
 ## 5. Excalidraw Workflow
 
-### Step A — generate and export
+### Choosing the right output path
 
-Use the `excalidraw-cli` skill:
+| Diagram contains | Use |
+|-----------------|-----|
+| Shapes + arrows only (no text labels) | Write `.excalidraw` JSON → `export` → SVG |
+| Text labels / callouts / annotations | Write raw SVG directly (see below) |
 
-```bash
-# Generate from description (requires ANTHROPIC_API_KEY)
-node ~/.claude/skills/excalidraw-cli/scripts/excalidraw.mjs generate \
-  "<description>" /tmp/name.excalidraw
+> **Known limitation:** The `export` command renders text elements with `y="NaN"` because jsdom cannot resolve Virgil font metrics at export time. Any diagram with text labels will produce invisible text in the SVG. Use raw SVG for text-heavy diagrams.
 
-# Export to SVG
-node ~/.claude/skills/excalidraw-cli/scripts/excalidraw.mjs export \
-  /tmp/name.excalidraw
-# → /tmp/name.svg
+### Path A — shapes/arrows only: Write `.excalidraw` → export
+
+Because this skill runs inside Claude Code, write the `.excalidraw` JSON directly — **no API key needed**:
+
+1. **Write** the JSON to `/tmp/name.excalidraw` using the Write tool (schema in `excalidraw-cli/SKILL.md`)
+2. **Export** to SVG:
+   ```bash
+   node ~/.claude/skills/excalidraw-cli/scripts/excalidraw.mjs export \
+     /tmp/name.excalidraw
+   # → /tmp/name.svg
+   ```
+3. Store and embed per Section 6.
+
+The `generate "<description>"` CLI command also works but requires `ANTHROPIC_API_KEY` in the environment — only use it when running the CLI outside of Claude Code.
+
+### Path B — text-heavy diagrams: Write raw SVG directly
+
+Write an SVG file directly with the Write tool. Use the Dracula palette and `"Segoe UI", Arial, sans-serif` as the font stack (reliable across all platforms):
+
+```svg
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <defs>
+    <style>text { font-family: "Segoe UI", Arial, sans-serif; }</style>
+  </defs>
+  <rect width="900" height="500" fill="#282a36"/>
+  <!-- shapes and text here -->
+</svg>
 ```
 
-Excalidraw style rules:
-- Use Dracula palette (canvas `#282a36`, text `#f8f8f2`) — enforced by `excalidraw-cli`
-- Hand-drawn style; arrows with short annotation labels near them
-- Highlight the key idea with a thicker stroke
-- Keep it "whiteboard-like" — embrace rough lines and minimal geometry
+SVG style rules:
+- `viewBox` only — no `width` or `height` on the `<svg>` element
+- Dracula palette for all colours
+- `text-anchor="middle"` + explicit `x`/`y` for centred labels
+- `rx`/`ry` on `<rect>` for rounded corners
+- Dashed lines: `stroke-dasharray="5,4"`
+- Arrow markers: define a `<marker>` in `<defs>` and reference with `marker-end`
 
 ### Step B — store and embed
 

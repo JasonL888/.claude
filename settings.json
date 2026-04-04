@@ -1,0 +1,52 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git check-ignore:*)",
+      "Bash(git remote:*)",
+      "Bash(npm audit:*)",
+      "Bash(npm show:*)",
+      "Bash(npm view:*)",
+      "Bash(python3:*)",
+      "Bash(mmdc --version)",
+      "Bash(mmdc --help)",
+      "Bash(find /Users/jasonlau/Documents/Software/SophiArchSite/content -type f -name *.mdx -o -name *.md)",
+      "Bash(find /Users/jasonlau/Documents/Software/SophiArchSite -path */node_modules -prune -o -name *.mermaid -o -name *.excalidraw -o -name *diagram*.py -o -name *diagram*.js)",
+      "Bash(find /Users/jasonlau/Documents/Software/SophiArchSite -path */public/images/* -name *.svg)",
+      "Bash(find /Users/jasonlau/Documents/Software/sophiarch-notebooks -type f -name *.mdx)",
+      "Bash(find /Users/jasonlau/Documents/Software -name lab.ipynb -o -name *-lab.ipynb)",
+      "Bash(find /Users/jasonlau/Documents/Software/SophiArchSite -path *video-audio* -o -path *audio*data-visualisation*)",
+      "Bash(CONTENT_DIR=/Users/jasonlau/Documents/Software/SophiArchSite/content uv run pytest tests/test_content.py -v)",
+      "Bash(jq -r .cells[0].source[0:10])",
+      "Read(//Users/jasonlau/Documents/Software/**)",
+      "Read(//Users/jasonlau/.claude/**)",
+      "Edit(~/.claude/skills/diagrams/**)"
+    ],
+    "additionalDirectories": [
+      "/tmp",
+      "/private/tmp",
+      "/Users/jasonlau/.claude"
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "/bin/bash /Users/jasonlau/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
+    }
+  },
+  "effortLevel": "medium"
+}

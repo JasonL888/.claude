@@ -25,8 +25,11 @@ A skill for creating, exporting, and embedding diagrams in MD/MDX files. All too
 
 ### Step 1 — Is it spatial/conceptual intuition?
 
-- If the goal is to **build intuition** (metaphors, spatial reasoning, "why" explanations, hand-drawn feel) → **Excalidraw**
+- If the goal is to **build intuition** (metaphors, spatial reasoning, "why" explanations, hand-drawn feel) → **Excalidraw** (shapes/arrows only — no text labels)
+- If spatial/conceptual but needs text labels or callouts → **Mermaid** (`flowchart` or best fit)
 - Otherwise → **Mermaid** (pick the right type below)
+
+> **Note:** If you initially chose Excalidraw but the diagram needs text labels, switch to Mermaid instead.
 
 ### Step 2 — Which Mermaid type?
 
@@ -49,7 +52,7 @@ A skill for creating, exporting, and embedding diagrams in MD/MDX files. All too
 | Network packet structure, byte fields | `packet-beta` |
 | Task boards, work items | `kanban` |
 | Pipelines, workflows, decision trees, processes | `flowchart LR/TD` |
-| Spatial intuition, metaphors, geometry, "why" | Excalidraw |
+| Spatial intuition, metaphors, geometry, "why" (shapes/arrows only) | Excalidraw |
 
 **If a concept needs both:** produce a *pair* — Excalidraw first (intuition), Mermaid second (structure). Never mix both tools into a single diagram.
 
@@ -84,7 +87,7 @@ mmdc -i /tmp/name.mmd -o /tmp/name.svg --backgroundColor "#282a36"
 # npx -p @mermaid-js/mermaid-cli mmdc -i /tmp/name.mmd -o /tmp/name.svg --backgroundColor "#282a36"
 ```
 
-> **SVG sizing rule:** After rendering, remove the `width` and `height` attributes from the `<svg>` element — keep only `viewBox`. Fixed pixel dimensions override CSS and prevent the image from scaling to the container width. This applies to hand-crafted SVGs too.
+> **SVG sizing rule:** After rendering, remove the `width` and `height` attributes from the `<svg>` element — keep only `viewBox`. Fixed pixel dimensions override CSS and prevent the image from scaling to the container width.
 
 ### Dracula theme init block
 
@@ -112,369 +115,37 @@ For types that don't support theming, rely on `--backgroundColor "#282a36"` for 
 
 ## 4. Mermaid Diagram Types — Syntax & Templates
 
-### `architecture-beta` — Network / System Architecture
-
-Built-in icons: `cloud`, `database`, `disk`, `internet`, `server`
-
-```
-architecture-beta
-  group vpc(cloud)[AWS VPC]
-    service db(database)[PostgreSQL] in vpc
-    service api(server)[API Server] in vpc
-    service store(disk)[S3] in vpc
-
-  service client(internet)[Browser]
-
-  client:R --> L:api
-  api:R --> L:db
-  api:B --> T:store
-```
-
-Edge syntax: `id1:R --> L:id2` where sides are `L` (left), `R` (right), `T` (top), `B` (bottom). Use `-->` for directed, `--` for undirected.
-
----
-
-### `flowchart` — Pipelines, Workflows, Decision Trees
-
-```
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#282a36', 'primaryColor': '#44475a', 'primaryTextColor': '#f8f8f2', 'primaryBorderColor': '#6272a4', 'lineColor': '#f8f8f2'}}}%%
-flowchart LR
-  D[Raw Data] --> P[Preprocess] --> M[Model] --> E[Evaluate]
-  style D fill:#8be9fd,stroke:#6272a4,color:#282a36
-  style P fill:#ffb86c,stroke:#6272a4,color:#282a36
-  style M fill:#bd93f9,stroke:#6272a4,color:#282a36
-  style E fill:#50fa7b,stroke:#6272a4,color:#282a36
-```
-
-Shape conventions: `[rect]` = process, `{diamond}` = decision, `[(cylinder)]` = storage, `((circle))` = terminal. Max 7±2 nodes.
-
----
-
-### `classDiagram` — OOP Classes
-
-```
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#282a36', 'primaryColor': '#44475a', 'primaryTextColor': '#f8f8f2', 'primaryBorderColor': '#6272a4', 'lineColor': '#f8f8f2'}}}%%
-classDiagram
-  class Animal {
-    +String name
-    +int age
-    +speak() String
-  }
-  class Dog {
-    +fetch() void
-  }
-  Animal <|-- Dog
-```
-
-Relationships: `<|--` inheritance, `*--` composition, `o--` aggregation, `-->` association, `..>` dependency.
-
----
-
-### `erDiagram` — Entity Relationships
-
-```
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#282a36', 'primaryColor': '#44475a', 'primaryTextColor': '#f8f8f2', 'primaryBorderColor': '#6272a4', 'lineColor': '#f8f8f2'}}}%%
-erDiagram
-  USER {
-    int id PK
-    string email
-    string name
-  }
-  ORDER {
-    int id PK
-    int user_id FK
-    date created_at
-  }
-  PRODUCT {
-    int id PK
-    string name
-    float price
-  }
-  USER ||--o{ ORDER : places
-  ORDER }o--|{ PRODUCT : contains
-```
-
-Cardinality: `||--||` one-to-one, `||--o{` one-to-many, `}o--o{` many-to-many.
-
----
-
-### `stateDiagram-v2` — State Machines
-
-```
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#282a36', 'primaryColor': '#44475a', 'primaryTextColor': '#f8f8f2', 'primaryBorderColor': '#6272a4', 'lineColor': '#f8f8f2'}}}%%
-stateDiagram-v2
-  [*] --> Idle
-  Idle --> Running : start
-  Running --> Paused : pause
-  Paused --> Running : resume
-  Running --> [*] : stop
-```
-
-Use `state "Label" as id` for long names. Nest states with `state Outer { inner }`.
-
----
-
-### `sequenceDiagram` — API / Message Sequences
-
-```
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#282a36', 'primaryColor': '#44475a', 'primaryTextColor': '#f8f8f2', 'primaryBorderColor': '#6272a4', 'lineColor': '#f8f8f2'}}}%%
-sequenceDiagram
-  participant C as Client
-  participant A as API
-  participant D as Database
-
-  C->>A: POST /login
-  A->>D: SELECT user WHERE email=?
-  D-->>A: user row
-  A-->>C: 200 OK + JWT
-```
-
-Arrow types: `->>` async, `-->>` dashed reply, `->>+` activate, `-->>-` deactivate.
-
----
-
-### `gantt` — Project / Sprint Planning
-
-```
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#282a36', 'primaryColor': '#44475a', 'primaryTextColor': '#f8f8f2', 'primaryBorderColor': '#6272a4', 'lineColor': '#f8f8f2'}}}%%
-gantt
-  title Sprint 1
-  dateFormat YYYY-MM-DD
-  section Backend
-    Auth API       : done,    b1, 2024-01-01, 3d
-    Data models    : active,  b2, after b1, 2d
-    REST endpoints :          b3, after b2, 4d
-  section Frontend
-    Login UI       :          f1, 2024-01-03, 3d
-    Dashboard      :          f2, after f1, 5d
-```
-
----
-
-### `timeline` — Chronological Events
-
-```
-timeline
-  title History of AI
-  1950 : Turing Test proposed
-  1956 : Dartmouth Conference
-       : Term "AI" coined
-  1997 : Deep Blue beats Kasparov
-  2012 : AlexNet ImageNet breakthrough
-  2022 : ChatGPT released
-```
-
-No `%%{init}%%` support. Use `--backgroundColor` only.
-
----
-
-### `mindmap` — Topic Hierarchies
-
-```
-mindmap
-  root((Machine Learning))
-    Supervised
-      Classification
-      Regression
-    Unsupervised
-      Clustering
-      Dimensionality Reduction
-    Reinforcement
-      Q-Learning
-      Policy Gradient
-```
-
-Indent = hierarchy level. `root((...))` = circle, `root[...]` = rect, `root(((...)))` = double circle.
-
----
-
-### `journey` — User Experience Flows
-
-```
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#282a36', 'primaryColor': '#44475a', 'primaryTextColor': '#f8f8f2', 'primaryBorderColor': '#6272a4', 'lineColor': '#f8f8f2'}}}%%
-journey
-  title User Checkout Flow
-  section Browse
-    Search product: 5: User
-    View details: 4: User
-  section Purchase
-    Add to cart: 5: User
-    Enter payment: 3: User, System
-    Confirm order: 5: User, System
-  section Post-purchase
-    Receive email: 4: System
-```
-
-Score 1–5 = satisfaction level. Multiple actors per step.
-
----
-
-### `pie` — Distribution / Proportions
-
-```
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#282a36', 'primaryTextColor': '#f8f8f2'}}}%%
-pie title Traffic Sources
-  "Organic Search" : 42
-  "Direct" : 28
-  "Social" : 18
-  "Referral" : 12
-```
-
----
-
-### `xychart-beta` — Line / Bar Charts
-
-```
-xychart-beta
-  title "Monthly Revenue ($k)"
-  x-axis [Jan, Feb, Mar, Apr, May, Jun]
-  y-axis "Revenue" 0 --> 100
-  bar [40, 55, 48, 72, 65, 90]
-  line [40, 55, 48, 72, 65, 90]
-```
-
-No `%%{init}%%` support. Can combine `bar` and `line` series.
-
----
-
-### `sankey-beta` — Flow Volumes
-
-```
-sankey-beta
-  Energy Source,Electricity,120
-  Energy Source,Heat,80
-  Electricity,Data Centers,60
-  Electricity,Homes,60
-  Heat,Industry,80
-```
-
-Format: `Source,Target,Value` (one per line, no headers).
-
----
-
-### `quadrantChart` — 2×2 Matrix
-
-```
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#282a36', 'primaryTextColor': '#f8f8f2', 'primaryBorderColor': '#6272a4'}}}%%
-quadrantChart
-  title Feature Prioritization
-  x-axis Low Effort --> High Effort
-  y-axis Low Impact --> High Impact
-  quadrant-1 Do First
-  quadrant-2 Plan
-  quadrant-3 Deprioritize
-  quadrant-4 Delegate
-  Auth Revamp: [0.3, 0.8]
-  New Dashboard: [0.7, 0.9]
-  Bug Fixes: [0.2, 0.5]
-  Dark Mode: [0.6, 0.3]
-```
-
----
-
-### `block-beta` — System Block Diagrams
-
-```
-block-beta
-  columns 3
-  A["Frontend"] B["API Gateway"] C["Backend"]
-  space D["Cache"] space
-  space E["Database"] space
-  A --> B
-  B --> C
-  C --> D
-  C --> E
-```
-
-Use `columns N` to set grid width. `space` = empty cell.
-
----
-
-### `packet-beta` — Network Packet Structure
-
-```
-packet-beta
-  0-7: "Version"
-  8-15: "IHL"
-  16-31: "Total Length"
-  32-63: "Identification"
-  64-79: "Flags + Fragment Offset"
-  80-95: "TTL + Protocol"
-  96-127: "Header Checksum"
-  128-159: "Source IP"
-  160-191: "Destination IP"
-```
-
-Format: `start-end: "Field Name"`. Bit ranges are inclusive.
-
----
-
-### `kanban` — Task Boards
-
-```
-kanban
-  column Todo
-    task1["Write tests"]
-    task2["Update docs"]
-  column "In Progress"
-    task3["Implement auth"]
-  column Done
-    task4["Setup CI/CD"]
-```
+Read the template file for the chosen diagram type before writing:
+
+| Diagram type | Template file |
+|---|---|
+| `flowchart` | `~/.claude/skills/diagrams/templates/flowchart.md` |
+| `architecture-beta` | `~/.claude/skills/diagrams/templates/architecture.md` |
+| `classDiagram` | `~/.claude/skills/diagrams/templates/class-diagram.md` |
+| `erDiagram` | `~/.claude/skills/diagrams/templates/er-diagram.md` |
+| `stateDiagram-v2` | `~/.claude/skills/diagrams/templates/state-diagram.md` |
+| `sequenceDiagram` | `~/.claude/skills/diagrams/templates/sequence-diagram.md` |
+| `gantt` | `~/.claude/skills/diagrams/templates/gantt.md` |
+| `timeline` | `~/.claude/skills/diagrams/templates/timeline.md` |
+| `mindmap` | `~/.claude/skills/diagrams/templates/mindmap.md` |
+| `journey` | `~/.claude/skills/diagrams/templates/journey.md` |
+| `pie` | `~/.claude/skills/diagrams/templates/pie.md` |
+| `xychart-beta` | `~/.claude/skills/diagrams/templates/xychart.md` |
+| `sankey-beta` | `~/.claude/skills/diagrams/templates/sankey.md` |
+| `quadrantChart` | `~/.claude/skills/diagrams/templates/quadrant.md` |
+| `block-beta` | `~/.claude/skills/diagrams/templates/block.md` |
+| `packet-beta` | `~/.claude/skills/diagrams/templates/packet.md` |
+| `kanban` | `~/.claude/skills/diagrams/templates/kanban.md` |
 
 ---
 
 ## 5. Excalidraw Workflow
 
-### Choosing the right output path
+**Invoke the `excalidraw-cli` skill** for all Excalidraw diagrams.
 
-| Diagram contains | Use |
-|-----------------|-----|
-| Shapes + arrows only (no text labels) | Write `.excalidraw` JSON → `export` → SVG |
-| Text labels / callouts / annotations | Write raw SVG directly (see below) |
+Excalidraw is only suitable when the diagram contains **shapes and arrows with no text labels**. The `export` command cannot render text (jsdom cannot resolve Virgil font metrics — text elements render at `y="NaN"`).
 
-> **Known limitation:** The `export` command renders text elements with `y="NaN"` because jsdom cannot resolve Virgil font metrics at export time. Any diagram with text labels will produce invisible text in the SVG. Use raw SVG for text-heavy diagrams.
-
-### Path A — shapes/arrows only: Write `.excalidraw` → export
-
-Because this skill runs inside Claude Code, write the `.excalidraw` JSON directly — **no API key needed**:
-
-1. **Write** the JSON to `/tmp/name.excalidraw` using the Write tool (schema in `excalidraw-cli/SKILL.md`)
-2. **Export** to SVG:
-   ```bash
-   node ~/.claude/skills/excalidraw-cli/scripts/excalidraw.mjs export \
-     /tmp/name.excalidraw
-   # → /tmp/name.svg
-   ```
-3. Store and embed per Section 6.
-
-The `generate "<description>"` CLI command also works but requires `ANTHROPIC_API_KEY` in the environment — only use it when running the CLI outside of Claude Code.
-
-### Path B — text-heavy diagrams: Write raw SVG directly
-
-Write an SVG file directly with the Write tool. Use the Dracula palette and `"Segoe UI", Arial, sans-serif` as the font stack (reliable across all platforms):
-
-```svg
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
-  <defs>
-    <style>text { font-family: "Segoe UI", Arial, sans-serif; }</style>
-  </defs>
-  <rect width="900" height="500" fill="#282a36"/>
-  <!-- shapes and text here -->
-</svg>
-```
-
-SVG style rules:
-- `viewBox` only — no `width` or `height` on the `<svg>` element
-- Dracula palette for all colours
-- `text-anchor="middle"` + explicit `x`/`y` for centred labels
-- `rx`/`ry` on `<rect>` for rounded corners
-- Dashed lines: `stroke-dasharray="5,4"`
-- Arrow markers: define a `<marker>` in `<defs>` and reference with `marker-end`
-
-### Step B — store and embed
-
-See **Section 6: Storage Resolution** below.
+If the diagram needs text labels or callouts, use Mermaid instead.
 
 ---
 
@@ -539,18 +210,7 @@ Reference in MD/MDX:
 
 ---
 
-## 7. Execution discipline (raw SVG)
-
-Raw SVG for coordinate-heavy diagrams (many bars, ticks, annotation lines) is expensive to reason about. Follow these rules to avoid token waste:
-
-- **Plan once, write immediately.** Decide on a coordinate grid (chart origin, axis length, scale) in a single pass, then write the SVG. Do not re-derive positions multiple times before touching the Write tool.
-- **Commit to approximate coordinates.** Pixel-perfect placement is not required. Write a value, move on. Use Edit to nudge if something is clearly wrong after the fact.
-- **No rehearsal loops.** Do not mentally simulate the full rendered output or re-check every annotation position in reasoning before writing. The SVG is the artifact — produce it and inspect.
-- **Reuse a fixed grid.** Pick one coordinate system (e.g. chart origin at `x=100, y=380`, height `300px`) and apply it consistently. Do not recalculate the same scale repeatedly.
-
----
-
-## 8. Quality Checklist
+## 7. Quality Checklist
 
 Before embedding a diagram, ask:
 

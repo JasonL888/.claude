@@ -60,7 +60,7 @@ export async function exportSvg(input, output) {
           ctx.font = `${el.fontSize}px ${fontFamily}`;
           const metrics = ctx.measureText(el.text);
           const nLines = el.text.split('\n').length;
-          const lineHeightPx = el.fontSize * el.lineHeight;
+          const lineHeightPx = el.fontSize * (el.lineHeight ?? 1.25);
           // baseline = ascent of first line + full height of remaining lines
           el.baseline = (nLines - 1) * lineHeightPx + metrics.actualBoundingBoxAscent;
         }

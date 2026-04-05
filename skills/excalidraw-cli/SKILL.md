@@ -145,7 +145,7 @@ Use this schema when authoring `.excalidraw` JSON with the Write tool.
 ### Text elements — additional fields
 - `text`: string
 - `fontSize`: `16` \| `20` \| `28`
-- `fontFamily`: `1` (Virgil / hand-drawn — always use 1)
+- `fontFamily`: `3` (Normal / cleaner — always use 3)
 - `textAlign`: `"center"` \| `"left"`
 - `verticalAlign`: `"middle"` \| `"top"`
 - `containerId`: parent shape `id` to embed label inside a shape (or `null`)
@@ -154,7 +154,7 @@ Use this schema when authoring `.excalidraw` JSON with the Write tool.
 ### Arrow / Line elements — additional fields
 - `points`: `[[0, 0], [dx, dy]]` — relative to element `x`/`y`
 - `startArrowhead`: `null` \| `"arrow"`
-- `endArrowhead`: `"arrow"` \| `null`
+- `endArrowhead`: `"triangle"` \| `null`
 - `startBinding` / `endBinding`: `null` or `{ "elementId": "<id>", "focus": 0, "gap": 8 }`
 
 ### Layout guidelines

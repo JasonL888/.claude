@@ -81,6 +81,8 @@ Read the template file for the chosen diagram type before writing:
 | `sequenceDiagram` | `~/.claude/skills/diagrams/templates/sequence-diagram.md` |
 | `gantt` | `~/.claude/skills/diagrams/templates/gantt.md` |
 
+For text lines that exceed the width of a node, use the `<br>` to break them into multiple lines.
+
 ---
 
 ## 5. Excalidraw Workflow

@@ -6,7 +6,7 @@
     "excalidraw": "./excalidraw.mjs"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "latest",
+    "@anthropic-ai/sdk": ">=0.81.0",
     "@excalidraw/excalidraw": "^0.17.6",
     "canvas": "^3.2.2",
     "commander": "latest",

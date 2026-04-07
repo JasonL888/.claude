@@ -48,7 +48,8 @@
       "/tmp",
       "/private/tmp",
       "/Users/jasonlau/.claude",
-      "/Users/jasonlau/.claude/skills/excalidraw-cli/scripts/lib"
+      "/Users/jasonlau/.claude/skills/excalidraw-cli/scripts/lib",
+      "/Users/jasonlau/.claude/skills/excalidraw-cli"
     ]
   },
   "statusLine": {

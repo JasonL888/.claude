@@ -137,7 +137,7 @@ Use this schema when authoring `.excalidraw` JSON with the Write tool.
 | `backgroundColor` | hex or `"transparent"` |
 | `fillStyle` | `"solid"` \| `"hachure"` |
 | `strokeWidth` | `1` \| `2` \| `4` |
-| `roughness` | `1` (hand-drawn look) |
+| `roughness` | `0` (clean) for card layouts and most diagrams; `1` only when a hand-drawn feel is intentional |
 | `opacity` | `100` |
 | `groupIds` | `[]` |
 | `seed` | any integer |
@@ -163,6 +163,10 @@ Use this schema when authoring `.excalidraw` JSON with the Write tool.
 - Rectangle nodes: 160w × 60h minimum
 - Fit within roughly 1200w × 800h canvas
 - Every visible shape should have a bound text label
+
+#### Card layout
+When the diagram shows 2–5 comparable concepts (comparisons, pipeline stages, step-by-step sequences), use the card layout template.
+Read `~/.claude/skills/excalidraw-cli/templates/card-layout.md` before authoring.
 
 ---
 

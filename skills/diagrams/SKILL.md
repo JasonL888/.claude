@@ -92,6 +92,8 @@ For text lines that exceed the width of a node, use the `<br>` to break them int
 
 **Invoke the `excalidraw-cli` skill** for all Excalidraw diagrams.
 
+For diagrams comparing 2–5 concepts side by side (comparisons, pipeline stages, sequential steps), use the **card layout** pattern — read `~/.claude/skills/excalidraw-cli/templates/card-layout.md` before authoring.
+
 ---
 
 ## 6. Storage Resolution

@@ -145,7 +145,7 @@ Use this schema when authoring `.excalidraw` JSON with the Write tool.
 ### Text elements — additional fields
 - `text`: string (use `\n` for line breaks)
 - `fontSize`: `16` \| `20` \| `28`
-- `fontFamily`: `3` (Normal / cleaner — always use 3)
+- `fontFamily`: `2` (for "Helvatica")
 - `lineHeight`: `1.25` — **always include this**; omitting it causes `y="NaN"` in the exported SVG
 - `textAlign`: `"center"` \| `"left"`
 - `verticalAlign`: `"middle"` \| `"top"`

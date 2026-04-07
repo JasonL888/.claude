@@ -10,13 +10,12 @@ const SCRIPTS_DIR = path.resolve(__dirname, '..');
 const require = createRequire(import.meta.url);
 const { chromium } = require('/opt/homebrew/lib/node_modules/playwright');
 
-const UTILS_PATH = path.join(
-  SCRIPTS_DIR,
-  'node_modules/@excalidraw/utils/dist/excalidraw-utils.min.js'
-);
+const REACT_PATH = path.join(SCRIPTS_DIR, 'node_modules/react/umd/react.production.min.js');
+const REACT_DOM_PATH = path.join(SCRIPTS_DIR, 'node_modules/react-dom/umd/react-dom.production.min.js');
+const EXCALIDRAW_PATH = path.join(SCRIPTS_DIR, 'node_modules/@excalidraw/excalidraw/dist/excalidraw.production.min.js');
 
 // Excalidraw font family IDs → CSS font names
-const FONT_FAMILIES = { 1: 'Virgil', 2: 'Helvetica', 3: 'Cascadia, Segoe UI Emoji' };
+const FONT_FAMILIES = { 1: 'Virgil', 2: 'Helvetica', 3: 'Cascadia' };
 
 /**
  * Export a .excalidraw file to SVG using Playwright (real Chromium).
@@ -43,7 +42,9 @@ export async function exportSvg(input, output) {
   try {
     await page.setContent('<html><body></body></html>');
     // Inject the UMD bundle — exposes ExcalidrawUtils as a global
-    await page.addScriptTag({ path: UTILS_PATH });
+    await page.addScriptTag({ path: REACT_PATH });
+    await page.addScriptTag({ path: REACT_DOM_PATH });
+    await page.addScriptTag({ path: EXCALIDRAW_PATH });
 
     const svgString = await page.evaluate(async ({ diagram, fontFamilies }) => {
       // @excalidraw/utils stores text y-positions as:
@@ -66,7 +67,7 @@ export async function exportSvg(input, output) {
         }
       }
 
-      const svg = await ExcalidrawUtils.exportToSvg(diagram);
+      const svg = await ExcalidrawLib.exportToSvg(diagram);
       return svg.outerHTML;
     }, { diagram: excalidrawData, fontFamilies: FONT_FAMILIES });
 

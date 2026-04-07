@@ -21,6 +21,7 @@ A skill for creating, exporting, and embedding diagrams in MD/MDX files. All too
 | API calls, message passing, protocols | `sequenceDiagram` |
 | Project planning, sprints, task scheduling | `gantt` |
 | Complex (> 10 nodes) flow charts ,decision trees, workflows | `flowchart LR/TD` |
+| 2×2 priority/risk/effort matrices | `quadrantChart` |
 
 Otherwise, use **Excalidraw** as default.
 
@@ -80,6 +81,8 @@ Read the template file for the chosen diagram type before writing:
 |---|---|
 | `sequenceDiagram` | `~/.claude/skills/diagrams/templates/sequence-diagram.md` |
 | `gantt` | `~/.claude/skills/diagrams/templates/gantt.md` |
+| `flowchart LR/TD` | `~/.claude/skills/diagrams/templates/flowchart.md` |
+| `quadrantChart` | `~/.claude/skills/diagrams/templates/quadrant-chart.md` |
 
 For text lines that exceed the width of a node, use the `<br>` to break them into multiple lines.
 

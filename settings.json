@@ -20,12 +20,35 @@
       "Bash(jq -r .cells[0].source[0:10])",
       "Read(//Users/jasonlau/Documents/Software/**)",
       "Read(//Users/jasonlau/.claude/**)",
-      "Edit(~/.claude/skills/diagrams/**)"
+      "Edit(~/.claude/skills/diagrams/**)",
+      "Bash(mmdc -i /tmp/diagram-judgment-gap.mmd -o /tmp/diagram-judgment-gap.svg --backgroundColor \"#282a36\")",
+      "Bash(mmdc -i /tmp/diagram-eda-starting-four.mmd -o /tmp/diagram-eda-starting-four.svg --backgroundColor \"#282a36\")",
+      "Bash(mmdc -i /tmp/diagram-profiling-five-steps.mmd -o /tmp/diagram-profiling-five-steps.svg --backgroundColor \"#282a36\")",
+      "Bash(mmdc -i /tmp/diagram-ai-profiling-gaps.mmd -o /tmp/diagram-ai-profiling-gaps.svg --backgroundColor \"#282a36\")",
+      "Bash(wait)",
+      "Bash(mmdc -i /tmp/diagram-distribution-shapes.mmd -o /tmp/diagram-distribution-shapes.svg --backgroundColor \"#282a36\")",
+      "Bash(mmdc -i /tmp/diagram-outlier-types.mmd -o /tmp/diagram-outlier-types.svg --backgroundColor \"#282a36\")",
+      "Bash(mmdc -i /tmp/diagram-outlier-decision.mmd -o /tmp/diagram-outlier-decision.svg --backgroundColor \"#282a36\")",
+      "Bash(mmdc -i /tmp/diagram-correlation-limits.mmd -o /tmp/diagram-correlation-limits.svg --backgroundColor \"#282a36\")",
+      "Bash(mmdc -i /tmp/diagram-groupby-pattern.mmd -o /tmp/diagram-groupby-pattern.svg --backgroundColor \"#282a36\")",
+      "Bash(sed -i '' 's/ width=\"[^\"]*\" height=\"[^\"]*\"//g' /tmp/diagram-oversight-habit.svg)",
+      "Bash(cp /tmp/diagram-oversight-habit.svg /Users/jasonlau/Documents/Software/SophiArchSite/frontend/public/images/courses/ai-assisted-data-science/diagram-oversight-habit.svg)",
+      "Bash(cp /tmp/diagram-oversight-habit.mmd /Users/jasonlau/Documents/Software/SophiArchSite/frontend/public/images/courses/ai-assisted-data-science/diagram-oversight-habit.mmd)",
+      "Bash(npm ls:*)",
+      "Edit(~/.claude/skills/excalidraw-cli/**)",
+      "Read(//opt/homebrew/lib/node_modules/@playwright/**)",
+      "Read(//opt/homebrew/lib/node_modules/**)",
+      "Bash(npm info:*)",
+      "WebFetch(domain:registry.npmjs.org)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:www.npmjs.com)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ],
     "additionalDirectories": [
       "/tmp",
       "/private/tmp",
-      "/Users/jasonlau/.claude"
+      "/Users/jasonlau/.claude",
+      "/Users/jasonlau/.claude/skills/excalidraw-cli/scripts/lib"
     ]
   },
   "statusLine": {

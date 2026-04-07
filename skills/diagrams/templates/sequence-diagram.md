@@ -1,7 +1,7 @@
 # sequenceDiagram — API / Message Sequences
 
 ```
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#282a36', 'primaryColor': '#44475a', 'primaryTextColor': '#f8f8f2', 'primaryBorderColor': '#6272a4', 'lineColor': '#6272a4', 'edgeLabelBackground': '#282a36', 'fontFamily': 'Nunito, sans-serif', 'fontSize': '18px'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#282a36', 'primaryColor': '#44475a', 'primaryTextColor': '#f8f8f2', 'primaryBorderColor': '#6272a4', 'lineColor': '#f8f8f2'}}}%%
 sequenceDiagram
   participant C as Client
   participant A as API

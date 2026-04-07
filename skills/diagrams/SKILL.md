@@ -46,71 +46,31 @@ Use the same palette across all tools. Never use other hex values.
 
 ## 3. Mermaid Workflow
 
-### Font embedding (required for SVG `<img>` usage)
-
-**Critical:** SVG images served via `<img>` are isolated from the page's CSS. Google Fonts and Next.js font variables are invisible inside the SVG. The only way to guarantee a specific font renders is to embed it as base64-encoded `@font-face` directly in the SVG.
-
-#### One-time setup
-Download Nunito Regular (latin subset) once per machine:
-
-```bash
-curl -sA "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36" \
-  "https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap" \
-  | grep -o 'https://fonts.gstatic.com[^)]*latin[^)]*\.woff2' \
-  | xargs curl -sL -o /tmp/Nunito-Regular.woff2
-```
-
-#### Per-diagram setup
-Before rendering, create the CSS injection file with the embedded font:
-
-```bash
-FONT_B64=$(base64 -i /tmp/Nunito-Regular.woff2)
-cat > /tmp/diagram-font.css <<'EOF'
-@font-face {
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 400;
-  src: url('data:font/woff2;base64,PLACEHOLDER') format('woff2');
-}
-EOF
-sed -i '' "s|PLACEHOLDER|$FONT_B64|" /tmp/diagram-font.css
-```
-
 ### Render command (all types)
 
 ```bash
-mmdc -i /tmp/name.mmd -o /tmp/name.svg --backgroundColor "#282a36" --cssFile /tmp/diagram-font.css
+mmdc -i /tmp/name.mmd -o /tmp/name.svg --backgroundColor "#282a36"
 # If mmdc is not in PATH, use:
-# npx -p @mermaid-js/mermaid-cli mmdc -i /tmp/name.mmd -o /tmp/name.svg --backgroundColor "#282a36" --cssFile /tmp/diagram-font.css
+# npx -p @mermaid-js/mermaid-cli mmdc -i /tmp/name.mmd -o /tmp/name.svg --backgroundColor "#282a36"
 ```
 
 > **SVG sizing rule:** After rendering, remove the `width` and `height` attributes from the `<svg>` element — keep only `viewBox`. Fixed pixel dimensions override CSS and prevent the image from scaling to the container width.
 
 ### Dracula theme init block
 
-Add this at the top of `.mmd` files to set the background, colors, font, and line style:
+Add this at the top of `.mmd` files to set the background and colors:
 
 ```
-%%{init: {'theme': 'base', 'flowchart': {'curve': 'basis'}, 'themeVariables': {
+%%{init: {'theme': 'base', 'themeVariables': {
   'background': '#282a36',
   'primaryColor': '#44475a',
   'primaryTextColor': '#f8f8f2',
   'primaryBorderColor': '#6272a4',
-  'lineColor': '#6272a4',
-  'edgeLabelBackground': '#282a36',
-  'fontFamily': 'Nunito, sans-serif',
-  'fontSize': '18px',
+  'lineColor': '#f8f8f2',
   'secondaryColor': '#44475a',
   'tertiaryColor': '#282a36'
 }}}%%
 ```
-
-**Key variables:**
-- `'curve': 'basis'` — smooth bezier curves for connections (vs. `linear`)
-- `'lineColor': '#6272a4'` — muted blue; visible on dark background without harshness
-- `'edgeLabelBackground': '#282a36'` — blends edge labels (Yes/No) with canvas; prevents white boxes
-- `'fontFamily': 'Nunito, sans-serif'` — embedded via CSS injection; must match `--cssFile` font
-- `'fontSize': '18px'` — readable on small screens; aligns with design scale (h4 = 18px)
 ---
 
 ### Mermaid Diagram Types — Syntax & Templates
@@ -122,7 +82,7 @@ Read the template file for the chosen diagram type before writing:
 | `sequenceDiagram` | `~/.claude/skills/diagrams/templates/sequence-diagram.md` |
 | `gantt` | `~/.claude/skills/diagrams/templates/gantt.md` |
 | `flowchart LR/TD` | `~/.claude/skills/diagrams/templates/flowchart.md` |
-| `quadrantChart` | `~/.claude/skills/diagrams/templates/quadrantChart.md` |
+| `quadrantChart` | `~/.claude/skills/diagrams/templates/quadrant-chart.md` |
 
 For text lines that exceed the width of a node, use the `<br>` to break them into multiple lines.
 

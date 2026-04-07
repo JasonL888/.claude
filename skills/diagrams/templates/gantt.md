@@ -1,7 +1,7 @@
 # gantt — Project / Sprint Planning
 
 ```
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#282a36', 'primaryColor': '#44475a', 'primaryTextColor': '#f8f8f2', 'primaryBorderColor': '#6272a4', 'lineColor': '#f8f8f2'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#282a36', 'primaryColor': '#44475a', 'primaryTextColor': '#f8f8f2', 'primaryBorderColor': '#6272a4', 'lineColor': '#6272a4', 'edgeLabelBackground': '#282a36', 'fontFamily': 'Nunito, sans-serif', 'fontSize': '18px'}}}%%
 gantt
   title Sprint 1
   dateFormat YYYY-MM-DD

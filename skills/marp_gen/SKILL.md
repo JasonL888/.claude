@@ -133,6 +133,22 @@ description: Converts project notes, features, or architectural plans into a Mar
 
 7. **Speaker Scripts:**
    After all slide content is finalized, add speaker notes to every slide using Marp's `<!-- ... -->` comment syntax. Follow these rules:
+   - **Timing (NEW):** Always start each speaker note block with an **approximate timing line** in the format `⏱️ Slide Timing: X min` where X is the estimated duration for that slide. This helps presenters pace their delivery. Example:
+     ```
+     <!--
+     ⏱️ Slide Timing: 5 min
+     
+     - Key insight or elaboration
+     - Supporting detail
+     -->
+     ```
+     Timing guidelines:
+     - Cover/intro slides: 1 min
+     - Content-heavy slides (architecture, detailed explanations): 4–6 min
+     - Quick reference/list slides: 2–3 min
+     - Hands-on/demo slides: 3–5 min
+     - Q&A slides: Allow 5–10 min depending on session length
+     - Ensure all slide timings sum to approximately the total session duration
    - **Never repeat slide content verbatim** — add insight, context, analogies, or real-world examples instead.
    - **Each slide gets a unique script** — no reused phrasing across slides.
    - **Be concise** — 3–5 bullet points per slide, glanceable while presenting.
@@ -151,6 +167,8 @@ description: Converts project notes, features, or architectural plans into a Mar
    - **Format** each note block placed at the end of its slide content, before the next `---`:
      ```
      <!--
+     ⏱️ Slide Timing: X min
+     
      - Key insight or elaboration
      - Supporting detail, example, or analogy
      - [Additional point if needed]
@@ -162,6 +180,8 @@ description: Converts project notes, features, or architectural plans into a Mar
      - Format as the last line inside the comment block, prefixed with `❓`:
        ```
        <!--
+       ⏱️ Slide Timing: X min
+       
        - Key insight
        - Supporting detail
        ❓ Ask: "Your question here?"

@@ -42,16 +42,33 @@
       "WebFetch(domain:registry.npmjs.org)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:www.npmjs.com)",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(mmdc -i /Users/jasonlau/Documents/Software/SophiArchSite/frontend/public/images/courses/exploratory-data-analysis/04-finding-and-handling-outliers/diagram-outlier-decision.mmd -o /tmp/diagram-outlier-decision.svg --backgroundColor '#282a36')",
+      "Bash(echo \"exit: $?\")",
+      "Bash(mmdc -i \"frontend/public/images/courses/exploratory-data-analysis/04-finding-and-handling-outliers/diagram-outlier-decision.mmd\" -o \"frontend/public/images/courses/exploratory-data-analysis/04-finding-and-handling-outliers/diagram-outlier-decision.svg\" --backgroundColor \"#282a36\")",
+      "Bash(git -C /Users/jasonlau/Documents/Software/SophiArchSite log --oneline -50)",
+      "Bash(uv add:*)",
+      "Bash(python -m ruff format app/routers/payments.py)",
+      "Bash(/Users/jasonlau/Documents/Software/SophiArchSite/.venv/bin/python -m pip install -q stripe)",
+      "Bash(/Users/jasonlau/Documents/Software/SophiArchSite/.venv/bin/python -m pytest tests/test_payments.py -v)",
+      "Bash(uv pip:*)",
+      "Bash(docker image:*)",
+      "Bash(docker volume:*)",
+      "Bash(git -C /Users/jasonlau/Documents/Software/SophiArchSite log --oneline -20 -- frontend/e2e/)",
+      "Bash(git -C /Users/jasonlau/Documents/Software/SophiArchSite log --oneline -15)",
+      "Bash(git -C /Users/jasonlau/Documents/Software/SophiArchSite show 68a79c3 --stat)",
+      "Bash(git -C /Users/jasonlau/Documents/Software/SophiArchSite show b0a4001 --stat)"
     ],
     "additionalDirectories": [
       "/tmp",
       "/private/tmp",
       "/Users/jasonlau/.claude",
       "/Users/jasonlau/.claude/skills/excalidraw-cli/scripts/lib",
-      "/Users/jasonlau/.claude/skills/excalidraw-cli"
+      "/Users/jasonlau/.claude/skills/excalidraw-cli",
+      "/Users/jasonlau/Documents/Software/SophiArchSite/frontend/public/images/courses/exploratory-data-analysis/04-finding-and-handling-outliers"
     ]
   },
+  "model": "z-ai/glm-4.5-air:free",
   "statusLine": {
     "type": "command",
     "command": "/bin/bash /Users/jasonlau/.claude/statusline-command.sh"

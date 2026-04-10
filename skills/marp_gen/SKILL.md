@@ -199,20 +199,7 @@ description: Converts project notes, features, or architectural plans into a Mar
    - Add a speaker note pointing out which links are highest priority to bookmark
    - If the source material had no URLs but tools/concepts can be looked up, generate the canonical documentation URLs from your knowledge
 
-9. **Compile to HTML and PDF:**
-   After writing the `.md` file, compile it to both HTML and PDF using the Marp CLI with the `--theme-set` flag pointing to the local `dracula.css`:
-
-   ```bash
-   # From the directory containing the .md file:
-   marp --theme-set ./dracula.css --html --output <output>.html <input>.md
-   marp --theme-set ./dracula.css --pdf --output <output>.pdf --allow-local-files <input>.md
-   ```
-
-   - Always pass `--allow-local-files` for PDF export (needed for local images and the logo)
-   - Use the same base filename as the `.md` file for both outputs
-   - Run both commands after the `.md` is written and `dracula.css` is confirmed present
-
-10. **Review**:
+9. **Review**:
    - Ensure that the content is clear and visually appealing when rendered in Marp
    - Review the HTML output to ensure formatting is within the page limits and not overflowing
 

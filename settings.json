@@ -57,7 +57,23 @@
       "Bash(git -C /Users/jasonlau/Documents/Software/SophiArchSite log --oneline -20 -- frontend/e2e/)",
       "Bash(git -C /Users/jasonlau/Documents/Software/SophiArchSite log --oneline -15)",
       "Bash(git -C /Users/jasonlau/Documents/Software/SophiArchSite show 68a79c3 --stat)",
-      "Bash(git -C /Users/jasonlau/Documents/Software/SophiArchSite show b0a4001 --stat)"
+      "Bash(git -C /Users/jasonlau/Documents/Software/SophiArchSite show b0a4001 --stat)",
+      "Bash(node ~/.claude/skills/excalidraw-cli/scripts/excalidraw.mjs export /Users/jasonlau/Documents/Courses/First_Look_At_Modern_AI/Images/diag_agent_loop.excalidraw -o /Users/jasonlau/Documents/Courses/First_Look_At_Modern_AI/Images/diag_agent_loop.svg)",
+      "Bash(node ~/.claude/skills/excalidraw-cli/scripts/excalidraw.mjs export /Users/jasonlau/Documents/Courses/First_Look_At_Modern_AI/Images/diag_workflow_patterns.excalidraw -o /Users/jasonlau/Documents/Courses/First_Look_At_Modern_AI/Images/diag_workflow_patterns.svg)",
+      "Bash(make sync-content:*)",
+      "Bash(brew install:*)",
+      "Bash(stripe login:*)",
+      "Bash(ruff format:*)",
+      "Bash(quiz\" /Users/jasonlau/Documents/Software/SophiArchSite/content/courses/exploratory-data-analysis/01-what-is-eda/lesson.mdx | head -20)",
+      "Bash(mv 08-ai-tools-capabilities-and-limits 09-ai-tools-capabilities-and-limits)",
+      "Bash(mv 09-prompting-for-data-tasks 10-prompting-for-data-tasks)",
+      "Bash(mv 10-reviewing-ai-generated-code 11-reviewing-ai-generated-code)",
+      "Bash(head -15 /Users/jasonlau/Documents/Software/SophiArchSite/content/courses/data-wrangling-feature-engineering/*/lesson.mdx)",
+      "Bash(find /Users/jasonlau/Documents/Software/SophiArchSite/content/courses -name \"course.json\" -exec echo \"=== {} ===\" \\\\; -exec cat {} \\\\;)",
+      "Bash(python -m pytest backend/tests/test_admin.py backend/tests/test_progress.py -v)",
+      "Bash(python -m pytest backend/tests/ -v --tb=short)",
+      "Bash(python -m pytest backend/tests/ -v --ignore=backend/tests/test_content.py --tb=short)",
+      "Bash(python -m pytest backend/tests/test_content.py::test_sync_content_upserts_course_and_lessons -v)"
     ],
     "additionalDirectories": [
       "/tmp",
@@ -68,7 +84,7 @@
       "/Users/jasonlau/Documents/Software/SophiArchSite/frontend/public/images/courses/exploratory-data-analysis/04-finding-and-handling-outliers"
     ]
   },
-  "model": "z-ai/glm-4.5-air:free",
+  "model": "haiku",
   "statusLine": {
     "type": "command",
     "command": "/bin/bash /Users/jasonlau/.claude/statusline-command.sh"

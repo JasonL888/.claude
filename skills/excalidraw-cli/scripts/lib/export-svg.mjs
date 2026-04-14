@@ -5,6 +5,8 @@ import { createRequire } from 'module';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SCRIPTS_DIR = path.resolve(__dirname, '..');
+const ASSETS_DIR = path.join(SCRIPTS_DIR, 'node_modules/@excalidraw/excalidraw/dist/excalidraw-assets');
+const LOCAL_ASSETS_DIR = path.join(SCRIPTS_DIR, 'assets');
 
 // Use globally-installed playwright (npm install -g playwright)
 const require = createRequire(import.meta.url);
@@ -15,7 +17,72 @@ const REACT_DOM_PATH = path.join(SCRIPTS_DIR, 'node_modules/react-dom/umd/react-
 const EXCALIDRAW_PATH = path.join(SCRIPTS_DIR, 'node_modules/@excalidraw/excalidraw/dist/excalidraw.production.min.js');
 
 // Excalidraw font family IDs → CSS font names
-const FONT_FAMILIES = { 1: 'Virgil', 2: 'Helvetica', 3: 'Cascadia' };
+const FONT_FAMILIES = {
+  1: 'Virgil',
+  2: 'Assistant',  // Excalidraw uses Assistant, not Helvetica
+  3: 'Cascadia',
+  4: 'Excalifont',
+  5: 'Nunito'
+};
+
+// Font file paths for embedding
+const FONT_FILES = {
+  Virgil: path.join(ASSETS_DIR, 'Virgil.woff2'),
+  Assistant: path.join(ASSETS_DIR, 'Assistant-Regular.woff2'),
+  Cascadia: path.join(ASSETS_DIR, 'Cascadia.woff2'),
+  Excalifont: path.join(LOCAL_ASSETS_DIR, 'Excalifont.woff2'),
+  Nunito: path.join(LOCAL_ASSETS_DIR, 'Nunito.woff2')
+};
+
+/**
+ * Get the fonts used in an Excalidraw diagram.
+ * @param {object} diagram - Parsed Excalidraw JSON.
+ * @returns {Set<string>} Set of font names used.
+ */
+function getUsedFonts(diagram) {
+  const usedFonts = new Set();
+  for (const el of diagram.elements) {
+    if (el.type === 'text' && el.fontFamily) {
+      const fontName = FONT_FAMILIES[el.fontFamily];
+      if (fontName && FONT_FILES[fontName]) {
+        usedFonts.add(fontName);
+      }
+    }
+  }
+  return usedFonts;
+}
+
+/**
+ * Generate CSS @font-face rules with embedded base64 fonts.
+ * @param {Set<string>} fonts - Set of font names to embed.
+ * @returns {string} CSS string with @font-face rules.
+ */
+function generateFontCss(fonts) {
+  let css = '';
+  for (const fontName of fonts) {
+    const fontPath = FONT_FILES[fontName];
+    if (fontPath && fs.existsSync(fontPath)) {
+      const fontData = fs.readFileSync(fontPath);
+      const base64 = fontData.toString('base64');
+      css += `@font-face{font-family:'${fontName}';src:url(data:font/woff2;charset=utf-8;base64,${base64})format('woff2');font-weight:normal;font-style:normal;}`;
+    }
+  }
+  return css;
+}
+
+/**
+ * Embed fonts into an SVG string.
+ * @param {string} svgString - The SVG content.
+ * @param {string} fontCss - CSS @font-face rules.
+ * @returns {string} SVG with embedded fonts.
+ */
+function embedFontsInSvg(svgString, fontCss) {
+  if (!fontCss) return svgString;
+
+  // Insert <style> block after the opening <svg> tag
+  const styleBlock = `<style>${fontCss}</style>`;
+  return svgString.replace(/(<svg[^>]*>)/, `$1${styleBlock}`);
+}
 
 /**
  * Export a .excalidraw file to SVG using Playwright (real Chromium).
@@ -36,6 +103,10 @@ export async function exportSvg(input, output) {
       })();
 
   const excalidrawData = JSON.parse(fs.readFileSync(inputPath, 'utf8'));
+
+  // Determine which fonts are used in this diagram
+  const usedFonts = getUsedFonts(excalidrawData);
+  const fontCss = generateFontCss(usedFonts);
 
   const browser = await chromium.launch();
   const page = await browser.newPage();
@@ -71,7 +142,10 @@ export async function exportSvg(input, output) {
       return svg.outerHTML;
     }, { diagram: excalidrawData, fontFamilies: FONT_FAMILIES });
 
-    fs.writeFileSync(resolvedOut, svgString, 'utf8');
+    // Embed fonts into the SVG
+    const svgWithFonts = embedFontsInSvg(svgString, fontCss);
+
+    fs.writeFileSync(resolvedOut, svgWithFonts, 'utf8');
   } finally {
     await browser.close();
   }

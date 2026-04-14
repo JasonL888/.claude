@@ -45,7 +45,7 @@ The `canvas` package (needed by `export`) is a native addon — it builds automa
 | Command | Usage | Output |
 |---------|-------|--------|
 | `mermaid` | `mermaid <input.mmd> [output.excalidraw]` | `.excalidraw` JSON from Mermaid source |
-| `export` | `export <input.excalidraw> [-o output.svg]` | `.svg` file (pure Node.js, no browser) |
+| `export` | `export <input.excalidraw> [-o output.svg]` | `.svg` file with embedded fonts (pure Node.js, no browser) |
 | `generate` | `generate "<description>" [output.excalidraw]` | AI-generated `.excalidraw` JSON |
 | `open` | `open <input.excalidraw>` | Uploads to excalidraw.com and opens URL in browser |
 
@@ -145,7 +145,7 @@ Use this schema when authoring `.excalidraw` JSON with the Write tool.
 ### Text elements — additional fields
 - `text`: string (use `\n` for line breaks)
 - `fontSize`: `16` \| `20` \| `28`
-- `fontFamily`: `2` (for "Helvatica")
+- `fontFamily`: `1` (Virgil, hand-drawn) \| `2` (Assistant, clean) \| `3` (Cascadia, code) \| `4` (Excalifont, hand-drawn) \| `5` (Nunito, clean)
 - `lineHeight`: `1.25` — **always include this**; omitting it causes `y="NaN"` in the exported SVG
 - `textAlign`: `"center"` \| `"left"`
 - `verticalAlign`: `"middle"` \| `"top"`

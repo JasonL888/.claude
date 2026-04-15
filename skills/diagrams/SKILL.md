@@ -18,7 +18,7 @@ A skill for creating, exporting, and embedding diagrams in MD/MDX files. All too
 
 | When user wants... | Use mermaid type |
 |---|---|
-| API calls, message passing, protocols | `sequenceDiagram` |
+| message sequence chart | `sequenceDiagram` |
 | Project planning, sprints, task scheduling | `gantt` |
 | Complex (> 10 nodes) flow charts ,decision trees, workflows | `flowchart LR/TD` |
 | 2×2 priority/risk/effort matrices | `quadrantChart` |
@@ -98,7 +98,7 @@ For diagrams comparing 2–5 concepts side by side (comparisons, pipeline stages
 
 ## 6. Storage Resolution
 
-After producing the SVG (and source file), resolve the destination — check in order:
+After producing the SVG, resolve the destination — check in order (keep both the source SVG and the original source file, whether .mmd or .excalidraw):
 
 ### A. Remote CDN / S3
 
@@ -108,7 +108,7 @@ If set and non-empty:
 
 ```bash
 aws s3 cp /tmp/name.svg s3://{bucket}/images/courses/{slug}/name.svg
-aws s3 cp /tmp/name.mmd s3://{bucket}/images/courses/{slug}/name.excalidraw   # or .mmd
+aws s3 cp /tmp/name.excalidraw s3://{bucket}/images/courses/{slug}/name.excalidraw   # or .mmd
 ```
 
 Reference in MD/MDX:
@@ -128,7 +128,7 @@ If found:
 ```bash
 mkdir -p {public}/images/courses/{slug}
 cp /tmp/name.svg {public}/images/courses/{slug}/name.svg
-cp /tmp/name.mmd {public}/images/courses/{slug}/name.excalidraw   # or .mmd
+cp /tmp/name.excalidraw {public}/images/courses/{slug}/name.excalidraw   # or .mmd
 ```
 
 Reference in MD/MDX:
@@ -146,7 +146,7 @@ When neither a CDN config nor a `public/` folder is found:
 ```bash
 mkdir -p Images
 mv /tmp/name.svg Images/name.svg
-mv /tmp/name.mmd Images/name.excalidraw   # or .mmd
+mv /tmp/name.excalidraw Images/name.excalidraw   # or .mmd
 ```
 
 Reference in MD/MDX:

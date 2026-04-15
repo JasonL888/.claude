@@ -76,6 +76,17 @@ function generateFontCss(fonts) {
  * @param {string} fontCss - CSS @font-face rules.
  * @returns {string} SVG with embedded fonts.
  */
+/**
+ * Remove @font-face rules whose src URL contains "@undefined" — emitted by
+ * the Excalidraw library when it cannot resolve its own package version for
+ * CDN URLs (e.g. `@excalidraw/excalidraw@undefined/...`).
+ * @param {string} svgString
+ * @returns {string}
+ */
+function removeUndefinedFontFaces(svgString) {
+  return svgString.replace(/@font-face\s*\{[^}]*@undefined[^}]*\}/g, '');
+}
+
 function embedFontsInSvg(svgString, fontCss) {
   if (!fontCss) return svgString;
 
@@ -139,11 +150,34 @@ export async function exportSvg(input, output) {
       }
 
       const svg = await ExcalidrawLib.exportToSvg(diagram);
+
+      // Fix font-family: ExcalidrawLib doesn't map custom fontFamily IDs correctly
+      // (e.g. 5=Nunito falls back to "Segoe UI Emoji"). The exported <g> elements
+      // carry no id attributes and their translate() values are shifted by the
+      // diagram bounding box offset. Instead, match each source text element to its
+      // SVG <text> node by text content (first line), then patch font-family on
+      // the whole containing <g>.
+      const svgTexts = Array.from(svg.querySelectorAll('text'));
+      for (const el of diagram.elements) {
+        if (el.type !== 'text' || !el.fontFamily) continue;
+        const fontName = fontFamilies[el.fontFamily];
+        if (!fontName) continue;
+        const firstLine = el.text.split('\n')[0].trim();
+        if (!firstLine) continue;
+        const match = svgTexts.find(t => t.textContent.trim().startsWith(firstLine));
+        if (!match) continue;
+        const group = match.closest('g') || match;
+        group.querySelectorAll('text, tspan').forEach(t => {
+          t.setAttribute('font-family', fontName);
+        });
+      }
+
       return svg.outerHTML;
     }, { diagram: excalidrawData, fontFamilies: FONT_FAMILIES });
 
-    // Embed fonts into the SVG
-    const svgWithFonts = embedFontsInSvg(svgString, fontCss);
+    // Strip broken @font-face rules with unresolved CDN version, then embed our fonts
+    const cleanedSvg = removeUndefinedFontFaces(svgString);
+    const svgWithFonts = embedFontsInSvg(cleanedSvg, fontCss);
 
     fs.writeFileSync(resolvedOut, svgWithFonts, 'utf8');
   } finally {

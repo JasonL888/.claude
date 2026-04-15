@@ -145,7 +145,8 @@ Use this schema when authoring `.excalidraw` JSON with the Write tool.
 ### Text elements — additional fields
 - `text`: string (use `\n` for line breaks)
 - `fontSize`: `16` \| `20` \| `28`
-- `fontFamily`: `1` (Virgil, hand-drawn) \| `2` (Assistant, clean) \| `3` (Cascadia, code) \| `4` (Excalifont, hand-drawn) \| `5` (Nunito, clean)
+- `fontFamily`: `1` (Virgil, hand-drawn) \| `2` (Assistant, clean) \| `3` (Cascadia, code) \| `4` (Excalifont, hand-drawn) \| `5` (Nunito, clean) 
+- `strokeColor`: **never `"transparent"`** — for text this is the fill colour; use `"#f8f8f2"` for standalone labels, `"#282a36"` for labels inside coloured shapes
 - `lineHeight`: `1.25` — **always include this**; omitting it causes `y="NaN"` in the exported SVG
 - `textAlign`: `"center"` \| `"left"`
 - `verticalAlign`: `"middle"` \| `"top"`

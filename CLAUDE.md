@@ -13,3 +13,6 @@ Use `uv` exclusively for Python package management in this project.
 - Never use `pip install` — use `uv add` instead
 - Never use `python script.py` directly — use `uv run script.py`
 - Never use `python -m pytest` — use `uv run pytest`
+# graphify
+- **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
+When the user types `/graphify`, invoke the Skill tool with `skill: "graphify"` before doing anything else.

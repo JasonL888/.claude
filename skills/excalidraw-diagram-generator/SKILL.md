@@ -130,11 +130,11 @@ Create the `.excalidraw` file with appropriate elements:
 - **Position**: `x`, `y` coordinates
 - **Size**: `width`, `height`
 - **Style**: `strokeColor`, `backgroundColor`, `fillStyle`
-- **Font**: `fontFamily: 5` (Excalifont - **required for all text elements**)
+- **Font**: `fontFamily: 1` (Virgil - **required for all text elements**)
 - **Text**: Embedded text for labels
 - **Connections**: `points` array for arrows
 
-**Important**: All text elements must use `fontFamily: 5` (Excalifont) for consistent visual appearance.
+**Important**: All text elements must use `fontFamily: 1` (Virgil) for consistent visual appearance.
 
 ### Step 5: Format the Output
 
@@ -149,7 +149,7 @@ Structure the complete Excalidraw file:
     // Array of diagram elements
   ],
   "appState": {
-    "viewBackgroundColor": "#ffffff",
+    "viewBackgroundColor": "#282a36",
     "gridSize": 20
   },
   "files": {}
@@ -181,13 +181,15 @@ Structure the complete Excalidraw file:
 2. **Spacing**: 
    - Horizontal gap: 200-300px between elements
    - Vertical gap: 100-150px between rows
-3. **Colors**: Use consistent color scheme
-   - Primary elements: Light blue (`#a5d8ff`)
-   - Secondary elements: Light green (`#b2f2bb`)
-   - Important/Central: Yellow (`#ffd43b`)
-   - Alerts/Warnings: Light red (`#ffc9c9`)
+3. **Colors**: Use consistent color scheme (Dracula dark theme)
+   - Primary elements: Purple (`#bd93f9`)
+   - Secondary elements: Green (`#50fa7b`)
+   - Important/Central: Yellow (`#f1fa8c`)
+   - Alerts/Warnings: Red (`#ff5555`)
+   - Text/Stroke color: Light gray (`#f8f8f2`)
+   - Canvas background: Dark gray (`#282a36`)
 4. **Text sizing**: 16-24px for readability
-5. **Font**: Always use `fontFamily: 5` (Excalifont) for all text elements
+5. **Font**: Always use `fontFamily: 1` (Virgil) for all text elements
 6. **Arrow style**: Use straight arrows for simple flows, curved for complex relationships
 
 ### Complexity Management
@@ -295,9 +297,9 @@ Before delivering the diagram:
 - [ ] All elements have unique IDs
 - [ ] Coordinates prevent overlapping
 - [ ] Text is readable (font size 16+)
-- [ ] **All text elements use `fontFamily: 5` (Excalifont)**
+- [ ] **All text elements use `fontFamily: 1` (Virgil)**
 - [ ] Arrows connect logically
-- [ ] Colors follow consistent scheme
+- [ ] Colors follow Dracula dark theme scheme
 - [ ] File is valid JSON
 - [ ] Element count is reasonable (<20 for clarity)
 

@@ -11,7 +11,7 @@
       "width": 180,
       "height": 150,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "#e7f5ff",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -39,7 +39,7 @@
       "width": 80,
       "height": 25,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -72,7 +72,7 @@
       "width": 180,
       "height": 0,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -92,8 +92,14 @@
       "link": null,
       "locked": false,
       "points": [
-        [0, 0],
-        [180, 0]
+        [
+          0,
+          0
+        ],
+        [
+          180,
+          0
+        ]
       ],
       "startBinding": null,
       "endBinding": null
@@ -106,7 +112,7 @@
       "width": 160,
       "height": 80,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -139,7 +145,7 @@
       "width": 180,
       "height": 150,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "#fff3bf",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -167,7 +173,7 @@
       "width": 80,
       "height": 25,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -200,7 +206,7 @@
       "width": 180,
       "height": 0,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -220,8 +226,14 @@
       "link": null,
       "locked": false,
       "points": [
-        [0, 0],
-        [180, 0]
+        [
+          0,
+          0
+        ],
+        [
+          180,
+          0
+        ]
       ],
       "startBinding": null,
       "endBinding": null
@@ -234,7 +246,7 @@
       "width": 160,
       "height": 80,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -267,7 +279,7 @@
       "width": 170,
       "height": 0,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -287,8 +299,14 @@
       "link": null,
       "locked": false,
       "points": [
-        [0, 0],
-        [170, 0]
+        [
+          0,
+          0
+        ],
+        [
+          170,
+          0
+        ]
       ],
       "startBinding": null,
       "endBinding": null
@@ -301,7 +319,7 @@
       "width": 20,
       "height": 20,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -334,7 +352,7 @@
       "width": 20,
       "height": 20,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -367,8 +385,8 @@
       "width": 80,
       "height": 20,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
-      "backgroundColor": "#ffffff",
+      "strokeColor": "#f8f8f2",
+      "backgroundColor": "#282a36",
       "fillStyle": "solid",
       "strokeWidth": 2,
       "strokeStyle": "solid",
@@ -400,7 +418,7 @@
       "width": 180,
       "height": 120,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "#d0f0c0",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -428,7 +446,7 @@
       "width": 120,
       "height": 25,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -461,7 +479,7 @@
       "width": 180,
       "height": 0,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -481,8 +499,14 @@
       "link": null,
       "locked": false,
       "points": [
-        [0, 0],
-        [180, 0]
+        [
+          0,
+          0
+        ],
+        [
+          180,
+          0
+        ]
       ],
       "startBinding": null,
       "endBinding": null
@@ -495,7 +519,7 @@
       "width": 160,
       "height": 50,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -528,7 +552,7 @@
       "width": 0,
       "height": 80,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -548,8 +572,14 @@
       "link": null,
       "locked": false,
       "points": [
-        [0, 0],
-        [0, 80]
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          80
+        ]
       ],
       "startBinding": null,
       "endBinding": null
@@ -562,7 +592,7 @@
       "width": 20,
       "height": 20,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -595,7 +625,7 @@
       "width": 20,
       "height": 20,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -628,8 +658,8 @@
       "width": 80,
       "height": 20,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
-      "backgroundColor": "#ffffff",
+      "strokeColor": "#f8f8f2",
+      "backgroundColor": "#282a36",
       "fillStyle": "solid",
       "strokeWidth": 2,
       "strokeStyle": "solid",
@@ -655,7 +685,7 @@
     }
   ],
   "appState": {
-    "viewBackgroundColor": "#ffffff",
+    "viewBackgroundColor": "#282a36",
     "gridSize": 20
   },
   "files": {}

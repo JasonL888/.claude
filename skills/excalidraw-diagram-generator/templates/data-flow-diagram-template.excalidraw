@@ -1,18 +1,18 @@
 {
   "type": "excalidraw",
   "version": 2,
-  "source": "https://excalidraw.com",
+  "source": "https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor",
   "elements": [
     {
       "id": "external-entity-1",
       "type": "rectangle",
-      "x": 100,
-      "y": 200,
+      "x": 100.25390625,
+      "y": 199.7396240234375,
       "width": 120,
       "height": 80,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
-      "backgroundColor": "#ffc9c9",
+      "strokeColor": "#f8f8f2",
+      "backgroundColor": "#ff5555",
       "fillStyle": "solid",
       "strokeWidth": 2,
       "strokeStyle": "solid",
@@ -21,13 +21,15 @@
       "groupIds": [],
       "frameId": null,
       "index": "a0",
-      "roundness": { "type": 3 },
+      "roundness": {
+        "type": 3
+      },
       "seed": 1001001001,
-      "version": 1,
-      "versionNonce": 2002002002,
+      "version": 7,
+      "versionNonce": 820565648,
       "isDeleted": false,
-      "boundElements": null,
-      "updated": 1706659200000,
+      "boundElements": [],
+      "updated": 1776993629804,
       "link": null,
       "locked": false,
       "text": "User",
@@ -44,7 +46,7 @@
       "width": 80,
       "height": 0,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -54,21 +56,32 @@
       "groupIds": [],
       "frameId": null,
       "index": "a1",
-      "roundness": { "type": 2 },
+      "roundness": {
+        "type": 2
+      },
       "seed": 1001001002,
       "version": 1,
       "versionNonce": 2002002003,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1706659200000,
       "link": null,
       "locked": false,
       "points": [
-        [0, 0],
-        [80, 0]
+        [
+          0,
+          0
+        ],
+        [
+          80,
+          0
+        ]
       ],
       "startBinding": null,
-      "endBinding": null
+      "endBinding": null,
+      "lastCommittedPoint": null,
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
     },
     {
       "id": "flow-label-1",
@@ -78,7 +91,7 @@
       "width": 80,
       "height": 20,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -93,7 +106,7 @@
       "version": 1,
       "versionNonce": 2002002004,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1706659200000,
       "link": null,
       "locked": false,
@@ -101,7 +114,11 @@
       "fontSize": 14,
       "fontFamily": 1,
       "textAlign": "left",
-      "verticalAlign": "top"
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "input data",
+      "autoResize": true,
+      "lineHeight": 1.4285714285714286
     },
     {
       "id": "process-1",
@@ -111,8 +128,8 @@
       "width": 120,
       "height": 80,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
-      "backgroundColor": "#a5d8ff",
+      "strokeColor": "#f8f8f2",
+      "backgroundColor": "#bd93f9",
       "fillStyle": "solid",
       "strokeWidth": 2,
       "strokeStyle": "solid",
@@ -126,7 +143,7 @@
       "version": 1,
       "versionNonce": 2002002005,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1706659200000,
       "link": null,
       "locked": false,
@@ -144,7 +161,7 @@
       "width": 80,
       "height": 0,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -154,21 +171,32 @@
       "groupIds": [],
       "frameId": null,
       "index": "a4",
-      "roundness": { "type": 2 },
+      "roundness": {
+        "type": 2
+      },
       "seed": 1001001005,
       "version": 1,
       "versionNonce": 2002002006,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1706659200000,
       "link": null,
       "locked": false,
       "points": [
-        [0, 0],
-        [80, 0]
+        [
+          0,
+          0
+        ],
+        [
+          80,
+          0
+        ]
       ],
       "startBinding": null,
-      "endBinding": null
+      "endBinding": null,
+      "lastCommittedPoint": null,
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
     },
     {
       "id": "flow-label-2",
@@ -178,7 +206,7 @@
       "width": 100,
       "height": 20,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -193,7 +221,7 @@
       "version": 1,
       "versionNonce": 2002002007,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1706659200000,
       "link": null,
       "locked": false,
@@ -201,7 +229,11 @@
       "fontSize": 14,
       "fontFamily": 1,
       "textAlign": "left",
-      "verticalAlign": "top"
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "processed data",
+      "autoResize": true,
+      "lineHeight": 1.4285714285714286
     },
     {
       "id": "data-store-1",
@@ -211,8 +243,8 @@
       "width": 150,
       "height": 80,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
-      "backgroundColor": "#96f2d7",
+      "strokeColor": "#f8f8f2",
+      "backgroundColor": "#8be9fd",
       "fillStyle": "solid",
       "strokeWidth": 2,
       "strokeStyle": "solid",
@@ -226,7 +258,7 @@
       "version": 1,
       "versionNonce": 2002002008,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1706659200000,
       "link": null,
       "locked": false,
@@ -244,7 +276,7 @@
       "width": 150,
       "height": 0,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
+      "strokeColor": "#f8f8f2",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
@@ -259,21 +291,32 @@
       "version": 1,
       "versionNonce": 2002002009,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1706659200000,
       "link": null,
       "locked": false,
       "points": [
-        [0, 0],
-        [150, 0]
+        [
+          0,
+          0
+        ],
+        [
+          150,
+          0
+        ]
       ],
       "startBinding": null,
-      "endBinding": null
+      "endBinding": null,
+      "lastCommittedPoint": null,
+      "startArrowhead": null,
+      "endArrowhead": null
     }
   ],
   "appState": {
-    "viewBackgroundColor": "#ffffff",
-    "gridSize": 20
+    "gridSize": 20,
+    "gridStep": 5,
+    "gridModeEnabled": false,
+    "viewBackgroundColor": "#282a36"
   },
   "files": {}
 }

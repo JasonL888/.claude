@@ -1,12 +1,11 @@
 {
-  "name": "excalidraw-cli",
+  "name": "excalidraw-to-svg",
   "version": "1.0.0",
   "type": "module",
   "bin": {
     "excalidraw": "./excalidraw.mjs"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": ">=0.81.0",
     "@excalidraw/excalidraw": "^0.17.6",
     "canvas": "^3.2.2",
     "commander": "latest",

@@ -35,7 +35,7 @@
       "Bash(cp /tmp/diagram-oversight-habit.svg /Users/jasonlau/Documents/Software/SophiArchSite/frontend/public/images/courses/ai-assisted-data-science/diagram-oversight-habit.svg)",
       "Bash(cp /tmp/diagram-oversight-habit.mmd /Users/jasonlau/Documents/Software/SophiArchSite/frontend/public/images/courses/ai-assisted-data-science/diagram-oversight-habit.mmd)",
       "Bash(npm ls:*)",
-      "Edit(~/.claude/skills/excalidraw-cli/**)",
+      "Edit(~/.claude/skills/excalidraw-to-svg/**)",
       "Read(//opt/homebrew/lib/node_modules/@playwright/**)",
       "Read(//opt/homebrew/lib/node_modules/**)",
       "Bash(npm info:*)",
@@ -58,8 +58,8 @@
       "Bash(git -C /Users/jasonlau/Documents/Software/SophiArchSite log --oneline -15)",
       "Bash(git -C /Users/jasonlau/Documents/Software/SophiArchSite show 68a79c3 --stat)",
       "Bash(git -C /Users/jasonlau/Documents/Software/SophiArchSite show b0a4001 --stat)",
-      "Bash(node ~/.claude/skills/excalidraw-cli/scripts/excalidraw.mjs export /Users/jasonlau/Documents/Courses/First_Look_At_Modern_AI/Images/diag_agent_loop.excalidraw -o /Users/jasonlau/Documents/Courses/First_Look_At_Modern_AI/Images/diag_agent_loop.svg)",
-      "Bash(node ~/.claude/skills/excalidraw-cli/scripts/excalidraw.mjs export /Users/jasonlau/Documents/Courses/First_Look_At_Modern_AI/Images/diag_workflow_patterns.excalidraw -o /Users/jasonlau/Documents/Courses/First_Look_At_Modern_AI/Images/diag_workflow_patterns.svg)",
+      "Bash(node ~/.claude/skills/excalidraw-to-svg/scripts/excalidraw.mjs export /Users/jasonlau/Documents/Courses/First_Look_At_Modern_AI/Images/diag_agent_loop.excalidraw -o /Users/jasonlau/Documents/Courses/First_Look_At_Modern_AI/Images/diag_agent_loop.svg)",
+      "Bash(node ~/.claude/skills/excalidraw-to-svg/scripts/excalidraw.mjs export /Users/jasonlau/Documents/Courses/First_Look_At_Modern_AI/Images/diag_workflow_patterns.excalidraw -o /Users/jasonlau/Documents/Courses/First_Look_At_Modern_AI/Images/diag_workflow_patterns.svg)",
       "Bash(make sync-content:*)",
       "Bash(brew install:*)",
       "Bash(stripe login:*)",
@@ -73,15 +73,21 @@
       "Bash(python -m pytest backend/tests/test_admin.py backend/tests/test_progress.py -v)",
       "Bash(python -m pytest backend/tests/ -v --tb=short)",
       "Bash(python -m pytest backend/tests/ -v --ignore=backend/tests/test_content.py --tb=short)",
-      "Bash(python -m pytest backend/tests/test_content.py::test_sync_content_upserts_course_and_lessons -v)"
+      "Bash(python -m pytest backend/tests/test_content.py::test_sync_content_upserts_course_and_lessons -v)",
+      "Edit(~/.claude/skills/excalidraw-diagram-generator/**)",
+      "Bash(uv run *)",
+      "Edit(~/.claude/skills/excalidraw-to-svg/**)"
     ],
     "additionalDirectories": [
       "/tmp",
       "/private/tmp",
       "/Users/jasonlau/.claude",
-      "/Users/jasonlau/.claude/skills/excalidraw-cli/scripts/lib",
-      "/Users/jasonlau/.claude/skills/excalidraw-cli",
-      "/Users/jasonlau/Documents/Software/SophiArchSite/frontend/public/images/courses/exploratory-data-analysis/04-finding-and-handling-outliers"
+      "/Users/jasonlau/.claude/skills/excalidraw-to-svg/scripts/lib",
+      "/Users/jasonlau/.claude/skills/excalidraw-to-svg",
+      "/Users/jasonlau/Documents/Software/SophiArchSite/frontend/public/images/courses/exploratory-data-analysis/04-finding-and-handling-outliers",
+      "/Users/jasonlau/.claude/skills/excalidraw-to-svg/scripts",
+      "/Users/jasonlau/.claude/skills/diagrams",
+      "/Users/jasonlau/Documents/Software/SophiArchSite/content/courses/intro-to-data-science/06-your-first-ml-model"
     ]
   },
   "model": "haiku",

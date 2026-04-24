@@ -129,6 +129,21 @@ export async function exportSvg(input, output) {
     await page.addScriptTag({ path: EXCALIDRAW_PATH });
 
     const svgString = await page.evaluate(async ({ diagram, fontFamilies }) => {
+      // For bound text with verticalAlign:"middle", hand-authored JSON often stores
+      // height=containerHeight and y=containerY instead of the actual text box.
+      // Recompute so exportToSvg centres the text correctly.
+      const elementById = Object.fromEntries(diagram.elements.map(e => [e.id, e]));
+      for (const el of diagram.elements) {
+        if (el.type !== 'text' || !el.containerId || el.verticalAlign !== 'middle') continue;
+        const container = elementById[el.containerId];
+        if (!container) continue;
+        const nLines = el.text.split('\n').length;
+        const lineHeightPx = el.fontSize * (el.lineHeight ?? 1.25);
+        const textHeight = nLines * lineHeightPx;
+        el.height = textHeight;
+        el.y = container.y + (container.height - textHeight) / 2;
+      }
+
       // @excalidraw/utils stores text y-positions as:
       //   y = (lineIndex + 1) * lineHeight - (element.height - element.baseline)
       // The `baseline` field is computed by the Excalidraw editor but not always

@@ -180,12 +180,13 @@ export async function exportSvg(input, output) {
         if (!fontName) continue;
         const firstLine = el.text.split('\n')[0].trim();
         if (!firstLine) continue;
-        const match = svgTexts.find(t => t.textContent.trim().startsWith(firstLine));
-        if (!match) continue;
-        const group = match.closest('g') || match;
-        group.querySelectorAll('text, tspan').forEach(t => {
-          t.setAttribute('font-family', fontName);
-        });
+        const matches = svgTexts.filter(t => t.textContent.trim().startsWith(firstLine));
+        for (const match of matches) {
+          const group = match.closest('g') || match;
+          group.querySelectorAll('text, tspan').forEach(t => {
+            t.setAttribute('font-family', fontName);
+          });
+        }
       }
 
       return svg.outerHTML;

@@ -164,6 +164,18 @@ Create the `.excalidraw` file with appropriate elements:
 ```
 Binding fields: `elementId` = connected shape ID; `focus` = `-1` to `1` (0 = center of edge); `gap` = `8` (clearance between arrow tip and shape edge).
 
+**CRITICAL — arrow coordinates must match shape edges**: Bindings snap the arrow tip to the nearest point on the shape's edge, but they do NOT reroute an arrow whose raw coordinates are far from the shape. If an arrow's start point is nowhere near the source shape, it will render as a floating segment. Always calculate arrow coordinates from the actual shape geometry:
+
+| Shape type | Edge points |
+|-----------|-------------|
+| Rectangle (x, y, w, h) | left=(x, y+h/2), right=(x+w, y+h/2), top=(x+w/2, y), bottom=(x+w/2, y+h) |
+| Diamond (x, y, w, h) | left=(x, y+h/2), right=(x+w, y+h/2), top=(x+w/2, y), bottom=(x+w/2, y+h) |
+| Ellipse (x, y, w, h) | same cardinal points as rectangle/diamond |
+
+Arrow start (`x`, `y`) ≈ exit edge of source shape; arrow end (`x+points[-1][0]`, `y+points[-1][1]`) ≈ entry edge of target shape. Use `gap: 8` to stop just before the edge.
+
+**Example**: source rectangle at x=400, y=200, w=200, h=80 → right edge at (600, 240); target rectangle at x=720, y=200, w=200, h=80 → left edge at (720, 240). Arrow: `x=600, y=240, points=[[0,0],[120,0]]` (horizontal, 120px wide, 8px gap handled by binding).
+
 **Bound text element pattern** (required for all shape labels):
 ```json
 // 1. Shape element — no text properties, boundElements references the label
@@ -360,6 +372,7 @@ Before delivering the diagram:
 - [ ] **All text elements use `fontFamily: 1` (Virgil)**
 - [ ] **All arrows connecting shapes have `startBinding` and `endBinding` set (not null)**
 - [ ] **All connected shapes list each arrow's ID in their `boundElements` arrays**
+- [ ] **Arrow start point (`x`, `y`) is approximately on the source shape's exit edge; arrow end point is approximately on the target shape's entry edge** — bindings snap the tip precisely but cannot reroute an arrow whose coordinates are far from the shape
 - [ ] Colors follow Dracula dark theme scheme
 - [ ] File is valid JSON
 - [ ] Element count is reasonable (<20 for clarity)

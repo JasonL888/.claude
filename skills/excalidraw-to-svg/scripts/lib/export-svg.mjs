@@ -21,8 +21,9 @@ const FONT_FAMILIES = {
   1: 'Virgil',
   2: 'Assistant',  // Excalidraw uses Assistant, not Helvetica
   3: 'Cascadia',
-  4: 'Excalifont',
-  5: 'Nunito'
+  4: 'Excalifont',  // Intermediate version (deprecated)
+  5: 'Excalifont',  // Current: fontFamily 5 = Excalifont (handwritten)
+  6: 'Nunito'       // Current: fontFamily 6 = Nunito
 };
 
 // Font file paths for embedding

@@ -65,7 +65,7 @@ Analyze the user's description to determine:
 
 **For Flowcharts:**
 - List of sequential steps
-- Decision points (if any)
+- Decision points (if any) — each decision diamond must have a label on every outgoing arrow (e.g. "YES"/"NO", "Pass"/"Fail", or a short condition phrase)
 - Start and end points
 
 **For Relationship Diagrams:**
@@ -373,6 +373,7 @@ Before delivering the diagram:
 - [ ] **All arrows connecting shapes have `startBinding` and `endBinding` set (not null)**
 - [ ] **All connected shapes list each arrow's ID in their `boundElements` arrays**
 - [ ] **Arrow start point (`x`, `y`) is approximately on the source shape's exit edge; arrow end point is approximately on the target shape's entry edge** — bindings snap the tip precisely but cannot reroute an arrow whose coordinates are far from the shape
+- [ ] **Every outgoing arrow from a decision diamond has a floating text label** (YES/NO, condition phrase, etc.) positioned near the arrow's midpoint with `strokeColor: "#f8f8f2"` and `backgroundColor: "transparent"`
 - [ ] Colors follow Dracula dark theme scheme
 - [ ] File is valid JSON
 - [ ] Element count is reasonable (<20 for clarity)

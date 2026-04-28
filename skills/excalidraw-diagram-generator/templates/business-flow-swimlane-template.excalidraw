@@ -163,6 +163,10 @@
         {
           "id": "process-1-label",
           "type": "text"
+        },
+        {
+          "id": "cross-lane-arrow",
+          "type": "arrow"
         }
       ],
       "updated": 1706659200000,
@@ -333,6 +337,14 @@
         {
           "id": "process-2-label",
           "type": "text"
+        },
+        {
+          "id": "cross-lane-arrow",
+          "type": "arrow"
+        },
+        {
+          "id": "within-lane-arrow",
+          "type": "arrow"
         }
       ],
       "updated": 1706659200000,
@@ -415,8 +427,16 @@
           0
         ]
       ],
-      "startBinding": null,
-      "endBinding": null
+      "startBinding": {
+        "elementId": "process-1",
+        "focus": 0,
+        "gap": 8
+      },
+      "endBinding": {
+        "elementId": "process-2",
+        "focus": 0,
+        "gap": 8
+      }
     },
     {
       "id": "process-3",
@@ -447,6 +467,10 @@
         {
           "id": "process-3-label",
           "type": "text"
+        },
+        {
+          "id": "within-lane-arrow",
+          "type": "arrow"
         }
       ],
       "updated": 1706659200000,
@@ -529,8 +553,16 @@
           40
         ]
       ],
-      "startBinding": null,
-      "endBinding": null
+      "startBinding": {
+        "elementId": "process-2",
+        "focus": 0,
+        "gap": 8
+      },
+      "endBinding": {
+        "elementId": "process-3",
+        "focus": 0,
+        "gap": 8
+      }
     }
   ],
   "appState": {

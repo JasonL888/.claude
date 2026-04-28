@@ -132,7 +132,37 @@ Create the `.excalidraw` file with appropriate elements:
 - **Style**: `strokeColor`, `backgroundColor`, `fillStyle`
 - **Font**: `fontFamily: 1` (Virgil - **required for all text elements**)
 - **Text in shapes**: Use a separate `type: "text"` element with `containerId` pointing to the parent shape; add `{"id": "<text-id>", "type": "text"}` to the shape's `boundElements` array. **Never put text properties directly on shape elements** — they will not render in modern Excalidraw.
-- **Connections**: `points` array for arrows
+- **Arrow bindings**: Every arrow connecting two shapes **must** have `startBinding` and `endBinding` set (never `null`). Each connected shape must also list the arrow in its `boundElements` array. Without this, arrows render as floating segments that don't snap to shape edges.
+
+**Arrow binding pattern** (required for all arrows that connect shapes):
+```json
+// Arrow element — startBinding and endBinding reference the connected shapes
+{
+  "id": "arrow1",
+  "type": "arrow",
+  "x": 500, "y": 280,
+  "points": [[0,0],[0,100]],
+  "startBinding": { "elementId": "step1", "focus": 0, "gap": 8 },
+  "endBinding":   { "elementId": "step2", "focus": 0, "gap": 8 }
+}
+// Source shape — lists both text label AND arrow in boundElements
+{
+  "id": "step1", "type": "rectangle", ...,
+  "boundElements": [
+    {"id": "step1-label", "type": "text"},
+    {"id": "arrow1",      "type": "arrow"}
+  ]
+}
+// Target shape — same
+{
+  "id": "step2", "type": "rectangle", ...,
+  "boundElements": [
+    {"id": "step2-label", "type": "text"},
+    {"id": "arrow1",      "type": "arrow"}
+  ]
+}
+```
+Binding fields: `elementId` = connected shape ID; `focus` = `-1` to `1` (0 = center of edge); `gap` = `8` (clearance between arrow tip and shape edge).
 
 **Bound text element pattern** (required for all shape labels):
 ```json
@@ -328,7 +358,8 @@ Before delivering the diagram:
 - [ ] Text is readable (font size 16+)
 - [ ] **All shape labels use separate bound `text` elements with `containerId` — no text properties on shape elements**
 - [ ] **All text elements use `fontFamily: 1` (Virgil)**
-- [ ] Arrows connect logically
+- [ ] **All arrows connecting shapes have `startBinding` and `endBinding` set (not null)**
+- [ ] **All connected shapes list each arrow's ID in their `boundElements` arrays**
 - [ ] Colors follow Dracula dark theme scheme
 - [ ] File is valid JSON
 - [ ] Element count is reasonable (<20 for clarity)

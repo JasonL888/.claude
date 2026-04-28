@@ -29,10 +29,8 @@
       "versionNonce": 159823848,
       "isDeleted": false,
       "boundElements": [
-        {
-          "id": "step1-label",
-          "type": "text"
-        }
+        {"id": "step1-label", "type": "text"},
+        {"id": "arrow1", "type": "arrow"}
       ],
       "updated": 1776993648154,
       "link": null,
@@ -105,17 +103,11 @@
       "link": null,
       "locked": false,
       "points": [
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          100
-        ]
+        [0, 0],
+        [0, 100]
       ],
-      "startBinding": null,
-      "endBinding": null,
+      "startBinding": {"elementId": "step1", "focus": 0, "gap": 8},
+      "endBinding":   {"elementId": "step2", "focus": 0, "gap": 8},
       "lastCommittedPoint": null,
       "startArrowhead": null,
       "endArrowhead": "arrow"
@@ -146,10 +138,9 @@
       "versionNonce": 987654323,
       "isDeleted": false,
       "boundElements": [
-        {
-          "id": "step2-label",
-          "type": "text"
-        }
+        {"id": "step2-label", "type": "text"},
+        {"id": "arrow1", "type": "arrow"},
+        {"id": "arrow2", "type": "arrow"}
       ],
       "updated": 1706659200000,
       "link": null,
@@ -222,17 +213,11 @@
       "link": null,
       "locked": false,
       "points": [
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          100
-        ]
+        [0, 0],
+        [0, 100]
       ],
-      "startBinding": null,
-      "endBinding": null,
+      "startBinding": {"elementId": "step2", "focus": 0, "gap": 8},
+      "endBinding":   {"elementId": "step3", "focus": 0, "gap": 8},
       "lastCommittedPoint": null,
       "startArrowhead": null,
       "endArrowhead": "arrow"
@@ -263,10 +248,8 @@
       "versionNonce": 987654325,
       "isDeleted": false,
       "boundElements": [
-        {
-          "id": "step3-label",
-          "type": "text"
-        }
+        {"id": "step3-label", "type": "text"},
+        {"id": "arrow2", "type": "arrow"}
       ],
       "updated": 1706659200000,
       "link": null,

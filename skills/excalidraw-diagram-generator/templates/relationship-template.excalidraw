@@ -32,6 +32,10 @@
         {
           "id": "entity1-label",
           "type": "text"
+        },
+        {
+          "id": "relationship",
+          "type": "arrow"
         }
       ],
       "updated": 1706659200000,
@@ -104,6 +108,10 @@
         {
           "id": "entity2-label",
           "type": "text"
+        },
+        {
+          "id": "relationship",
+          "type": "arrow"
         }
       ],
       "updated": 1706659200000,
@@ -186,8 +194,16 @@
           0
         ]
       ],
-      "startBinding": null,
-      "endBinding": null
+      "startBinding": {
+        "elementId": "entity1",
+        "focus": 0,
+        "gap": 8
+      },
+      "endBinding": {
+        "elementId": "entity2",
+        "focus": 0,
+        "gap": 8
+      }
     },
     {
       "id": "label",

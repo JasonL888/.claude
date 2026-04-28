@@ -243,15 +243,54 @@ interface TextElement extends BaseElement {
 
 ## Bindings
 
-Bindings connect arrows to shapes:
+Bindings connect arrows to shapes. **All three participants must reference each other** — the arrow, the source shape, and the target shape.
 
 ```typescript
 interface Binding {
-  elementId: string;           // ID of bound element
-  focus: number;               // -1 to 1, position along edge
-  gap: number;                 // Distance from element edge
+  elementId: string;           // ID of the connected shape
+  focus: number;               // -1 to 1, position along edge (0 = center)
+  gap: number;                 // Clearance between arrow tip and shape edge (use 8)
 }
 ```
+
+**Required wiring** (all three must be set for arrows to snap to shape edges):
+
+1. Arrow `startBinding` → source shape ID
+2. Arrow `endBinding` → target shape ID
+3. Source shape `boundElements` includes `{"id": "<arrow-id>", "type": "arrow"}`
+4. Target shape `boundElements` includes `{"id": "<arrow-id>", "type": "arrow"}`
+
+Without bindings, Excalidraw renders arrows as hardcoded floating segments that don't touch shape edges.
+
+**Example — bound arrow:**
+```json
+[
+  {
+    "id": "box1", "type": "rectangle", ...,
+    "boundElements": [
+      {"id": "box1-label", "type": "text"},
+      {"id": "arrow1",     "type": "arrow"}
+    ]
+  },
+  {
+    "id": "box2", "type": "rectangle", ...,
+    "boundElements": [
+      {"id": "box2-label", "type": "text"},
+      {"id": "arrow1",     "type": "arrow"}
+    ]
+  },
+  {
+    "id": "arrow1",
+    "type": "arrow",
+    "x": 300, "y": 150,
+    "points": [[0,0],[100,0]],
+    "startBinding": {"elementId": "box1", "focus": 0, "gap": 8},
+    "endBinding":   {"elementId": "box2", "focus": 0, "gap": 8}
+  }
+]
+```
+
+**`focus` values**: `0` = center of edge; `-1` = top/left corner; `1` = bottom/right corner. Use non-zero values when multiple arrows leave from the same shape edge to prevent overlap.
 
 ## Common Colors
 

@@ -177,9 +177,7 @@
       "groupIds": [],
       "frameId": null,
       "index": "a2",
-      "roundness": {
-        "type": 2
-      },
+      "roundness": null,
       "seed": 3333333335,
       "version": 23,
       "versionNonce": 308894189,
@@ -210,7 +208,9 @@
       },
       "lastCommittedPoint": null,
       "startArrowhead": null,
-      "endArrowhead": "arrow"
+      "endArrowhead": "arrow",
+      "elbowed": true,
+      "fixedSegments": null
     },
     {
       "id": "branch2",
@@ -306,9 +306,7 @@
       "groupIds": [],
       "frameId": null,
       "index": "a4",
-      "roundness": {
-        "type": 2
-      },
+      "roundness": null,
       "seed": 3333333337,
       "version": 41,
       "versionNonce": 1447859213,
@@ -339,7 +337,9 @@
       },
       "lastCommittedPoint": null,
       "startArrowhead": null,
-      "endArrowhead": "arrow"
+      "endArrowhead": "arrow",
+      "elbowed": true,
+      "fixedSegments": null
     }
   ],
   "appState": {

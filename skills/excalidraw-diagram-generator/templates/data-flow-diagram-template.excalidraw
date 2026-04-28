@@ -98,9 +98,7 @@
       "groupIds": [],
       "frameId": null,
       "index": "a1",
-      "roundness": {
-        "type": 2
-      },
+      "roundness": null,
       "seed": 1001001002,
       "version": 1,
       "versionNonce": 2002002003,
@@ -131,7 +129,9 @@
       },
       "lastCommittedPoint": null,
       "startArrowhead": null,
-      "endArrowhead": "arrow"
+      "endArrowhead": "arrow",
+      "elbowed": true,
+      "fixedSegments": null
     },
     {
       "id": "flow-label-1",
@@ -267,9 +267,7 @@
       "groupIds": [],
       "frameId": null,
       "index": "a4",
-      "roundness": {
-        "type": 2
-      },
+      "roundness": null,
       "seed": 1001001005,
       "version": 1,
       "versionNonce": 2002002006,
@@ -300,7 +298,9 @@
       },
       "lastCommittedPoint": null,
       "startArrowhead": null,
-      "endArrowhead": "arrow"
+      "endArrowhead": "arrow",
+      "elbowed": true,
+      "fixedSegments": null
     },
     {
       "id": "flow-label-2",

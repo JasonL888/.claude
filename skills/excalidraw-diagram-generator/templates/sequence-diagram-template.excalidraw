@@ -351,9 +351,7 @@
       "groupIds": [],
       "frameId": null,
       "index": "a6",
-      "roundness": {
-        "type": 2
-      },
+      "roundness": null,
       "seed": 4001001007,
       "version": 1,
       "versionNonce": 5002002007,
@@ -373,7 +371,9 @@
         ]
       ],
       "startBinding": null,
-      "endBinding": null
+      "endBinding": null,
+      "elbowed": true,
+      "fixedSegments": null
     },
     {
       "id": "message-label-1",
@@ -454,9 +454,7 @@
       "groupIds": [],
       "frameId": null,
       "index": "a9",
-      "roundness": {
-        "type": 2
-      },
+      "roundness": null,
       "seed": 4001001010,
       "version": 1,
       "versionNonce": 5002002010,
@@ -476,7 +474,9 @@
         ]
       ],
       "startBinding": null,
-      "endBinding": null
+      "endBinding": null,
+      "elbowed": true,
+      "fixedSegments": null
     },
     {
       "id": "message-label-2",
@@ -529,9 +529,7 @@
       "groupIds": [],
       "frameId": null,
       "index": "a11",
-      "roundness": {
-        "type": 2
-      },
+      "roundness": null,
       "seed": 4001001012,
       "version": 1,
       "versionNonce": 5002002012,
@@ -551,7 +549,9 @@
         ]
       ],
       "startBinding": null,
-      "endBinding": null
+      "endBinding": null,
+      "elbowed": true,
+      "fixedSegments": null
     },
     {
       "id": "return-label-1",
@@ -604,9 +604,7 @@
       "groupIds": [],
       "frameId": null,
       "index": "a13",
-      "roundness": {
-        "type": 2
-      },
+      "roundness": null,
       "seed": 4001001014,
       "version": 1,
       "versionNonce": 5002002014,
@@ -626,7 +624,9 @@
         ]
       ],
       "startBinding": null,
-      "endBinding": null
+      "endBinding": null,
+      "elbowed": true,
+      "fixedSegments": null
     },
     {
       "id": "return-label-2",

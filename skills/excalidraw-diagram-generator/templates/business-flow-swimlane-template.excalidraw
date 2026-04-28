@@ -406,9 +406,7 @@
       "groupIds": [],
       "frameId": null,
       "index": "a7",
-      "roundness": {
-        "type": 2
-      },
+      "roundness": null,
       "seed": 2001001008,
       "version": 1,
       "versionNonce": 3002002008,
@@ -436,7 +434,9 @@
         "elementId": "process-2",
         "focus": 0,
         "gap": 8
-      }
+      },
+      "elbowed": true,
+      "fixedSegments": null
     },
     {
       "id": "process-3",
@@ -532,9 +532,7 @@
       "groupIds": [],
       "frameId": null,
       "index": "a9",
-      "roundness": {
-        "type": 2
-      },
+      "roundness": null,
       "seed": 2001001010,
       "version": 1,
       "versionNonce": 3002002010,
@@ -562,7 +560,9 @@
         "elementId": "process-3",
         "focus": 0,
         "gap": 8
-      }
+      },
+      "elbowed": true,
+      "fixedSegments": null
     }
   ],
   "appState": {

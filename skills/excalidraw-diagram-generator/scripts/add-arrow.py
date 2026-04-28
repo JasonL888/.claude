@@ -111,9 +111,7 @@ def create_arrow(
         "groupIds": [],
         "frameId": None,
         "index": "a0",
-        "roundness": {
-            "type": 2
-        },
+        "roundness": None,
         "seed": 1000000000 + hash(f"{from_x}{from_y}{to_x}{to_y}") % 1000000000,
         "version": 1,
         "versionNonce": 2000000000 + hash(f"{from_x}{from_y}{to_x}{to_y}") % 1000000000,
@@ -122,6 +120,8 @@ def create_arrow(
         "updated": 1738195200000,
         "link": None,
         "locked": False,
+        "elbowed": True,
+        "fixedSegments": None,
         "points": [
             [0, 0],
             [to_x - from_x, to_y - from_y]

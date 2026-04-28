@@ -164,7 +164,8 @@ interface ArrowElement extends BaseElement {
   points: [number, number][];  // Array of [x, y] coordinates relative to element
   startBinding: Binding | null;
   endBinding: Binding | null;
-  roundness: { type: 2 };      // 2 = curved arrow
+  elbowed: true;               // Right-angle elbow routing
+  roundness: null;             // null required for elbowed arrows
 }
 ```
 
@@ -181,7 +182,8 @@ interface ArrowElement extends BaseElement {
     [0, 0],
     [200, 0]
   ],
-  "roundness": { "type": 2 },
+  "elbowed": true,
+  "roundness": null,
   "startBinding": null,
   "endBinding": null
 }

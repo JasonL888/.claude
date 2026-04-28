@@ -133,6 +133,7 @@ Create the `.excalidraw` file with appropriate elements:
 - **Font**: `fontFamily: 1` (Virgil - **required for all text elements**)
 - **Text in shapes**: Use a separate `type: "text"` element with `containerId` pointing to the parent shape; add `{"id": "<text-id>", "type": "text"}` to the shape's `boundElements` array. **Never put text properties directly on shape elements** — they will not render in modern Excalidraw.
 - **Arrow bindings**: Every arrow connecting two shapes **must** have `startBinding` and `endBinding` set (never `null`). Each connected shape must also list the arrow in its `boundElements` array. Without this, arrows render as floating segments that don't snap to shape edges.
+- **Arrow routing**: All arrows must include `"elbowed": true` and `"roundness": null` for right-angle elbow routing.
 
 **Arrow binding pattern** (required for all arrows that connect shapes):
 ```json
@@ -142,6 +143,8 @@ Create the `.excalidraw` file with appropriate elements:
   "type": "arrow",
   "x": 500, "y": 280,
   "points": [[0,0],[0,100]],
+  "elbowed": true,
+  "roundness": null,
   "startBinding": { "elementId": "step1", "focus": 0, "gap": 8 },
   "endBinding":   { "elementId": "step2", "focus": 0, "gap": 8 }
 }

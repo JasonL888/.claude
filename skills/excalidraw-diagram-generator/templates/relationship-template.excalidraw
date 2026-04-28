@@ -173,9 +173,7 @@
       "groupIds": [],
       "frameId": null,
       "index": "a2",
-      "roundness": {
-        "type": 2
-      },
+      "roundness": null,
       "seed": 1111111113,
       "version": 1,
       "versionNonce": 2222222224,
@@ -203,7 +201,9 @@
         "elementId": "entity2",
         "focus": 0,
         "gap": 8
-      }
+      },
+      "elbowed": true,
+      "fixedSegments": null
     },
     {
       "id": "label",

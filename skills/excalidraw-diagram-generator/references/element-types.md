@@ -204,7 +204,8 @@ Diamonds need more space than rectangles for the same text:
 {
   type: "arrow",
   points: [[0, 0], [endX, endY]],  // Relative coordinates
-  roundness: { type: 2 },          // Curved
+  elbowed: true,                   // Right-angle elbow routing
+  roundness: null,                 // null required for elbowed arrows
   startBinding: null,              // Or { elementId, focus, gap }
   endBinding: null
 }

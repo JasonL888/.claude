@@ -36,16 +36,52 @@
         {
           "id": "arrow2",
           "type": "arrow"
+        },
+        {
+          "id": "center-label",
+          "type": "text"
         }
       ],
       "updated": 1769755916717,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "center-label",
+      "type": "text",
+      "x": 510,
+      "y": 387.5,
+      "width": 180,
+      "height": 25.0,
+      "angle": 0,
+      "strokeColor": "#282a36",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a0L",
+      "roundness": null,
+      "seed": 9000000021,
+      "version": 1,
+      "versionNonce": 9000000022,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1776993648154,
       "link": null,
       "locked": false,
       "text": "Central Topic",
       "fontSize": 20,
       "fontFamily": 1,
       "textAlign": "center",
-      "verticalAlign": "middle"
+      "verticalAlign": "middle",
+      "containerId": "center",
+      "originalText": "Central Topic",
+      "lineHeight": 1.25,
+      "baseline": 18
     },
     {
       "id": "branch1",
@@ -76,16 +112,52 @@
         {
           "id": "arrow1",
           "type": "arrow"
+        },
+        {
+          "id": "branch1-label",
+          "type": "text"
         }
       ],
       "updated": 1769755912840,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "branch1-label",
+      "type": "text",
+      "x": 260,
+      "y": 178.75,
+      "width": 130,
+      "height": 22.5,
+      "angle": 0,
+      "strokeColor": "#282a36",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a1L",
+      "roundness": null,
+      "seed": 9000000023,
+      "version": 1,
+      "versionNonce": 9000000024,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1776993648154,
       "link": null,
       "locked": false,
       "text": "Branch 1",
       "fontSize": 18,
       "fontFamily": 1,
       "textAlign": "center",
-      "verticalAlign": "middle"
+      "verticalAlign": "middle",
+      "containerId": "branch1",
+      "originalText": "Branch 1",
+      "lineHeight": 1.25,
+      "baseline": 16
     },
     {
       "id": "arrow1",
@@ -169,16 +241,52 @@
         {
           "id": "arrow2",
           "type": "arrow"
+        },
+        {
+          "id": "branch2-label",
+          "type": "text"
         }
       ],
       "updated": 1769755916716,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "branch2-label",
+      "type": "text",
+      "x": 760,
+      "y": 178.75,
+      "width": 130,
+      "height": 22.5,
+      "angle": 0,
+      "strokeColor": "#282a36",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a3L",
+      "roundness": null,
+      "seed": 9000000025,
+      "version": 1,
+      "versionNonce": 9000000026,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1776993648154,
       "link": null,
       "locked": false,
       "text": "Branch 2",
       "fontSize": 18,
       "fontFamily": 1,
       "textAlign": "center",
-      "verticalAlign": "middle"
+      "verticalAlign": "middle",
+      "containerId": "branch2",
+      "originalText": "Branch 2",
+      "lineHeight": 1.25,
+      "baseline": 16
     },
     {
       "id": "arrow2",

@@ -131,8 +131,37 @@ Create the `.excalidraw` file with appropriate elements:
 - **Size**: `width`, `height`
 - **Style**: `strokeColor`, `backgroundColor`, `fillStyle`
 - **Font**: `fontFamily: 1` (Virgil - **required for all text elements**)
-- **Text**: Embedded text for labels
+- **Text in shapes**: Use a separate `type: "text"` element with `containerId` pointing to the parent shape; add `{"id": "<text-id>", "type": "text"}` to the shape's `boundElements` array. **Never put text properties directly on shape elements** — they will not render in modern Excalidraw.
 - **Connections**: `points` array for arrows
+
+**Bound text element pattern** (required for all shape labels):
+```json
+// 1. Shape element — no text properties, boundElements references the label
+{
+  "id": "box1",
+  "type": "rectangle",
+  "x": 400, "y": 200, "width": 200, "height": 80,
+  "boundElements": [{"id": "box1-label", "type": "text"}]
+}
+// 2. Separate text element — containerId links it to the shape
+{
+  "id": "box1-label",
+  "type": "text",
+  "x": 410, "y": 228, "width": 180, "height": 25,
+  "angle": 0, "strokeColor": "#282a36", "backgroundColor": "transparent",
+  "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+  "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+  "index": "a0L", "roundness": null,
+  "seed": 1234567891, "version": 1, "versionNonce": 987654322,
+  "isDeleted": false, "boundElements": [], "updated": 1706659200000,
+  "link": null, "locked": false,
+  "text": "Step 1", "fontSize": 20, "fontFamily": 1,
+  "textAlign": "center", "verticalAlign": "middle",
+  "containerId": "box1", "originalText": "Step 1",
+  "lineHeight": 1.25, "baseline": 18
+}
+```
+**Text color rule**: use `"#282a36"` (dark) on light/bright backgrounds; use `"#f8f8f2"` (light) on dark/purple (`#bd93f9`) backgrounds.
 
 **Important**: All text elements must use `fontFamily: 1` (Virgil) for consistent visual appearance.
 
@@ -297,6 +326,7 @@ Before delivering the diagram:
 - [ ] All elements have unique IDs
 - [ ] Coordinates prevent overlapping
 - [ ] Text is readable (font size 16+)
+- [ ] **All shape labels use separate bound `text` elements with `containerId` — no text properties on shape elements**
 - [ ] **All text elements use `fontFamily: 1` (Virgil)**
 - [ ] Arrows connect logically
 - [ ] Colors follow Dracula dark theme scheme

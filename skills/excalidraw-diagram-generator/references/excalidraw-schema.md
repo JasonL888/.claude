@@ -67,30 +67,8 @@ interface BaseElement {
 interface RectangleElement extends BaseElement {
   type: "rectangle";
   roundness: { type: 3 };      // 3 = rounded corners
-  text?: string;               // Optional text inside
-  fontSize?: number;           // Font size (16-32 typical)
-  fontFamily?: number;         // 1 = Virgil, 2 = Helvetica, 3 = Cascadia
-  textAlign?: "left" | "center" | "right";
-  verticalAlign?: "top" | "middle" | "bottom";
-}
-```
-
-**Example:**
-```json
-{
-  "id": "rect1",
-  "type": "rectangle",
-  "x": 100,
-  "y": 100,
-  "width": 200,
-  "height": 100,
-  "strokeColor": "#1e1e1e",
-  "backgroundColor": "#a5d8ff",
-  "text": "My Box",
-  "fontSize": 20,
-  "textAlign": "center",
-  "verticalAlign": "middle",
-  "roundness": { "type": 3 }
+  // NOTE: Do NOT add text properties here. Use a separate BoundTextElement.
+  // Set boundElements: [{"id": "<label-id>", "type": "text"}]
 }
 ```
 
@@ -99,11 +77,7 @@ interface RectangleElement extends BaseElement {
 ```typescript
 interface EllipseElement extends BaseElement {
   type: "ellipse";
-  text?: string;
-  fontSize?: number;
-  fontFamily?: number;
-  textAlign?: "left" | "center" | "right";
-  verticalAlign?: "top" | "middle" | "bottom";
+  // NOTE: Do NOT add text properties here. Use a separate BoundTextElement.
 }
 ```
 
@@ -112,12 +86,74 @@ interface EllipseElement extends BaseElement {
 ```typescript
 interface DiamondElement extends BaseElement {
   type: "diamond";
-  text?: string;
-  fontSize?: number;
-  fontFamily?: number;
-  textAlign?: "left" | "center" | "right";
-  verticalAlign?: "top" | "middle" | "bottom";
+  // NOTE: Do NOT add text properties here. Use a separate BoundTextElement.
 }
+```
+
+### BoundTextElement (text inside a shape)
+
+Modern Excalidraw requires text inside shapes to be a **separate element** linked via `containerId`. Embedding text properties directly on shapes will NOT render.
+
+```typescript
+interface BoundTextElement extends BaseElement {
+  type: "text";
+  text: string;
+  fontSize: number;
+  fontFamily: number;          // 1 = Virgil (always use this)
+  textAlign: "left" | "center" | "right";
+  verticalAlign: "top" | "middle" | "bottom";
+  containerId: string;         // ID of the parent shape
+  originalText: string;        // Same as text
+  lineHeight: number;          // 1.25
+  baseline: number;            // fontSize * 0.9
+  roundness: null;
+}
+```
+
+**Required pairing**: the parent shape must include `{"id": "<label-id>", "type": "text"}` in its `boundElements` array.
+
+**Position formula**:
+- `x` = shape.x + 10 (padding)
+- `y` = shape.y + (shape.height − fontSize * 1.25 * lineCount) / 2
+- `width` = shape.width − 20
+- `height` = fontSize * 1.25 * lineCount
+
+**Text color**: `"#282a36"` on light/bright backgrounds; `"#f8f8f2"` on dark/purple (`#bd93f9`) backgrounds.
+
+**Example — labeled rectangle:**
+```json
+[
+  {
+    "id": "rect1",
+    "type": "rectangle",
+    "x": 100, "y": 100, "width": 200, "height": 100,
+    "strokeColor": "#6272a4",
+    "backgroundColor": "#8be9fd",
+    "fillStyle": "solid", "strokeWidth": 2, "strokeStyle": "solid",
+    "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+    "index": "a0", "roundness": {"type": 3},
+    "seed": 1234567890, "version": 3, "versionNonce": 159823848,
+    "isDeleted": false,
+    "boundElements": [{"id": "rect1-label", "type": "text"}],
+    "updated": 1706659200000, "link": null, "locked": false
+  },
+  {
+    "id": "rect1-label",
+    "type": "text",
+    "x": 110, "y": 138, "width": 180, "height": 25,
+    "angle": 0, "strokeColor": "#282a36", "backgroundColor": "transparent",
+    "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
+    "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
+    "index": "a0L", "roundness": null,
+    "seed": 1234567891, "version": 1, "versionNonce": 987654322,
+    "isDeleted": false, "boundElements": [], "updated": 1706659200000,
+    "link": null, "locked": false,
+    "text": "My Box", "fontSize": 20, "fontFamily": 1,
+    "textAlign": "center", "verticalAlign": "middle",
+    "containerId": "rect1", "originalText": "My Box",
+    "lineHeight": 1.25, "baseline": 18
+  }
+]
 ```
 
 ### Arrow
@@ -315,8 +351,8 @@ const versionNonce = Math.floor(Math.random() * 2147483647);
       "width": 200,
       "height": 100,
       "angle": 0,
-      "strokeColor": "#1e1e1e",
-      "backgroundColor": "#a5d8ff",
+      "strokeColor": "#6272a4",
+      "backgroundColor": "#8be9fd",
       "fillStyle": "solid",
       "strokeWidth": 2,
       "strokeStyle": "solid",
@@ -327,10 +363,38 @@ const versionNonce = Math.floor(Math.random() * 2147483647);
       "index": "a0",
       "roundness": { "type": 3 },
       "seed": 1234567890,
-      "version": 1,
+      "version": 3,
       "versionNonce": 987654321,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [{"id": "box1-label", "type": "text"}],
+      "updated": 1706659200000,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "box1-label",
+      "type": "text",
+      "x": 110,
+      "y": 138,
+      "width": 180,
+      "height": 25,
+      "angle": 0,
+      "strokeColor": "#282a36",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "a0L",
+      "roundness": null,
+      "seed": 1234567891,
+      "version": 1,
+      "versionNonce": 987654322,
+      "isDeleted": false,
+      "boundElements": [],
       "updated": 1706659200000,
       "link": null,
       "locked": false,
@@ -338,11 +402,15 @@ const versionNonce = Math.floor(Math.random() * 2147483647);
       "fontSize": 20,
       "fontFamily": 1,
       "textAlign": "center",
-      "verticalAlign": "middle"
+      "verticalAlign": "middle",
+      "containerId": "box1",
+      "originalText": "Hello",
+      "lineHeight": 1.25,
+      "baseline": 18
     }
   ],
   "appState": {
-    "viewBackgroundColor": "#ffffff",
+    "viewBackgroundColor": "#282a36",
     "gridSize": 20
   },
   "files": {}

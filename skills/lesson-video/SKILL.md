@@ -126,7 +126,7 @@ Verify: `sum(scene.duration_seconds)` should be within 10% of
 ## Step 8 — Fill remaining fields and write the file
 
 For each scene, set:
-- `visual_description` — prose describing the Remotion layout for reviewers (self-contained; assume no code access)
+- `visual_description` — prose describing the Remotion layout for reviewers — what's on screen, what animates, what's highlighted. Self-contained; assume no code access.
 - `notes` — per-item timing cue for audio production: `"N items × X s each"`
 - `transition` — `"cut"` (default) or `"fade"` for intro/outro scenes
 - `audio_src` — `/video-audio/{course-slug}/{lesson-slug}/scene_NN.mp3` (omit if silent)

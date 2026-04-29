@@ -48,12 +48,13 @@ def derive_audio_url_prefix(output_root: Path) -> str:
 
 def generate_mp3(pipeline, narration: str, out_path: Path) -> float:
     """Generate MP3 and return its duration in seconds."""
+    import numpy as np
     import soundfile as sf
     from pydub import AudioSegment
 
     wav_path = out_path.with_suffix(".wav")
-    generator = pipeline(narration, voice=VOICE)
-    _, _, audio = next(generator)
+    chunks = [audio for _, _, audio in pipeline(narration, voice=VOICE)]
+    audio = np.concatenate(chunks) if chunks else np.array([], dtype=np.float32)
     sf.write(wav_path, audio, 24000)
 
     segment = AudioSegment.from_wav(wav_path).set_channels(1).set_frame_rate(SAMPLE_RATE)

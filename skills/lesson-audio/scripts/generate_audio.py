@@ -79,8 +79,11 @@ def main() -> None:
 
     for scenes_file in sorted(content_root.glob("*/*/video-scenes.json")):
         data = json.loads(scenes_file.read_text())
-        course_slug = data["course_slug"]
-        lesson_slug = data["lesson_slug"]
+        course_slug = data.get("course_slug")
+        lesson_slug = data.get("lesson_slug")
+        if not course_slug or not lesson_slug:
+            print(f"  skipping {scenes_file} — missing course_slug or lesson_slug")
+            continue
 
         if args.course and course_slug != args.course:
             continue

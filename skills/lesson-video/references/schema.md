@@ -49,6 +49,44 @@ Auto-picked up by `sync_content` — no MDX frontmatter changes required.
 }
 ```
 
+### `cue_times` (optional, all animated scene types)
+
+Overrides equal-division timing. Array of seconds from scene start at which each `on_screen_text` item becomes active:
+
+```json
+"cue_times": [0, 8.5, 14.5, 19.5]
+```
+
+Use when the narration has an intro sentence before the first item, or when items vary significantly in length. Tune by scrubbing in Remotion Studio against the audio. Components fall back to equal-division when `cue_times` is absent. `title_card` and `screen_recording` scenes do not use this field.
+
+### `visualization` (optional, `diagram` scenes only)
+
+Identifies the custom Remotion component to render inside the `Diagram` scene wrapper. When present, the diagram renders the named component instead of the default badge+flow layout:
+
+```json
+"visualization": "context_window_slots"
+```
+
+| Known values | Lesson |
+|---|---|
+| `context_window_slots` | ai-applications-with-llms / 03-context-window-architecture |
+| `rag_pipeline` | ai-applications-with-llms / 03-context-window-architecture |
+| `probability_distribution` | ai-applications-with-llms / 01-probabilistic-contract |
+| `temperature_comparison` | ai-applications-with-llms / 01-probabilistic-contract |
+| `validation_layers_stack` | ai-applications-with-llms / 04-output-validation-layers |
+
+Omit the field when the default badge+flow layout is sufficient.
+
+### `highlight_rows` (optional, `data_table` scenes only)
+
+Array of 0-indexed row indices (excluding the header at `on_screen_text[0]`) that should receive the danger/emphasis style (red background):
+
+```json
+"highlight_rows": [0]
+```
+
+Use to draw attention to a row representing a mistake, anti-pattern, or a "Never" case.
+
 ### `images` field (optional, `diagram` scenes only)
 
 Parallel array to `on_screen_text`. Each entry is either a public path string or `null` (renders badge+label only for that step). Omit the field entirely when no images are available — the component falls back gracefully to badge+label for all steps.

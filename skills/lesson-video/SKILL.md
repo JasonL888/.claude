@@ -75,15 +75,22 @@ For each `diagram` scene, check whether any `on_screen_text` item has a matching
 
 ---
 
-## Step 5 — Build `on_screen_text` for each scene
+## Step 5 — Design the visual for each scene
 
+Write `visual_description` first. Describe what the scene looks like in Remotion: what's on screen, what animates, how items are highlighted, the overall layout. This is the primary design output — it drives both the `on_screen_text` derivation and the Remotion component.
 
+- Be self-contained: assume no code access. A reviewer reading only this field must know exactly what to render.
+- State what is static vs. what animates and in what order.
+- Name any custom component or layout variant (e.g., `spotlight` image layout, `rag_pipeline` visualisation).
 
-Break the section's content into discrete **beats** — one item per thing the
-viewer needs to read and absorb. Rules:
+---
+
+## Step 6 — Derive `on_screen_text` from the visual description
+
+Extract the discrete text **beats** from the visual description — one item per thing the viewer reads and absorbs. Rules:
 
 - Each item is a complete, self-contained label (not a sentence fragment)
-- Items appear in the order listed — order determines animation sequence
+- Items appear in the order listed — order must match the animation sequence described in `visual_description`
 - Count the items; this directly sets the animation cadence
 - `recap` convention: `[0]` = heading, `[1..n-1]` = bullets, `[n]` = forward pointer (optional)
 - `data_table` convention: `[0]` = table header, `[1..n]` = rows
@@ -91,7 +98,7 @@ viewer needs to read and absorb. Rules:
 
 ---
 
-## Step 6 — Script narration in sync with animation
+## Step 7 — Script narration in sync with animation
 
 Write the exact spoken script. The narration **must name each `on_screen_text`
 item during the time window when that item is active on screen**.
@@ -116,7 +123,7 @@ Components fall back to equal-division when `cue_times` is absent. Tune values a
 
 ---
 
-## Step 7 — Estimate `duration_seconds`
+## Step 8 — Estimate `duration_seconds`
 
 ```
 duration_seconds ≈ word_count / 140
@@ -131,10 +138,9 @@ Verify: `sum(scene.duration_seconds)` should be within 10% of
 
 ---
 
-## Step 8 — Fill remaining fields and write the file
+## Step 9 — Fill remaining fields and write the file
 
 For each scene, set:
-- `visual_description` — prose describing the Remotion layout for reviewers — what's on screen, what animates, what's highlighted. Self-contained; assume no code access.
 - `notes` — per-item timing cue for audio production: `"N items × X s each"`
 - `transition` — `"cut"` (default) or `"fade"` for intro/outro scenes
 - `audio_src` — `/video-audio/{course-slug}/{lesson-slug}/scene_NN.mp3` (omit if silent)
@@ -151,10 +157,30 @@ Write to `content/courses/{course-slug}/{lesson-folder}/video-scenes.json`.
 ## Output checklist
 
 Before finishing, verify:
+- [ ] `visual_description` is self-contained (no code context needed) — written before `on_screen_text`
+- [ ] `on_screen_text` items match the animation sequence described in `visual_description`
 - [ ] Scene sum is within 10% of `target_duration_seconds`
 - [ ] Narration reads naturally aloud at ~140 wpm
 - [ ] For each animated scene type, narration names every `on_screen_text` item in the correct time window
-- [ ] `visual_description` is self-contained (no code context needed)
 - [ ] `notes` documents per-item timing for each scene
 - [ ] `diagram` scenes with named visual artifacts (charts, algorithms) include `images` where thumbnails exist
 - [ ] Video orients and motivates; the MDX carries the depth — no word-for-word duplication
+
+---
+
+## Remotion animation code
+
+When writing or modifying Remotion scene components in `frontend/remotion/scenes/`,
+load the relevant rules from the `remotion-best-practices` skill before implementing:
+
+| Task | Rule file to load |
+|------|------------------|
+| Scene transitions | `rules/transitions.md` |
+| Spring / easing timing | `rules/timing.md` |
+| Audio sync | `rules/audio.md` |
+| Text reveal animations | `rules/text-animations.md` |
+| Chart / data visualisations | `rules/charts.md` |
+| Sequencing (delay, trim) | `rules/sequencing.md` |
+| Fonts (Dracula palette) | `rules/fonts.md` |
+
+Load only the rule files relevant to the current task — do not load all of them.

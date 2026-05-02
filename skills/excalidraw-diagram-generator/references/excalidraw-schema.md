@@ -46,13 +46,13 @@ interface BaseElement {
   opacity: number;             // 0-100
   groupIds: string[];          // IDs of groups this element belongs to
   frameId: null;               // Usually null
-  index: string;               // Stacking order identifier
+  index: string;               // Stacking order — see Index Format rules below
   roundness: Roundness | null;
   seed: number;                // Random seed for deterministic rendering
   version: number;             // Element version (increment on edit)
   versionNonce: number;        // Random number changed on edit
   isDeleted: boolean;          // Should be false
-  boundElements: any;          // Usually null
+  boundElements: BoundElement[];  // Always [] for elements with no children
   updated: number;             // Timestamp in milliseconds
   link: null;                  // External link (usually null)
   locked: boolean;             // Whether element is locked
@@ -105,7 +105,6 @@ interface BoundTextElement extends BaseElement {
   containerId: string;         // ID of the parent shape
   originalText: string;        // Same as text
   lineHeight: number;          // 1.25
-  baseline: number;            // fontSize * 0.9
   roundness: null;
 }
 ```
@@ -144,14 +143,14 @@ interface BoundTextElement extends BaseElement {
     "angle": 0, "strokeColor": "#282a36", "backgroundColor": "transparent",
     "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
     "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
-    "index": "a0L", "roundness": null,
+    "index": "a0a", "roundness": null,
     "seed": 1234567891, "version": 1, "versionNonce": 987654322,
     "isDeleted": false, "boundElements": [], "updated": 1706659200000,
     "link": null, "locked": false,
     "text": "My Box", "fontSize": 20, "fontFamily": 1,
     "textAlign": "center", "verticalAlign": "middle",
     "containerId": "rect1", "originalText": "My Box",
-    "lineHeight": 1.25, "baseline": 18
+    "lineHeight": 1.25
   }
 ]
 ```
@@ -361,6 +360,26 @@ const versionNonce = Math.floor(Math.random() * 2147483647);
 | 2 | Helvetica | Clean sans-serif |
 | 3 | Cascadia | Monospace |
 
+## Index Format
+
+Excalidraw uses fractional indexing for stacking order. **Invalid indices cause `invalid order key` errors when the user tries to add or paste elements.**
+
+Rules:
+- **Integer part**: one lowercase letter (`a`–`z`) followed by exactly as many digits (`0`–`9`) as the letter's position in the alphabet implies — `"a"` = 1 digit, `"b"` = 2 digits, etc.
+  - ✅ `"a0"` … `"a9"` (ten slots at the `"a"` level)
+  - ❌ `"b1"` — `"b"` requires 2 digits; use `"b10"`–`"b99"` instead
+  - ❌ `"f"` — `"f"` requires 6 digits
+- **Fractional suffix** (for bound text elements that sit between two containers): append lowercase letters only, e.g. `"a0a"`, `"a1a"`.
+  - ❌ `"a0L"` — uppercase not valid in fractional part
+
+**Recommended pattern for a diagram with N container+label pairs:**
+- Container 0: `"a0"`, its label: `"a0a"`
+- Container 1: `"a1"`, its label: `"a1a"`
+- …up to Container 9: `"a9"`, its label: `"a9a"`
+- Free-standing text/arrows after all containers: `"a<N>"` continuing the sequence
+
+Never use `"b0"`, `"b1"`, single bare letters (`"a"`, `"b"`, `"f"`), or uppercase letters in any index.
+
 ## Validation Rules
 
 ✅ **Required:**
@@ -429,7 +448,7 @@ const versionNonce = Math.floor(Math.random() * 2147483647);
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
-      "index": "a0L",
+      "index": "a0a",
       "roundness": null,
       "seed": 1234567891,
       "version": 1,
@@ -446,8 +465,7 @@ const versionNonce = Math.floor(Math.random() * 2147483647);
       "verticalAlign": "middle",
       "containerId": "box1",
       "originalText": "Hello",
-      "lineHeight": 1.25,
-      "baseline": 18
+      "lineHeight": 1.25
     }
   ],
   "appState": {

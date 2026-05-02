@@ -196,14 +196,14 @@ Arrow start (`x`, `y`) ≈ exit edge of source shape; arrow end (`x+points[-1][0
   "angle": 0, "strokeColor": "#282a36", "backgroundColor": "transparent",
   "fillStyle": "solid", "strokeWidth": 1, "strokeStyle": "solid",
   "roughness": 1, "opacity": 100, "groupIds": [], "frameId": null,
-  "index": "a0L", "roundness": null,
+  "index": "a0a", "roundness": null,
   "seed": 1234567891, "version": 1, "versionNonce": 987654322,
   "isDeleted": false, "boundElements": [], "updated": 1706659200000,
   "link": null, "locked": false,
   "text": "Step 1", "fontSize": 20, "fontFamily": 1,
   "textAlign": "center", "verticalAlign": "middle",
   "containerId": "box1", "originalText": "Step 1",
-  "lineHeight": 1.25, "baseline": 18
+  "lineHeight": 1.25
 }
 ```
 **Text color rule**: use `"#282a36"` (dark) on light/bright backgrounds; use `"#f8f8f2"` (light) on dark/purple (`#bd93f9`) backgrounds.

@@ -265,39 +265,20 @@ Rules:
 Code files: focus on semantic edges AST cannot find (call relationships, shared data, arch patterns).
   Do not re-extract imports - AST already has those.
 Doc/paper files: extract named concepts, entities, citations. Also extract rationale — sections that explain WHY a decision was made, trade-offs chosen, or design intent. These become nodes with `rationale_for` edges pointing to the concept they explain.
-Image files: use vision to understand what the image IS - do not just OCR.
-  UI screenshot: layout patterns, design decisions, key elements, purpose.
-  Chart: metric, trend/insight, data source.
-  Tweet/post: claim as node, author, concepts mentioned.
-  Diagram: components and connections.
-  Research figure: what it demonstrates, method, result.
-  Handwritten/whiteboard: ideas and arrows, mark uncertain readings AMBIGUOUS.
+Image files: use vision — understand what the image IS, not just OCR. UI screenshot: layout/purpose. Chart: metric/trend. Tweet: claim + author. Diagram: components + connections. Research figure: what it demonstrates. Handwritten: mark uncertain readings AMBIGUOUS.
 
-DEEP_MODE (if --mode deep was given): be aggressive with INFERRED edges - indirect deps,
-  shared assumptions, latent couplings. Mark uncertain ones AMBIGUOUS instead of omitting.
+DEEP_MODE (if --mode deep): be aggressive with INFERRED edges — indirect deps, shared assumptions, latent couplings. Mark uncertain ones AMBIGUOUS.
 
-Semantic similarity: if two concepts in this chunk solve the same problem or represent the same idea without any structural link (no import, no call, no citation), add a `semantically_similar_to` edge marked INFERRED with a confidence_score reflecting how similar they are (0.6-0.95). Examples:
-- Two functions that both validate user input but never call each other
-- A class in code and a concept in a paper that describe the same algorithm
-- Two error types that handle the same failure mode differently
-Only add these when the similarity is genuinely non-obvious and cross-cutting. Do not add them for trivially similar things.
+Semantic similarity: if two concepts solve the same problem without a structural link (no import/call/citation), add a `semantically_similar_to` edge (INFERRED, 0.6-0.95). Only add when similarity is non-obvious and cross-cutting.
 
-Hyperedges: if 3 or more nodes clearly participate together in a shared concept, flow, or pattern that is not captured by pairwise edges alone, add a hyperedge to a top-level `hyperedges` array. Examples:
-- All classes that implement a common protocol or interface
-- All functions in an authentication flow (even if they don't all call each other)
-- All concepts from a paper section that form one coherent idea
-Use sparingly — only when the group relationship adds information beyond the pairwise edges. Maximum 3 hyperedges per chunk.
+Hyperedges: if 3+ nodes participate in a shared concept/flow not captured by pairwise edges, add a hyperedge to `hyperedges`. Use sparingly. Maximum 3 per chunk.
 
-If a file has YAML frontmatter (--- ... ---), copy source_url, captured_at, author,
-  contributor onto every node from that file.
+If a file has YAML frontmatter (--- ... ---), copy source_url, captured_at, author, contributor onto every node from that file.
 
-confidence_score is REQUIRED on every edge - never omit it, never use 0.5 as a default:
-- EXTRACTED edges: confidence_score = 1.0 always
-- INFERRED edges: reason about each edge individually.
-  Direct structural evidence (shared data structure, clear dependency): 0.8-0.9.
-  Reasonable inference with some uncertainty: 0.6-0.7.
-  Weak or speculative: 0.4-0.5. Most edges should be 0.6-0.9, not 0.5.
-- AMBIGUOUS edges: 0.1-0.3
+confidence_score is REQUIRED on every edge — never omit, never use 0.5 as default:
+- EXTRACTED: 1.0 always
+- INFERRED: 0.8-0.9 (direct structural evidence), 0.6-0.7 (reasonable inference), 0.4-0.5 (speculative)
+- AMBIGUOUS: 0.1-0.3
 
 Node ID format: lowercase, only `[a-z0-9_]`, no dots or slashes. Format: `{stem}_{entity}` where stem is the filename without extension and entity is the symbol name, both normalized (lowercase, non-alphanumeric chars replaced with `_`). Example: `src/auth/session.py` + `ValidateToken` → `session_validatetoken`. This must match the ID the AST extractor generates so cross-references between code and semantic nodes connect correctly.
 

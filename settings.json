@@ -117,5 +117,7 @@
       }
     }
   },
-  "effortLevel": "medium"
+  "effortLevel": "medium",
+  "theme": "dark",
+  "agentPushNotifEnabled": true
 }

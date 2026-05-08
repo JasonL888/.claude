@@ -131,6 +131,7 @@ Create the `.excalidraw` file with appropriate elements:
 - **Size**: `width`, `height`
 - **Style**: `strokeColor`, `backgroundColor`, `fillStyle`
 - **Font**: `fontFamily: 1` (Virgil - **required for all text elements**)
+- **Index**: `index` must be a zero-padded 6-digit string in format `"a000000"`, `"a000001"`, `"a000002"`, etc., assigned sequentially to every element in element-array order. This is Excalidraw's fractional-index format, required for load validation. Formats like `"a1"`, `"a0a"`, or `"a0b"` will cause Excalidraw to reject the file on load.
 - **Text in shapes**: Use a separate `type: "text"` element with `containerId` pointing to the parent shape; add `{"id": "<text-id>", "type": "text"}` to the shape's `boundElements` array. **Never put text properties directly on shape elements** — they will not render in modern Excalidraw.
 - **Arrow bindings**: Every arrow connecting two shapes **must** have `startBinding` and `endBinding` set (never `null`). Each connected shape must also list the arrow in its `boundElements` array. Without this, arrows render as floating segments that don't snap to shape edges.
 - **Arrow routing**: All arrows must include `"elbowed": true` and `"roundness": null` for right-angle elbow routing.
@@ -369,6 +370,7 @@ To view:
 
 Before delivering the diagram:
 - [ ] All elements have unique IDs
+- [ ] **Every element has an `index` field in zero-padded 6-digit format (`"a000000"`, `"a000001"`, …) assigned sequentially** — no `"a1"`/`"a2"` or `"a0a"`/`"a0b"` values, which cause Excalidraw load failures
 - [ ] Coordinates prevent overlapping
 - [ ] Text is readable (font size 16+)
 - [ ] **All shape labels use separate bound `text` elements with `containerId` — no text properties on shape elements**

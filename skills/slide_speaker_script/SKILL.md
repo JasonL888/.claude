@@ -1,11 +1,11 @@
 ---
-name: ppt_speaker_script
-description: Generate speaker scripts for PowerPoint slides. Use this skill when the user asks to: write speaker notes, create presenter scripts, add talking points to slides, or anything involving "speaker notes", "presenter script", "slide script", or "talking points for slides".
+name: slide_speaker_script
+description: Generate speaker scripts for slides. Use this skill when the user asks to: write speaker notes, create presenter scripts, add talking points to slides, or anything involving "speaker notes", "presenter script", "slide script", or "talking points for slides".
 ---
 
 # PPT Speaker Script Skill
 
-Generate concise, insightful speaker scripts for PowerPoint slides that complement — not repeat — what is already on the slide.
+Generate concise, insightful speaker scripts for slides that complement — not repeat — what is already on the slide.
 
 ---
 
@@ -32,6 +32,7 @@ Generate concise, insightful speaker scripts for PowerPoint slides that compleme
 Each slide script follows this pattern:
 
 ```
+# Slide [N]: [Slide Title]
 [Optional 1-sentence transition from the previous slide]
 - Key insight or elaboration on the main point
 - Supporting detail, real-world example, or analogy
@@ -62,7 +63,7 @@ Keep the total script to **3–5 bullet points** per slide unless the content de
 ### Step 1 — Read the slides
 Identify the slide content:
 - If provided as text/markdown, parse each slide's title and body.
-- If a file is given (`.pptx`, `.md`, `.txt`), read its content.
+- If a file is given (`.pptx`, `.pdf`, `.md`, `.txt`), read its content.
 - Note which slides already have speaker notes.
 
 ### Step 2 — Plan before writing
@@ -92,6 +93,9 @@ or
 - Bullet point 2
 - Bullet point 3
 ```
+
+For pptx format, write the script in the Powerpoint speaker notes section for each slide.
+For other formats, output as markdown with clear slide demarcations.
 
 ---
 

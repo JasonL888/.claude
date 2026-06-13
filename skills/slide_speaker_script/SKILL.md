@@ -32,7 +32,8 @@ Generate concise, insightful speaker scripts for slides that complement — not 
 Each slide script follows this pattern:
 
 ```
-# Slide [N]: [Slide Title]
+## Slide [N]: [Slide Title]
+⏱ Estimated: ~X min
 [Optional 1-sentence transition from the previous slide]
 - Key insight or elaboration on the main point
 - Supporting detail, real-world example, or analogy
@@ -78,6 +79,18 @@ For each slide **without** existing notes:
 - Write a concise bullet-point script.
 - Ensure each script is meaningfully different from others.
 - Focus on insight, not summary.
+- Add a `⏱ Estimated: ~X min` line immediately after the slide heading using the table below:
+
+| Slide type | Estimated time |
+|---|---|
+| Title / section divider | ~30 sec |
+| Agenda / overview | ~1 min |
+| Content slide, 1–2 bullets | ~1 min |
+| Content slide, 3–4 bullets | ~2 min |
+| Content slide, 5+ bullets | ~3 min |
+| Step-by-step / demo walkthrough | ~3–4 min |
+
+Express as `~30 sec`, `~1 min`, `~2 min`, etc. The estimate reflects *speaker delivery time* — it accounts for the audience absorbing the slide visually, not just reading time.
 
 ### Step 4 — Output format
 Present the scripts in a clear, slide-by-slide format:

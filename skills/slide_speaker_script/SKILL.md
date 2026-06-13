@@ -97,6 +97,14 @@ or
 For pptx format, write the script in the Powerpoint speaker notes section for each slide.
 For other formats, output as markdown with clear slide demarcations.
 
+### Auto-save for PDF inputs
+When the source file is a `.pdf`:
+- Save the complete speaker script as `<pdf_basename>_speaker_script.md` in the same folder as the PDF using the Write tool.
+  - Example: `/path/to/FC6.pdf` → `/path/to/FC6_speaker_script.md`
+- Use the same markdown content that is output to chat.
+- Still output the script to chat as well.
+- Do this automatically — do not wait for the user to request it.
+
 ---
 
 ## Engagement Questions

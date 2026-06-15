@@ -18,6 +18,10 @@ EOF
 
 The Bash tool is not intercepted by the hook, so `model.eval()` can be written directly — no placeholder workarounds needed.
 
+# wsd-to-remotion
+- **wsd-to-remotion** (`~/.claude/skills/wsd-to-remotion/SKILL.md`) - convert a .wsd WebSequenceDiagram into a Remotion animation project. Trigger: `/wsd-to-remotion`
+When the user types `/wsd-to-remotion`, invoke the Skill tool with `skill: "wsd-to-remotion"` before doing anything else.
+
 # graphify
 - **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
 When the user types `/graphify`, invoke the Skill tool with `skill: "graphify"` before doing anything else.

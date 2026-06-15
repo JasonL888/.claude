@@ -80,11 +80,15 @@ description: Converts project notes, features, or architectural plans into a Mar
 
 5. **Cover Page:** Always include a cover page as the first slide with:
    - A large `#` header for the title
-   - A company PNG logo image centered below the title using `![bg right width:50%](./logo.png)`
-    - check if the logo exists in current workspace.
-        - If exist, reuse the same logo
-        - otherwise, copy the logo from the skill's assets folder to the same directory as the generated Markdown file
+   - A company PNG logo image centered below the title
    - The footer with the company name
+
+   **Logo resolution (run these checks in order before writing the cover slide):**
+   1. Check for `logo.png` in the **same directory** as the output `.md` file → use `./logo.png`
+   2. Check for `logo.png` in the **`Images/` subdirectory** of that same directory → use `./Images/logo.png`
+   3. If neither exists, copy `logo.png` from `/Users/jasonlau/.claude/skills/marp_gen/assets/logo.png` into the **same directory** as the `.md` file → use `./logo.png`
+
+   Use whichever path was resolved — never hardcode `./logo.png` without first verifying the file exists at that path.
 
 5a. **Theme Asset:** Always ensure `dracula.css` is present alongside the generated `.md` file:
    - Check if `dracula.css` exists in the same directory as the output `.md` file
@@ -228,8 +232,10 @@ description: Converts project notes, features, or architectural plans into a Mar
 ```markdown
 # <br><br>{{TITLE}}
 
-![bg right width:50%](./logo.png)
+![bg right width:50%]({{LOGO_PATH}})
 ```
+
+Where `{{LOGO_PATH}}` is resolved at generation time via the logo resolution steps in section 5 — either `./logo.png` or `./Images/logo.png` depending on where the file exists.
 
 # Examples
 

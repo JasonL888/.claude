@@ -83,7 +83,8 @@
       "Bash(pkill -f \"flask run\")",
       "Bash(pkill -f \"python\")",
       "Bash(curl -s -X POST http://127.0.0.1:5000/update_face_name -d \"face_id=1&name=Alice\" -w \"\\\\nHTTP Status: %{http_code}\\\\n\")",
-      "Bash(sqlite3 /Volumes/J_HP_USB/DB/face_data.db \"SELECT id, name FROM unique_faces LIMIT 5;\")"
+      "Bash(sqlite3 /Volumes/J_HP_USB/DB/face_data.db \"SELECT id, name FROM unique_faces LIMIT 5;\")",
+      "Bash(notebooklm *)"
     ],
     "additionalDirectories": [
       "/tmp",

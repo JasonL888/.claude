@@ -122,17 +122,12 @@ When the source file is a `.pdf`:
 
 ## Engagement Questions
 
-Occasionally include a question to pose to the audience — but only when it meaningfully enhances the slide. Use sparingly: aim for **1–2 questions across the entire deck**, not one per slide.
+Occasionally include a question to pose to the audience — but only when it meaningfully enhances the slide. Use sparingly: aim for **2–4 questions across the entire deck**, not one per slide.
 
 **When to use:**
 - The slide reveals a counterintuitive fact or surprising comparison
 - A key concept benefits from the audience reflecting on their own experience
 - A pivot point in the narrative where audience buy-in matters
-
-**When NOT to use:**
-- Routine explanatory slides (definitions, step-by-step process)
-- Slides with dense technical content where focus is needed
-- Back-to-back with another question slide
 
 **Format:** Add as the last line of the script, prefixed with `❓`:
 ```
@@ -140,6 +135,7 @@ Occasionally include a question to pose to the audience — but only when it mea
 ```
 
 The question should be thought-provoking and answerable from the audience's existing knowledge or intuition — not a quiz with a technical answer they couldn't know yet.
+Provide expected answers for each engagement question
 
 ---
 

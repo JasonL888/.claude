@@ -79,7 +79,7 @@ description: Uses NotebookLM to generate a quiz from provided source files and e
    - Use Python (via `uv run`) to generate the PDF file from the parsed content
 
 9. **Clean Up**
-   - Delete the temp notebook: `notebooklm notebook delete <notebook_id>`
+   - Delete the temp notebook: `notebooklm delete -n <notebook_id> -y`
    - Delete any temp PDF files created during source conversion
    - Delete `quiz.json`
 

@@ -16,14 +16,17 @@ Generate concise, insightful speaker scripts for slides that complement — not 
 3. **Preserve existing notes** — if a slide already has speaker notes, leave them completely unchanged.
 4. **Be concise** — each script should be short enough to deliver in the time allotted per slide. Avoid padding.
 5. **Use bullet lists for key points** — list format makes it easy to glance at while presenting.
-   - If a bullet point is too long to read at a glance, break it into a parent + indented sub-bullets:
+   - Default to breaking multi-clause bullets into a parent + indented sub-bullets, not just when a line is too long. Split at natural clause boundaries (colons, semicolons, dashes, "but", "and", "because") so each line on screen is a single short thought:
      ```
      - Main point (short label or headline)
-       - supporting detail or elaboration
-       - second part of the thought
+         - supporting detail or elaboration
+             - further nuance, if the thought has three parts
+         - second part of the thought
      ```
-   - The parent line should be a short anchor phrase (≤10 words); the detail goes in the sub-bullets.
+   - The parent line should be a short anchor phrase (≤10 words); each clause of the elaboration gets its own indented line. Nesting 2-3 levels deep is normal for compound thoughts — don't flatten a multi-part sentence onto one line just because it would technically fit.
+   - Only keep a bullet as a single flat line if it's already a short, single-clause thought.
 6. **Add value** — scripts should include: real-world examples, common misconceptions, transition cues, or deeper context not on the slide.
+7. **Emphasize with bold, not italics** — use `**bold**` for key terms the speaker should vocally stress. Italics are too subtle to register at a glance during live delivery.
 
 ---
 
@@ -163,11 +166,12 @@ Provide expected answers for each engagement question
 - It computes gradients using the chain rule
 - It updates weights to minimize loss
 
-**Good script (adds insight, with sub-bullets for longer points):**
+**Good script (adds insight, nested at clause boundaries, bold for emphasis):**
 - Think of it as blame assignment
-  - the network figures out which weights contributed most to the error
+    - the network figures out which weights contributed most to the error
 - Chain rule flows gradients backwards through every layer
-  - makes training arbitrarily deep networks mathematically tractable
-- Without this, networks deeper than 2–3 layers were impractical before 1986
+    - makes training arbitrarily deep networks **mathematically tractable**
+- Without this
+    - networks deeper than 2–3 layers were impractical before 1986
 - Common confusion: backprop computes gradients only
-  - a separate optimizer (SGD, Adam) decides how to update the weights
+    - a separate optimizer (SGD, Adam) decides **how** to update the weights

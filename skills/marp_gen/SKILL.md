@@ -225,7 +225,7 @@ description: Converts project notes, features, or architectural plans into a Mar
 
 9. **Review**:
    - Ensure that the content is clear and visually appealing when rendered in Marp
-   - Review the HTML output to ensure formatting is within the page limits and not overflowing
+   - Output only the `.md` file (and any referenced assets) — do not compile to HTML/PDF/PPTX unless the user explicitly asks
 
 # Cover Page Template
 

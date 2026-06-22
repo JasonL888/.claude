@@ -27,6 +27,7 @@ Generate concise, insightful speaker scripts for slides that complement — not 
    - Only keep a bullet as a single flat line if it's already a short, single-clause thought.
 6. **Add value** — scripts should include: real-world examples, common misconceptions, transition cues, or deeper context not on the slide.
 7. **Emphasize with bold, not italics** — use `**bold**` for key terms the speaker should vocally stress. Italics are too subtle to register at a glance during live delivery.
+8. **Write the actual words the speaker says, not a description of what to say.** Every bullet must be spoken-aloud script the presenter can read directly — first/second person, natural spoken phrasing. Never write meta-instructions like "explain X," "point out Y," "highlight that Z," "note the contrast between A and B," or "flag this connection." Those tell the speaker what to do, not what to say. If a bullet describes an action (explain/highlight/note/flag/contrast/mention) instead of containing the words themselves, rewrite it as the sentence the speaker would actually utter.
 
 ---
 
@@ -166,12 +167,17 @@ Provide expected answers for each engagement question
 - It computes gradients using the chain rule
 - It updates weights to minimize loss
 
-**Good script (adds insight, nested at clause boundaries, bold for emphasis):**
-- Think of it as blame assignment
-    - the network figures out which weights contributed most to the error
-- Chain rule flows gradients backwards through every layer
-    - makes training arbitrarily deep networks **mathematically tractable**
+**Also bad (describes what to say instead of saying it):**
+- Explain that backprop is like blame assignment
+- Point out that the chain rule makes deep networks tractable
+- Mention the common confusion that backprop only computes gradients
+
+**Good script (the actual words to speak, nested at clause boundaries, bold for emphasis):**
+- Think of this as blame assignment
+    - the network is figuring out which weights contributed most to the error
+- The chain rule flows gradients backwards through every layer
+    - that's what makes training arbitrarily deep networks **mathematically tractable**
 - Without this
     - networks deeper than 2–3 layers were impractical before 1986
-- Common confusion: backprop computes gradients only
-    - a separate optimizer (SGD, Adam) decides **how** to update the weights
+- Here's a common mix-up: backprop only computes the gradients
+    - a separate optimizer, like SGD or Adam, decides **how** to actually update the weights

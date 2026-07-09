@@ -130,7 +130,8 @@
       "Bash(node excalidraw.mjs export \"/Users/jasonlau/Documents/Courses/DataScience_04_PythonDataScience/LectureSlides/Additional/Images/diagrams/app_anatomy_tree.excalidraw\")",
       "Bash(mmdc -i navigate_context_flow.mmd -o navigate_context_flow.svg -c mermaid_dracula.json -b \"#282a36\" --width 900)",
       "Bash(brew list *)",
-      "Bash(plantuml -version)"
+      "Bash(plantuml -version)",
+      "Bash(plantuml -tsvg navigate_context_flow_wrapped.wsd)"
     ],
     "additionalDirectories": [
       "/tmp",

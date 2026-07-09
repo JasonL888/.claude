@@ -65,6 +65,52 @@ plantuml -tsvg path/to/diagram.wsd
 
 ---
 
+## Step 3.5 — Dark/Dracula theming (optional)
+
+For decks that use a dark theme (e.g. Marp `theme: dracula`), add a
+`skinparam` block inside `@startuml`/`@enduml`, before the diagram body, so
+the rendered SVG matches the slide background instead of defaulting to
+PlantUML's white canvas:
+
+```
+skinparam backgroundColor #282a36
+skinparam defaultFontColor #f8f8f2
+
+skinparam NoteBackgroundColor #ffb86c
+skinparam NoteBorderColor #ffb86c
+skinparam NoteFontColor #282a36
+
+skinparam sequence {
+    ParticipantBackgroundColor #bd93f9
+    ParticipantBorderColor #bd93f9
+    ParticipantFontColor #282a36
+    ActorBackgroundColor #bd93f9
+    ActorBorderColor #bd93f9
+    ActorFontColor #282a36
+    LifeLineBorderColor #6272a4
+    LifeLineBackgroundColor #282a36
+    ArrowColor #f8f8f2
+    ArrowFontColor #f8f8f2
+    DividerBackgroundColor #44475a
+    DividerFontColor #f8f8f2
+}
+```
+
+**`NoteBackgroundColor`/`NoteBorderColor`/`NoteFontColor` must be set as
+top-level `skinparam` statements, not nested inside `skinparam sequence {
+... }`.** PlantUML silently ignores note-color keys placed inside the
+`sequence` block — the note then falls back to its default pale-yellow
+background while `defaultFontColor` (set light, for the dark canvas) still
+applies to its text, producing near-invisible light-text-on-light-note. This
+is the most common mistake when adapting this block — verify by grepping the
+rendered SVG for `fill="#ffb86c"` (or your chosen note color) after
+rendering; if it's missing, the skinparam didn't take effect.
+
+Swap the hex values for a different palette as needed; the structural rule
+(note colors must be top-level) applies regardless of palette.
+
+---
+
 ## Step 4 — Handle errors
 
 `plantuml` prints `Warning: no image in <file>` / `No diagram found` when

@@ -133,13 +133,16 @@ Occasionally include a question to pose to the audience — but only when it mea
 - A key concept benefits from the audience reflecting on their own experience
 - A pivot point in the narrative where audience buy-in matters
 
-**Format:** Add as the last line of the script, prefixed with `❓`:
+**Format:** Add as the last lines of the script, prefixed with `❓`, separated from the preceding bullet by a blank line so it doesn't render as a continuation of that bullet. Follow it with the expected answer as its own flush (non-indented) bullet, not an indented sub-bullet of the `❓` line — the `❓` line is a plain paragraph, not a list item, so an indented `-` under it renders as a code block in most markdown viewers:
 ```
+- Last bullet point of the script
+
 ❓ Ask: "Before we look at the answer — how many connections do you think a single 1080p image would need in a fully dense layer?"
+- expected answer: ...
 ```
 
 The question should be thought-provoking and answerable from the audience's existing knowledge or intuition — not a quiz with a technical answer they couldn't know yet.
-Provide expected answers for each engagement question
+Provide expected answers for each engagement question, formatted as shown above.
 
 ---
 

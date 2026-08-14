@@ -56,7 +56,7 @@ description: Uses NotebookLM to generate a quiz from provided source files and e
 
 8. **Convert to PDF for Microsoft Forms Import**
    - Read `quiz.json` and parse the questions, options, and answers
-   - Shorten any question text that runs long (roughly >100 characters). Microsoft Forms' live-presentation view truncates long question text, so trim to the essential scenario/ask while preserving meaning and the correct answer. Options generally don't need shortening unless individually very long.
+   - Shorten any question text that runs long (roughly >150 characters). Microsoft Forms' live-presentation view truncates long question text, so trim to the essential scenario/ask while preserving meaning and the correct answer. Never truncate mid-sentence with an ellipsis — rewrite the question concisely so the full ask (including what's being asked, not just the setup) still reads as a complete, answerable question. Options generally don't need shortening unless individually very long.
    - Map to the Microsoft Forms import format:
      - Each question numbered sequentially (1, 2, 3, etc.)
      - Options labeled with letters (A, B, C, D)

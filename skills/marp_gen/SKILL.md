@@ -27,7 +27,7 @@ description: Converts project notes, features, or architectural plans into a Mar
    class:
    - lead
    header: "{{TITLE}}"
-   footer: "© {{YEAR}} [SophiArch](https://lms.sophiarch.com)"
+   footer: "© {{YEAR}} SophiArch [lms.sophiarch.com](https://lms.sophiarch.com)"
    style: |
        .columns {
            display: grid;

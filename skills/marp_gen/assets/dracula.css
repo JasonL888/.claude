@@ -311,6 +311,11 @@ section::after {
   color: var(--dracula-comment);
 }
 
+section header a,
+section footer a {
+  color: var(--dracula-comment);
+}
+
 header {
   left: 0;
   right: 0;

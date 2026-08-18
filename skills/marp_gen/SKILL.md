@@ -90,10 +90,7 @@ description: Converts project notes, features, or architectural plans into a Mar
 
    Use whichever path was resolved — never hardcode `./logo.png` without first verifying the file exists at that path.
 
-5a. **Theme Asset:** Always ensure `dracula.css` is present alongside the generated `.md` file:
-   - Check if `dracula.css` exists in the same directory as the output `.md` file
-   - If it does not exist, copy it from `/Users/jasonlau/.claude/skills/marp_gen/assets/dracula.css` to that directory
-   - This is required for Marp CLI to resolve the custom theme at compile time
+5a. **Theme Asset:** Do not copy `dracula.css` into the output directory. Compilation (via the `marp_gen` CLI script) and VS Code preview both reference the shared theme directly at `/Users/jasonlau/.claude/skills/marp_gen/assets/dracula.css` — a per-directory copy is unnecessary and should not be created.
 
 6. **Structure:**
    - Use `---` to separate slides

@@ -90,7 +90,12 @@ description: Converts project notes, features, or architectural plans into a Mar
 
    Use whichever path was resolved — never hardcode `./logo.png` without first verifying the file exists at that path.
 
-5a. **Theme Asset:** Do not copy `dracula.css` into the output directory. Compilation (via the `marp_gen` CLI script) and VS Code preview both reference the shared theme directly at `/Users/jasonlau/.claude/skills/marp_gen/assets/dracula.css` — a per-directory copy is unnecessary and should not be created.
+5a. **Theme Asset:** Do not copy `dracula.css` into the output directory. Compilation (via the `marp_gen` CLI script) references the shared theme directly at `/Users/jasonlau/.claude/skills/marp_gen/assets/dracula.css`. For VS Code preview, `markdown.marp.themes` cannot reference a local path outside the workspace folder — the Marp extension only resolves local theme paths that live inside the workspace root, silently dropping anything else (even absolute paths or `file://` URIs). Instead, point `markdown.marp.themes` at the hosted copy over HTTPS, which the extension fetches directly with no containment restriction:
+    ```json
+    "markdown.marp.themes": [
+        "https://raw.githubusercontent.com/JasonL888/.claude/refs/heads/main/skills/marp_gen/assets/dracula.css"
+    ]
+    ```
 
 6. **Structure:**
    - Use `---` to separate slides

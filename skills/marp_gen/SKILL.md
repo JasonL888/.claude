@@ -83,12 +83,11 @@ description: Converts project notes, features, or architectural plans into a Mar
    - A company PNG logo image centered below the title
    - The footer with the company name
 
-   **Logo resolution (run these checks in order before writing the cover slide):**
-   1. Check for `logo.png` in the **same directory** as the output `.md` file → use `./logo.png`
-   2. Check for `logo.png` in the **`Images/` subdirectory** of that same directory → use `./Images/logo.png`
-   3. If neither exists, copy `logo.png` from `/Users/jasonlau/.claude/skills/marp_gen/assets/logo.png` into the **same directory** as the `.md` file → use `./logo.png`
-
-   Use whichever path was resolved — never hardcode `./logo.png` without first verifying the file exists at that path.
+   **Logo asset:** Reference the logo directly over HTTPS — do not copy `logo.png` into the output directory or the target repo:
+   ```
+   https://raw.githubusercontent.com/JasonL888/.claude/refs/heads/main/skills/marp_gen/assets/logo.png
+   ```
+   This mirrors how `dracula.css` is referenced in 5a — one shared asset, no per-deck copies to keep in sync or accidentally commit into project repos.
 
 5a. **Theme Asset:** Do not copy `dracula.css` into the output directory. Compilation (via the `marp_gen` CLI script) references the shared theme directly at `/Users/jasonlau/.claude/skills/marp_gen/assets/dracula.css`. For VS Code preview, `markdown.marp.themes` cannot reference a local path outside the workspace folder — the Marp extension only resolves local theme paths that live inside the workspace root, silently dropping anything else (even absolute paths or `file://` URIs). Instead, point `markdown.marp.themes` at the hosted copy over HTTPS, which the extension fetches directly with no containment restriction:
     ```json
@@ -234,10 +233,8 @@ description: Converts project notes, features, or architectural plans into a Mar
 ```markdown
 # <br><br>{{TITLE}}
 
-![bg right width:50%]({{LOGO_PATH}})
+![bg right width:50%](https://raw.githubusercontent.com/JasonL888/.claude/refs/heads/main/skills/marp_gen/assets/logo.png)
 ```
-
-Where `{{LOGO_PATH}}` is resolved at generation time via the logo resolution steps in section 5 — either `./logo.png` or `./Images/logo.png` depending on where the file exists.
 
 # Examples
 

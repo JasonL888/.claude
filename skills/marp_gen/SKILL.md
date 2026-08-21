@@ -237,6 +237,16 @@ description: Converts project notes, features, or architectural plans into a Mar
    - If the source material had no URLs but tools/concepts can be looked up, generate the canonical documentation URLs and citation details from your knowledge
    - Do not add a "verify currency" or similar disclaimer blockquote — keep the slide to the table and speaker note
 
+8c. **Inline Source Citations on Content Slides:**
+   Any content slide that presents a specific real-world case, study, statistic, or claim tied to a named source (e.g. "Real-World Case: X", a named study, a specific historical example) — and that source also has a full citation on a References slide — gets a one-line blockquote citation at the bottom of its bullet list, pointing to the References slide:
+   ```markdown
+   - Bullet content about the case/claim...
+   > Source: {{Author(s)}} ({{Year}}), {{short descriptor}} — see References
+   ```
+   - Keep it terse: author/org, year, and a 2–4 word descriptor (paper title fragment, journal, or methodology name) — not the full citation, since that lives on the References slide
+   - Apply this consistently to every such slide in the deck — if one "Real-World Case" or named-study slide gets one, all of them do
+   - Do not add this blockquote to slides that only state a general concept or definition with no specific named source
+
 9. **Review**:
    - Ensure that the content is clear and visually appealing when rendered in Marp
    - Output only the `.md` file (and any referenced assets) — do not compile to HTML/PDF/PPTX unless the user explicitly asks

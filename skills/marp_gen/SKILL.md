@@ -193,36 +193,49 @@ description: Converts project notes, features, or architectural plans into a Mar
        -->
        ```
 
-8. **References Slide:**
+8. **Video Slides:**
+   Any video (YouTube, Vimeo, internal recording, etc.) referenced in the source material gets its own **dedicated slide** — never folded into the References table. Format:
+   ```markdown
+   # Watch: {{Video Title}}
+
+   - One-line description of what the video covers or why it's worth watching
+   - [{{Video Title}}]({{URL}})
+   ```
+   Place video slides among the content slides where they're topically relevant, or grouped just before the References slide(s) if there's no single natural spot. Give each its own speaker note.
+
+8b. **References Slide:**
    After the last content slide and before the final/closing slide, add one or more **References** slides for further reading. Follow these rules:
 
    **When to include:**
-   - Always include if the source material contains URLs, citations, or links
+   - Always include if the source material contains citations, papers, or documentation links
    - Always include if the content covers tools, services, or standards that have official documentation
    - Always include for technical decks where audience members may want to dig deeper
+   - Do **not** list videos here — those get their own slide per rule 8 above
 
    **Split into separate slides by category** when there are more than ~6 references total:
    - **Deprecation & Retirement Notices** — official announcements, GitHub archived repos, retirement dashboards
    - **Official Documentation** — product docs, quickstarts, API references on learn.microsoft.com or equivalent
    - **Further Reading** — blog posts, research papers, community resources
 
-   **Format each references slide as a table:**
+   **Format each references slide as a table using standard citation format**, not bare link labels:
    ```markdown
    # References — [Category Name]
 
    | Topic | Source |
    |-------|--------|
-   | **Tool or concept name** | [short link label](full URL) |
-   | **Tool or concept name** | [short link label](full URL) |
-
-   > Always verify currency at [authoritative domain] — this space moves fast
+   | **Author/Org (Year)** | Author, A. B. (Year). [*Title of work*](full URL). Publisher/Journal, details (vol/issue/pages if applicable). |
+   | **Tool or standard name** | Org Name. (Year). [Doc title](full URL). |
    ```
+   - Academic sources: `Author, A. B. (Year). Title. *Journal*, volume(issue), pages.` — link the title itself
+   - Books: `Author, A. B. (Year). *Book Title*. Publisher.`
+   - Docs/standards/web sources without a formal citation: `Org or Author. (Year). [Title](url).`
 
    **Rules:**
-   - Use descriptive link labels, not raw URLs — e.g. `[learn.microsoft.com — Agent Framework overview](url)` not `[https://...]`
+   - Every row cites a real author/org and year — never a bare "click here" style link
    - Group retirement/deprecation announcements first (most time-sensitive)
-   - Add a speaker note pointing out which links are highest priority to bookmark
-   - If the source material had no URLs but tools/concepts can be looked up, generate the canonical documentation URLs from your knowledge
+   - Add a speaker note pointing out which sources are highest priority to bookmark
+   - If the source material had no URLs but tools/concepts can be looked up, generate the canonical documentation URLs and citation details from your knowledge
+   - Do not add a "verify currency" or similar disclaimer blockquote — keep the slide to the table and speaker note
 
 9. **Review**:
    - Ensure that the content is clear and visually appealing when rendered in Marp

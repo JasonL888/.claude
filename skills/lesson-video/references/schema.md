@@ -49,7 +49,7 @@ Auto-picked up by `sync_content` — no MDX frontmatter changes required.
 }
 ```
 
-### `cue_times` (optional, all animated scene types)
+### `cue_times` (optional; `code_walkthrough`, `data_table`, `recap`, and `diagram` scenes with a `visualization`)
 
 Overrides equal-division timing. Array of seconds from scene start at which each `on_screen_text` item becomes active:
 
@@ -57,7 +57,7 @@ Overrides equal-division timing. Array of seconds from scene start at which each
 "cue_times": [0, 8.5, 14.5, 19.5]
 ```
 
-Use when the narration has an intro sentence before the first item, or when items vary significantly in length. Tune by scrubbing in Remotion Studio against the audio. Components fall back to equal-division when `cue_times` is absent. `title_card` and `screen_recording` scenes do not use this field.
+Use when the narration has an intro sentence before the first item, or when items vary significantly in length. Tune by scrubbing in Remotion Studio against the audio. Components fall back to equal-division when `cue_times` is absent. `title_card`, `screen_recording`, and default-layout `diagram` scenes (no `visualization`) ignore this field. For `recap`, supply one cue per `on_screen_text` item — an item without a cue never appears. Index alignment per type: `SophiArchSite/docs/video-scenes-api.md`.
 
 ### `visualization` (optional, `diagram` scenes only)
 
@@ -74,6 +74,7 @@ Identifies the custom Remotion component to render inside the `Diagram` scene wr
 | `probability_distribution` | ai-applications-with-llms / 01-probabilistic-contract |
 | `temperature_comparison` | ai-applications-with-llms / 01-probabilistic-contract |
 | `validation_layers_stack` | ai-applications-with-llms / 04-output-validation-layers |
+| `production_gap_diagram` | mlops-model-deployment / 01-the-production-gap |
 
 Omit the field when the default badge+flow layout is sufficient.
 
@@ -96,7 +97,7 @@ Parallel array to `on_screen_text`. Each entry is either a public path string or
 | Value | Behaviour |
 |-------|-----------|
 | `"flow"` (default) | Horizontal badge strip; image thumbnail (140×94) above each badge |
-| `"spotlight"` | One step at a time; large image (560×350) fills the top half, badge + label below, progress dots at the bottom |
+| `"spotlight"` | One step at a time; large image (900×480) on top, badge + label below, progress dots at the bottom |
 
 Use `"spotlight"` when the images need to be large enough to read (histogram shapes, algorithm diagrams, annotated charts). Use `"flow"` for simple icon-style thumbnails (chart type pickers, tool logos).
 
@@ -132,6 +133,8 @@ Use `"spotlight"` when the images need to be large enough to read (histogram sha
 | `wipe` | Directional wipe |
 
 Default to `cut` between content scenes. Use `fade` with `duration_seconds: 0.5` for the first and last scenes.
+
+**Not yet rendered:** the player currently hard-cuts between all scenes regardless of `transition`. Still set it so the file is ready when transitions are implemented.
 
 ---
 

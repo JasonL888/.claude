@@ -254,7 +254,7 @@ description: Converts project notes, features, or architectural plans into a Mar
 # Cover Page Template
 
 ```markdown
-# <br><br>{{TITLE}}
+# <br><br><br><br>{{TITLE}}
 
 ![bg right width:50%](https://raw.githubusercontent.com/JasonL888/.claude/refs/heads/main/skills/marp_gen/assets/logo.png)
 ```

@@ -40,7 +40,7 @@ description: Converts project notes, features, or architectural plans into a Mar
        table {
            width: 100%;
        }
-       theader {
+       thead {
            font-size: 0.7em;
            text-align: center;
        }
@@ -115,7 +115,14 @@ description: Converts project notes, features, or architectural plans into a Mar
      - Keep periods only when two or more sentences appear in the same block
 
 6a. **Diagrams:**
-   When a diagram would meaningfully aid understanding during presentation (e.g. flows, architectures, comparisons, timelines), use the **`diagrams` skill** to generate it. Follow all tool selection, colour palette, and workflow rules defined there.
+   When a diagram would meaningfully aid understanding during presentation (e.g. flows, architectures, comparisons, timelines), use the **`excalidraw-skill`** to draw it, following its interface and workflow rules (canvas, screenshots, export).
+
+   **Fallback:** excalidraw image export needs the canvas open in a browser tab. If that isn't possible, draw the diagram in Mermaid instead (`diag_<name>.mmd` rendered to `.png` with `npx -y @mermaid-js/mermaid-cli`) rather than skipping it, and tell the user which tool was used.
+
+   **Colour palette (Dracula, matches the deck theme):**
+   - Canvas background `#282a36`; node fill `#44475a`; text `#f8f8f2`
+   - Accent borders/arrows, one colour per stage: orange `#ffb86c`, cyan `#8be9fd`, green `#50fa7b`, pink `#ff79c6`, purple `#bd93f9`
+   - Keep labels large (they shrink on a 16:9 slide); prefer a compact 2-row or loop layout over one very wide row
 
    **When to create diagrams:**
    - Flows and pipelines (data flow, training loop, inference pipeline)
@@ -124,17 +131,17 @@ description: Converts project notes, features, or architectural plans into a Mar
    - Before/after or cause/effect relationships
    - Do NOT create diagrams for simple lists, tables, or content that reads clearly as text
 
-   **Marp-specific overrides** (these take precedence over `diagrams` skill defaults):
+   **Marp-specific rules** (these take precedence over `excalidraw-skill` defaults):
 
-   - **File naming:** prefix all diagram files with `diag_` — e.g. `diag_training_loop.mmd`, `diag_training_loop.svg`
-   - **Storage:** Marp decks are standalone — always use the `Images/` fallback from the `diagrams` skill storage resolution:
-     - Search parent directories of the output `.md` file for an existing `Images/` folder; use it if found
+   - **File naming:** prefix all diagram files with `diag_`; keep the editable source next to the export — e.g. `diag_training_loop.excalidraw` + `diag_training_loop.svg`
+   - **Storage:** Marp decks are standalone:
+     - Search the output `.md` file's directory, then its parents, for an existing `Images/` folder; use the nearest one found
      - If none exists, create `Images/` in the same directory as the `.md` file
-   - **Slide reference syntax:** use Marp's centering alt-text:
+   - **Slide reference syntax:** use Marp's centering alt-text with a path relative to the `.md` file:
      ```markdown
-     ![center](../Images/diag_<name>.svg)
+     ![center](./Images/diag_<name>.svg)
      ```
-     Adjust the relative path to match the `.md` file's location.
+   - **Check the render:** compile the slide to PNG and confirm labels are readable and nothing overflows
 
 7. **Speaker Scripts:**
    After all slide content is finalized, add speaker notes to every slide using Marp's `<!-- ... -->` comment syntax. Follow these rules:
